@@ -11,9 +11,6 @@
                   enctype="multipart/form-data" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="image" class="form-control-label mr-3">
-                        <i class="fa fa-file-archive-o fa-lg fa-fw"></i>
-                    </label>
                     <input id="image" class="form-control-file" type="file" name="file">
                 </div>
                 <button type="submit" class="btn btn-outline-success ml-3">

@@ -1,4 +1,7 @@
 require('chart.js');
+const Uppy = require('uppy/lib/core');
+const Dashboard = require('uppy/lib/plugins/Dashboard');
+const XHRUpload = require('uppy/lib/plugins/XHRUpload');
 (function ($) {
     function initCharts() {
         $("canvas[data-target='chartjs']").each(function () {
@@ -35,5 +38,46 @@ require('chart.js');
         });
     }
 
+    function initImageUpload() {
+        const uppy = Uppy({
+            autoProceed: false,
+            meta: {
+                _token: window.XblogConfig.csrfToken,
+                type: 'xrt'
+            },
+            restrictions: {
+                maxFileSize: 5000000,
+                allowedFileTypes: ['image/*']
+            }
+        }).use(Dashboard, {
+            inline: true,
+            target: '.UppyDragDrop',
+            replaceTargetContent: true,
+            note: 'Images only, up to 5 MB',
+            maxHeight: 360
+        }).use(XHRUpload, {
+            endpoint: '/admin/upload/image',
+            formData: true,
+            fieldName: 'image',
+            getResponseData: function getResponseData(xhr) {
+                return xhr.response;
+            },
+        }).run();
+
+        uppy.on('complete', result => {
+            if (result.successful.length > 0) {
+                $.get('/admin/images-list', function (html) {
+                    $('#images-list').html(html);
+                    Xblog.init();
+                    $('#images').imagesLoaded().progress(function () {
+                        $('#images').masonry();
+                    });
+                    $('#images').masonry();
+                });
+            }
+        })
+    }
+
     initCharts();
+    initImageUpload();
 })(jQuery);

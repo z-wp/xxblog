@@ -26,7 +26,14 @@ class ImageController extends Controller
     {
         $images = $this->imageRepository->getAll(18);
         $image_count = $this->imageRepository->count();
-        return view('admin.images', compact('images','image_count'));
+        return view('admin.images', compact('images', 'image_count'));
+    }
+
+    public function images_list()
+    {
+        $images = $this->imageRepository->getAll(18);
+        $image_count = $this->imageRepository->count();
+        return view('admin.partials.image_list', compact('images', 'image_count'));
     }
 
     /**
@@ -39,8 +46,9 @@ class ImageController extends Controller
             'image' => 'required|image|max:5000'
         ]);
         $type = $request->input('type', null);
-        if ($type != null && $type == 'xrt') {
-            return $this->imageRepository->uploadImageToQiNiu($request, false);
+        if ($request->expectsJson() || ($type != null && $type == 'xrt')) {
+            $result = $this->imageRepository->uploadImageToQiNiu($request, false);
+            return response()->json($result, array_key_exists('error', $result) ? 500 : 200);
         } else {
             if ($this->imageRepository->uploadImageToQiNiu($request, true))
                 return back()->with('success', '上传成功');

@@ -32,6 +32,7 @@ Route::get('/users', ['uses' => 'AdminController@users', 'as' => 'admin.users'])
 Route::get('/pages', ['uses' => 'AdminController@pages', 'as' => 'admin.pages']);
 Route::get('/categories', ['uses' => 'AdminController@categories', 'as' => 'admin.categories']);
 Route::get('/images', ['uses' => 'ImageController@images', 'as' => 'admin.images']);
+Route::get('/images-list', ['uses' => 'ImageController@images_list', 'as' => 'admin.images-list']);
 Route::get('/files', ['uses' => 'FileController@files', 'as' => 'admin.files']);
 Route::get('/ips', ['uses' => 'AdminController@ips', 'as' => 'admin.ips']);
 Route::get('/app', ['uses' => 'AppController@index', 'as' => 'admin.app']);
