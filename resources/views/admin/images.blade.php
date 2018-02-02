@@ -3,12 +3,15 @@
 @section('css')
     <style>
         #images.col, [class*="col-"] {
-            padding-right: 0.1rem;
-            padding-left: 0.1rem;
+            padding-right: 0.2rem;
+            padding-left: 0.2rem;
         }
 
         .img-container.card {
             border-radius: 0;
+            border: none;
+            -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
         }
 
         .img-container img {
@@ -17,8 +20,8 @@
         }
 
         .img-container:hover img {
-            -webkit-filter: blur(.1) grayscale(35%);
-            filter: blur(.1) grayscale(35%);
+            -webkit-filter: grayscale(65%);
+            filter: grayscale(65%);
         }
 
         .img-container:hover .img-overlay {
@@ -33,7 +36,7 @@
             width: 100%;
             height: 100%;
             overflow-y: auto;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             justify-content: center;
             align-content: center;
             font-family: "Microsoft YaHei", serif;

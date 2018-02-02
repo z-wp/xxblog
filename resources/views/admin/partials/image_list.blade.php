@@ -1,11 +1,13 @@
 <div class="row" id="images" data-masonry='{ "itemSelector": ".col", "columnWidth":".col" }'>
     @forelse($images as $image)
-        <div class="col col-md-3 col-sm-4 col-6" style="margin-bottom: .2rem">
+        <div class="col col-md-3 col-sm-4 col-6" style="margin-bottom: .4rem">
             <div class="card img-container">
                 <img class="card-img-top" src="{{ getImageViewUrl($image->url,null,250) }}">
                 <div class="img-overlay">
                     <div class="actions align-self-center text-center">
-                        <span class="text-white d-block">{{ formatBytes($image->size) }}</span>
+                        <span class="text-success d-block">{{ $image->name }}</span>
+                        <span class="text-success d-block">{{ formatBytes($image->size) }}</span>
+                        <span class="text-success d-block">{{ $image->created_at->format('Y-m-d') }}</span>
                         <a class="text-white d-block" href="{{ $image->url }}">原图</a>
                         <a  href="javascript:void(0)" class="text-white btn-clipboard"
                                 data-clipboard-text="{{ $image->url }}"
