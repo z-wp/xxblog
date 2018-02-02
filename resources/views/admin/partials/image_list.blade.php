@@ -3,7 +3,6 @@
         <div class="col col-md-3 col-sm-4 col-6" style="margin-bottom: .2rem">
             <div class="card img-container">
                 <img class="card-img-top" src="{{ getImageViewUrl($image->url,null,250) }}">
-                <img class="card-img-top" src="{{ $image->src."?imageView2/2/w/200/q/75" }}">
                 <div class="img-overlay">
                     <div class="actions align-self-center text-center">
                         <span class="text-white d-block">{{ formatBytes($image->size) }}</span>
