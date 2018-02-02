@@ -12,7 +12,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <?php $min = 12; $max = 60;?>
+                                <?php $min = 12; $max = 48;?>
                                 <a style="font-size: {{ $min+(int)(($tag->posts_count*1.0/$total)*($max-$min)) }}px" class="text-dark" href="{{ route('tag.show', $tag->name) }}">{{ $tag->name }}</a>
                             </h4>
                             <p class="card-text">

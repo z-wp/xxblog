@@ -100,7 +100,6 @@
         <option value="default" {{ $comment_type=='default'?' selected' : '' }}>默认</option>
         <option value="raw" {{ $comment_type=='raw'?' selected' : '' }}>自带评论</option>
         <option value="disqus" {{ $comment_type=='disqus'?' selected' : '' }}>Disqus</option>
-        <option value="duoshuo" {{ $comment_type=='duoshuo'?' selected' : '' }}>多说</option>
     </select>
 </div>
 
