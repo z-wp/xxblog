@@ -44,9 +44,7 @@
     </style>
 @endsection
 @section('content')
-    <div class="d-flex justify-content-center">
-        <div class="UppyDragDrop mb-3"></div>
-    </div>
+    <div style="max-width: 750px" class="mx-auto UppyDragDrop mb-3"></div>
     <div id="images-list">
         @include('admin.partials.image_list')
     </div>
