@@ -5,6 +5,7 @@
  * Date: 2016/8/19
  * Time: 17:41
  */
+
 namespace App\Http\Repositories;
 
 use App\File;
@@ -37,13 +38,15 @@ class ImageRepository extends FileRepository
     public function uploadImageToQiNiu(Request $request, $html)
     {
         $file = $request->file('image');
+        $name = $file->getClientOriginalName() or 'image';
         $data = [];
         $url = $this->uploadFile($file);
         if ($url) {
             if ($html) {
                 return true;
             } else {
-                $data['filename'] = $url;
+                $data['url'] = $url;
+                $data['filename'] = $name;
             }
         } else {
             if ($html)
