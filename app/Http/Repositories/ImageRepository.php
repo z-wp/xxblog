@@ -21,10 +21,10 @@ class ImageRepository extends FileRepository
 {
     static $tag = 'image';
 
-    public function getAll($page = 12)
+    public function getAll($size = 12)
     {
-        $maps = $this->remember('image.page.' . $page . request()->get('page', 1), function () use ($page) {
-            return File::where('type', 'image')->orderBy('created_at', 'desc')->paginate($page);
+        $maps = $this->remember('image.page.' . $size . request()->get('page', 1), function () use ($size) {
+            return File::where('type', 'image')->orderBy('created_at', 'desc')->paginate($size);
         });
         return $maps;
     }

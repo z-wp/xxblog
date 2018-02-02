@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Images')
+@section('title','Images('.$image_count.')')
 @section('css')
     <style>
         #images.col, [class*="col-"] {

@@ -39,6 +39,9 @@ const XHRUpload = require('uppy/lib/plugins/XHRUpload');
     }
 
     function initImageUpload() {
+        if ($('.UppyDragDrop').length === 0) {
+            return;
+        }
         const uppy = Uppy({
             autoProceed: false,
             meta: {

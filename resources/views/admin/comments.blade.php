@@ -11,9 +11,10 @@
 @if($comments->isEmpty())
     <h3 class="center-block meta-item">No Comments</h3>
 @else
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped table-responsive" id="comments-table">
         <thead>
         <tr>
+            {{--<th><input type="checkbox" name="select_all"></th>--}}
             <th>用户</th>
             <th>Email</th>
             <th>地址</th>
@@ -25,7 +26,8 @@
         <tbody>
         @foreach($comments as $comment)
             <?php $commentableData = $comment->getCommentableData();?>
-            <tr>
+            <tr id="{{ $comment->id }}">
+                {{--<td><input type="checkbox"></td>--}}
                 <td>
                     @if($comment->user_id)
                         <a href="{{ route('user.show',$comment->username) }}">{{ $comment->username }}</a>
@@ -36,17 +38,23 @@
                 <td><a href="mailto:{{ $comment->email }}">{{ $comment->email }}</a></td>
                 <td>
                     @if($commentableData['deleted'])
-                        <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['type'] }}已删除</span>
+                        <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['type'] }}
+                            已删除</span>
                     @else
                         @if($comment->trashed())
-                            <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['title'] }}</span>
+                            <span data-html="true" data-toggle="tooltip"
+                                  title="{{ $comment->html_content }}">{{ $commentableData['title'] }}</span>
                         @else
-                            <a data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}" target="_blank" href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
+                            <a data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}"
+                               target="_blank"
+                               href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
                             </a>
                         @endif
                     @endif
                 </td>
-                <td><span class="p-2 p badge {{ $comment->trashed() ? 'badge-danger':($comment->isVerified() ? 'badge-success' : 'badge-secondary') }}">{{ $comment->trashed() ? '已删除':($comment->isVerified() ? '已审核' : '未审核') }}</span></td>
+                <td>
+                    <span class="p-2 p badge {{ $comment->trashed() ? 'badge-danger':($comment->isVerified() ? 'badge-success' : 'badge-secondary') }}">{{ $comment->trashed() ? '已删除':($comment->isVerified() ? '已审核' : '未审核') }}</span>
+                </td>
                 <td>{{ $comment->ip_id?$comment->ip_id:'NONE' }}</td>
                 <td>
                     @if($comment->trashed())
@@ -62,7 +70,8 @@
                         </button>
                         <form class="d-inline-block" method="post" action="{{ route('comment.restore',$comment->id) }}">
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="恢复">
+                            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                    title="恢复">
                                 <i class="fa fa-repeat fa-fw"></i>
                             </button>
                         </form>
@@ -89,7 +98,7 @@
                             <i class="fa fa-{{ $comment->isVerified()?'hand-o-down':'hand-o-up' }} fa-fw"></i>
                         </button>
                     </form>
-                    <?php $ip = $comment->ip?$comment->ip:$comment->ip_id ?>
+                    <?php $ip = $comment->ip ? $comment->ip : $comment->ip_id ?>
                     @if($ip == null)
                         <button disabled
                                 class="btn btn-default"
@@ -110,3 +119,48 @@
     @endif
 @endif
 @endsection
+{{--
+@section('script')
+    <script>
+        let dataTable = document.getElementById('comments-table');
+        let checkItAll = dataTable.querySelector('input[name="select_all"]');
+        let inputs = dataTable.querySelectorAll('tbody>tr>td>input');
+        let items = dataTable.querySelectorAll('tbody>tr');
+        inputs.forEach(function (input) {
+            input.addEventListener('change', function () {
+                if (!this.checked) {
+                    checkItAll.checked = false;
+                } else if (!checkItAll.checked) {
+                    let allChecked = true;
+                    for (let i = 0; i < inputs.length; i++) {
+                        if (!inputs[i].checked) {
+                            allChecked = false;
+                            break;
+                        }
+                    }
+
+                    if (allChecked) {
+                        checkItAll.checked = true;
+                    }
+                }
+            });
+        });
+
+        checkItAll.addEventListener('change', function () {
+            inputs.forEach(function (input) {
+                input.checked = checkItAll.checked;
+            });
+        });
+
+        function hh() {
+            let ids = [];
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) {
+                    ids.push(items[i].id)
+                }
+            }
+            console.log(ids)
+        }
+    </script>
+@endsection
+--}}
