@@ -94,39 +94,31 @@
                             <?php $commentable = $post?>
                             <ul class="dropdown-menu">
                                 @if($commentable->allowComment())
-                                    <a href="#" data-url="{{ route('post.config',$post->id) }}"
+                                    <a href="#" data-url="{{ route('post.config',$post->id) }}?allow_resource_comment=false"
                                        data-method="post"
-                                       data-enable-ajax="1"
                                        data-dialog-title="禁止评论"
-                                       data-request-data="allow_resource_comment=false"
                                        class="dropdown-item swal-dialog-target">
                                         禁止评论
                                     </a>
                                 @else
-                                    <a href="#" data-url="{{ route('post.config',$post->id) }}"
+                                    <a href="#" data-url="{{ route('post.config',$post->id) }}?allow_resource_comment=true"
                                        data-method="post"
-                                       data-enable-ajax="1"
                                        data-dialog-title="允许评论"
-                                       data-request-data="allow_resource_comment=true"
                                        class="dropdown-item swal-dialog-target">
                                         允许评论
                                     </a>
                                 @endif
                                 @if($commentable->isShownComment())
-                                    <a href="#" data-url="{{ route('post.config',$post->id) }}"
+                                    <a href="#" data-url="{{ route('post.config',$post->id) }}?comment_info=force_disable"
                                        data-method="post"
-                                       data-enable-ajax="1"
                                        data-dialog-title="不显示评论"
-                                       data-request-data="comment_info=force_disable"
                                        class="dropdown-item swal-dialog-target">
                                         不显示评论
                                     </a>
                                 @else
-                                    <a href="#" data-url="{{ route('post.config',$post->id) }}"
+                                    <a href="#" data-url="{{ route('post.config',$post->id) }}?comment_info=force_enable"
                                        data-method="post"
-                                       data-enable-ajax="1"
                                        data-dialog-title="显示评论"
-                                       data-request-data="comment_info=force_enable"
                                        class="dropdown-item swal-dialog-target">
                                         显示评论
                                     </a>

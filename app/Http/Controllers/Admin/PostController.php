@@ -47,6 +47,9 @@ class PostController extends Controller
 
     public function create()
     {
+        if ($this->categoryRepository->count() <= 0) {
+            return redirect()->route('admin.categories')->withErrors('请先创建一个分类');
+        }
         return view('admin.post.create',
             [
                 'categories' => $this->categoryRepository->getAll(),
@@ -218,7 +221,7 @@ class PostController extends Controller
     {
         $post = Post::withoutGlobalScopes()->findOrFail($id);
         if ($post->saveConfig($request->all()))
-            return $this->succeedJsonMessage('Update configure successfully');
-        return $this->failedJsonMessage('Update Configure failed');
+            return back()->withSuccess('Update configure successfully');
+        return back()->withErrors('Update Configure failed');
     }
 }

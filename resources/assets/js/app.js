@@ -37,79 +37,22 @@ require('./boot');
             let data = $(this).data('request-data') ? $(this).data('request-data') : '';
             let title = $(this).data('dialog-title') ? $(this).data('dialog-title') : '删除';
             let message = $(this).data('dialog-msg');
-            let type = $(this).data('dialog-type') ? $(this).data('dialog-type') : 'warning';
+            let type = $(this).data('dialog-type') ? $(this).data('dialog-type') : 'danger';
             let cancel_text = $(this).data('dialog-cancel-text') ? $(this).data('dialog-cancel-text') : '取消';
             let confirm_text = $(this).data('dialog-confirm-text') ? $(this).data('dialog-confirm-text') : '确定';
             let enable_html = $(this).data('dialog-enable-html') == '1';
             let enable_ajax = $(this).data('enable-ajax') == '1';
             console.log(data);
-            if (enable_ajax) {
-                swal({
-                        title: title,
-                        text: message,
-                        type: type,
-                        html: enable_html,
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        cancelButtonText: cancel_text,
-                        confirmButtonText: confirm_text,
-                        showLoaderOnConfirm: true,
-                        closeOnConfirm: true
-                    },
-                    function () {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': XblogConfig.csrfToken
-                            },
-                            url: url,
-                            type: method,
-                            data: data,
-                            success: function (res) {
-                                if (res.code == 200) {
-                                    swal({
-                                        title: 'Succeed',
-                                        text: res.msg,
-                                        type: "success",
-                                        timer: 1000,
-                                        confirmButtonText: "OK"
-                                    });
-                                } else {
-                                    swal({
-                                        title: 'Failed',
-                                        text: "操作失败",
-                                        type: "error",
-                                        timer: 1000,
-                                        confirmButtonText: "OK"
-                                    });
-                                }
-                            },
-                            error: function (res) {
-                                swal({
-                                    title: 'Failed',
-                                    text: "操作失败",
-                                    type: "error",
-                                    timer: 1000,
-                                    confirmButtonText: "OK"
-                                });
-                            }
-                        })
-                    });
-            } else {
-                swal({
-                        title: title,
-                        text: message,
-                        type: type,
-                        html: enable_html,
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        cancelButtonText: cancel_text,
-                        confirmButtonText: confirm_text,
-                        closeOnConfirm: true
-                    },
-                    function () {
-                        deleteForm.submit();
-                    });
-            }
+            dialog({
+                    title: title,
+                    body: message,
+                    type: type,
+                    cancel: cancel_text,
+                    confirm: confirm_text
+                },
+                function () {
+                    deleteForm.submit();
+                });
         });
     }
 
