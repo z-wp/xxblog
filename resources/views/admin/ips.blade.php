@@ -28,7 +28,7 @@
     <tbody>
     @foreach($ips as $ip)
         <tr>
-            <td>{{ $ip->id }}</td>
+            <td><a href="https://ip.sb/ip/{{ $ip->id }}" target="_blank">{{ $ip->id }}</a></td>
             @if($ip->user)
                 <td>
                     <a href="{{ route('user.show',$ip->user->name) }}">{{ $ip->user->name }}</a>
