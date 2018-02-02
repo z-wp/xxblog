@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','分类 文章')
+@section('title', $name)
 @section('content')
     <div class="container">
         <ol class="breadcrumb">

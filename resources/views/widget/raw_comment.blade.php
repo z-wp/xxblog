@@ -36,8 +36,8 @@
             </div>
             @if($final_allow_comment)
                 <div class="form-group d-flex">
-                    <img id="captcha" class="mr-3" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()">
-                    <input class="form-control" type="text" name="captcha">
+                    <img id="captcha" class="mr-3" src="{{ captcha_src('inverse') }}" onclick="this.src='/captcha/inverse?'+Math.random()">
+                    <input class="form-control col-md-2 col-sm-3" type="text" size="6" name="captcha">
                 </div>
             @endif
             <div class="form-group">

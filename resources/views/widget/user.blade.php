@@ -6,8 +6,8 @@
         $style = '';
     ?>
     <div class="card-user-header bg-placeholder" style="{{ $style }}">
-        <h3 class="card-user-username">{{ $author or 'Author' }}</h3>
-        <h5 class="card-user-desc">{{ $description or 'Description' }}</h5>
+        <h3 class="card-user-username">{{ $author or '' }}</h3>
+        <h5 class="card-user-desc">{{ $description or '' }}</h5>
     </div>
     <div class="card-user-image">
         <img class="rounded-circle"
