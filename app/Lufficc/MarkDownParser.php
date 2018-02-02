@@ -9,11 +9,11 @@
 namespace Lufficc;
 
 use League\HTMLToMarkdown\HtmlConverter;
-use Parsedown;
+use ParsedownExtra;
 
 class MarkDownParser
 {
-    protected $parseDown;
+    protected $parser;
     protected $htmlConverter;
 
     /**
@@ -21,7 +21,7 @@ class MarkDownParser
      */
     public function __construct()
     {
-        $this->parseDown = new Parsedown();
+        $this->parser = new ParsedownExtra();
         $this->htmlConverter = new HtmlConverter();
     }
 
@@ -32,7 +32,7 @@ class MarkDownParser
 
     public function parse($markdown, $clean = true)
     {
-        $convertedHtml = $this->parseDown->setBreaksEnabled(true)->text($markdown);
+        $convertedHtml = $this->parser->setBreaksEnabled(true)->text($markdown);
         if ($clean) {
             $convertedHtml = clean($convertedHtml, 'user_comment_content');
         }
