@@ -2,7 +2,7 @@
 @section('title','Comments')
 @section('content')
 @section('action')
-    <button class="btn btn-outline-danger swal-dialog-target"
+    <button class="btn btn-sm btn-outline-danger swal-dialog-target"
             data-dialog-msg="Delete all unverified comments? "
             data-url="{{ route('comment.delete-un-verified') }}"
             data-method="delete">Delete Un Verified

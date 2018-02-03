@@ -6,14 +6,14 @@
     @else
 @section('action')
     <div class="btn-group">
-        <a class="btn btn-outline-danger" href="{{ route('admin.ips',['blocked'=>1]) }}">Blocked</a>
-        <a class="swal-dialog-target btn btn-outline-secondary"
+        <button class="btn btn-sm btn-outline-secondary" href="{{ route('admin.ips',['blocked'=>1]) }}">Blocked</button>
+        <button class="swal-dialog-target btn btn-sm btn-outline-secondary"
            data-dialog-msg="Delete all unblocked IPs? "
            data-toggle="tooltip"
            title="Delete Unblocked IPs"
            data-url="{{ route('ip.delete-unblocked') }}"
            data-method="delete">DUI
-        </a>
+        </button>
     </div>
 @endsection
 <table class="table table-striped table-responsive">

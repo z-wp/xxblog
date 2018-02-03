@@ -88,7 +88,7 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                操作
+                                评论
                                 <span class="caret"></span>
                             </button>
                             <?php $commentable = $post?>
@@ -104,6 +104,7 @@
                                     <a href="#" data-url="{{ route('post.config',$post->id) }}?allow_resource_comment=true"
                                        data-method="post"
                                        data-dialog-title="允许评论"
+                                       data-dialog-type="success"
                                        class="dropdown-item swal-dialog-target">
                                         允许评论
                                     </a>
@@ -119,6 +120,7 @@
                                     <a href="#" data-url="{{ route('post.config',$post->id) }}?comment_info=force_enable"
                                        data-method="post"
                                        data-dialog-title="显示评论"
+                                       data-dialog-type="success"
                                        class="dropdown-item swal-dialog-target">
                                         显示评论
                                     </a>

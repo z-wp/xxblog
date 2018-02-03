@@ -32,7 +32,8 @@
     <div class="sidebar-wrapper bg-placeholder" id="sidebar-wrapper">
         <div class="p-3" style="{{ $has_sidebar_image ?'background-color: rgba(16,16,16,0.5);height: 100%;':'' }}">
             <div class="sidebar-header">
-                <button class="sidebar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="sidebar-toggler" type="button" data-toggle="collapse" data-target="#sidebar"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sidebar-toggler-icon"></span>
                 </button>
                 <a href="{{ route('admin.index') }}" class="admin-brand">Admin</a>
@@ -127,7 +128,8 @@
                                         $show = false;
                                 }
                                 ?>
-                                <a class="nav-link{{ $show ? ' active':' collapsed' }}" role="tab" data-toggle="collapse" href="#{{ $menu['name'] }}" aria-expanded="false">
+                                <a class="nav-link{{ $show ? ' active':' collapsed' }}" role="tab"
+                                   data-toggle="collapse" href="#{{ $menu['name'] }}" aria-expanded="false">
                                     <i class="fa fa-{{ $menu['icon'] }} fa-fw mr-3"></i>
                                     {{ $menu['name'] }}
                                 </a>
@@ -136,7 +138,8 @@
                                         <nav class="nav nav-pills flex-column">
                                             @foreach( $menu['children'] as $children_menu)
                                                 <?php $link = route($children_menu['route']);?>
-                                                <a class="ml-3 my-1 nav-link {{ $link == request()->url() ? ' active':'' }}" role="tab" href="{{ $link }}">
+                                                <a class="ml-3 my-1 nav-link {{ $link == request()->url() ? ' active':'' }}"
+                                                   role="tab" href="{{ $link }}">
                                                     <i class="fa fa-{{ $children_menu['icon'] }} fa-fw mr-3"></i>
                                                     {{ $children_menu['name'] }}
                                                 </a>
@@ -146,7 +149,8 @@
                                 </div>
                             @else
                                 <?php $link = route($menu['route']);?>
-                                <a class="nav-link {{ $link == request()->url() ? ' active':'' }}" role="tab" href="{{ $link }}">
+                                <a class="nav-link {{ $link == request()->url() ? ' active':'' }}" role="tab"
+                                   href="{{ $link }}">
                                     <i class="fa fa-{{ $menu['icon'] }} fa-fw mr-3"></i>
                                     {{ $menu['name'] }}
                                 </a>
@@ -164,7 +168,8 @@
                 <img src="{{ $user->avatar }}" width="30" height="30" class="d-inline-block align-top">
                 {{ $user->name }}
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" style="width: 1.25rem;height: 1.25rem;"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -175,7 +180,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a class="nav-link" href="{{ url('/logout') }}"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             退出登录
                         </a>
                     </li>
@@ -186,16 +192,22 @@
             </div>
         </nav>
         <div class="pt-3 pr-3 pl-3">
-            <div class="content-header">
-                <div class="content-header-title">
-                    <h6 class="content-header-title-des">Dashboards</h6>
-                    <h2 class="content-header-title-det mt-0">@yield('title')</h2>
-                </div>
-                <div class="content-header-action">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2 mt-0">@yield('title')</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
                     @yield('action')
+                    {{--simple actions--}}
+                    {{--<div class="btn-group mr-2">
+                        <button class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar"></span>
+                        This week
+                    </button>--}}
                 </div>
             </div>
-            <hr class="divider mt-3">
+
         </div>
         <div class="p-3">
             @include('partials.msg')

@@ -7,6 +7,7 @@ $ip_str = is_object($ip) ? $ip->id : $ip;
         data-url="{{ route('ip.block', $ip_str) }}"
         data-dialog-title="{{ $blocked?'取消阻塞':'阻塞' }}"
         data-toggle="tooltip"
+        data-dialog-type="{{ $blocked?'success':'danger' }}"
         title="{{ $blocked ? 'Un Block':'Block' }}">
     <i class="fa {{ $blocked?'fa-check':'fa-close' }} fa-fw"></i>
 </button>

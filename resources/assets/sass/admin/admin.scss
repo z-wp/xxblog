@@ -47,17 +47,6 @@ html, body {
     flex: 1 0 72%;
     max-width: 72%;
   }
-
-  .content-header-action {
-    float: right;
-    margin-top: 12px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-  }
 }
 
 @media (min-width: 992px) {
@@ -87,36 +76,6 @@ html, body {
     flex: 1 0 83%;
     max-width: 83%;
   }
-}
-
-.content-header::after {
-  display: block;
-  content: "";
-  clear: both;
-}
-
-@media (min-width: 768px) {
-  .content-header-title {
-    float: left;
-  }
-}
-
-.content-header-title-des {
-  margin-top: 0;
-  margin-bottom: 5px;
-  font-weight: normal;
-  font-size: 85%;
-  color: #434857;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.content-header-title-det {
-  margin-bottom: 0.5rem;
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 1.8rem;
-  line-height: 1.1;
 }
 
 .divider {
@@ -178,12 +137,12 @@ a.admin-brand:hover {
   @extend .transition;
 }
 
-
-.sidebar nav .nav-link[data-toggle="collapse"]:after{
+.sidebar nav .nav-link[data-toggle="collapse"]:after {
   font-family: 'FontAwesome';
   content: "\f102";
   float: right;
 }
-.sidebar nav .nav-link[data-toggle="collapse"].collapsed:after{
+
+.sidebar nav .nav-link[data-toggle="collapse"].collapsed:after {
   content: "\f103";
 }
