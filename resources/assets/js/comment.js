@@ -1,6 +1,11 @@
 window.replyComment = function (obj, username, comment_id) {
     let oldForm = $('#comment-reply-form');
     if (oldForm.length >= 0) {
+        let check = $(obj).parent().parent().find('> #comment-reply-form');
+        if (check.is(oldForm)) {
+            oldForm.remove();
+            return
+        }
         oldForm.remove();
     }
     let html = $('#comment-form-wrapper').clone();

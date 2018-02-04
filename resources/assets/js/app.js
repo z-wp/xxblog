@@ -137,10 +137,12 @@ require('./boot');
                     initDeleteTarget();
                     highLightCodeOfChild($('#comments-container'));
                     if ($('#comment-' + data.comment.id).length > 0) {
-                        $.smoothScroll({
-                            scrollTarget: '#comment-' + data.comment.id,
-                            autoFocus: true
-                        });
+                        setTimeout(function () {
+                            $.smoothScroll({
+                                scrollTarget: '#comment-' + data.comment.id,
+                                autoFocus: true
+                            });
+                        }, 500)
                     }
                     form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show on the site once it has been approve.');
                 } else {
