@@ -11,8 +11,6 @@ require('./boot');
             $('[data-toggle="tooltip"]').tooltip();
         },
         bootUp: function () {
-            console.log('bootUp');
-            loadComments(false, false);
             initComment();
             initMarkdownTarget();
             initTables();
@@ -24,58 +22,52 @@ require('./boot');
     };
 
     function initDeleteTarget() {
-        $('.swal-dialog-target').append(function () {
-            return "\n" +
-                "<form action='" + $(this).attr('data-url') + "' method='post' style='display:none'>\n" +
-                "   <input type='hidden' name='_method' value='" + ($(this).data('method') ? $(this).data('method') : 'delete') + "'>\n" +
-                "   <input type='hidden' name='_token' value='" + XblogConfig.csrfToken + "'>\n" +
-                "</form>\n"
-        }).click(function () {
-            let deleteForm = $(this).find("form");
-            let method = ($(this).data('method') ? $(this).data('method') : 'delete');
-            let url = $(this).attr('data-url');
-            let data = $(this).data('request-data') ? $(this).data('request-data') : '';
-            let title = $(this).data('dialog-title') ? $(this).data('dialog-title') : '删除';
-            let message = $(this).data('dialog-msg');
-            let type = $(this).data('dialog-type') ? $(this).data('dialog-type') : 'danger';
-            let cancel_text = $(this).data('dialog-cancel-text') ? $(this).data('dialog-cancel-text') : '取消';
-            let confirm_text = $(this).data('dialog-confirm-text') ? $(this).data('dialog-confirm-text') : '确定';
-            let enable_html = $(this).data('dialog-enable-html') == '1';
-            let enable_ajax = $(this).data('enable-ajax') == '1';
-            console.log(data);
-            dialog({
-                    title: title,
-                    body: message,
-                    type: type,
-                    cancel: cancel_text,
-                    confirm: confirm_text
-                },
-                function () {
-                    deleteForm.submit();
-                });
+
+        $('.swal-dialog-target').each(function () {
+            if ($(this).attr('appended-form') == '1') {
+                return
+            }
+            $(this).attr('appended-form', '1');
+            $(this).append(function () {
+                return "\n" +
+                    "<form action='" + $(this).attr('data-url') + "' method='post' style='display:none'>\n" +
+                    "   <input type='hidden' name='_method' value='" + ($(this).data('method') ? $(this).data('method') : 'delete') + "'>\n" +
+                    "   <input type='hidden' name='_token' value='" + XblogConfig.csrfToken + "'>\n" +
+                    "</form>\n"
+            }).click(function () {
+                let deleteForm = $(this).find("form");
+                let method = ($(this).data('method') ? $(this).data('method') : 'delete');
+                let url = $(this).attr('data-url');
+                let data = $(this).data('request-data') ? $(this).data('request-data') : '';
+                let title = $(this).data('dialog-title') ? $(this).data('dialog-title') : '删除';
+                let message = $(this).data('dialog-msg');
+                let type = $(this).data('dialog-type') ? $(this).data('dialog-type') : 'danger';
+                let cancel_text = $(this).data('dialog-cancel-text') ? $(this).data('dialog-cancel-text') : '取消';
+                let confirm_text = $(this).data('dialog-confirm-text') ? $(this).data('dialog-confirm-text') : '确定';
+                console.log(data);
+                dialog({
+                        title: title,
+                        body: message,
+                        type: type,
+                        cancel: cancel_text,
+                        confirm: confirm_text
+                    },
+                    function () {
+                        deleteForm.submit();
+                    });
+            });
+
         });
     }
 
-    function loadComments(shouldMoveEnd, force) {
-        let container = $('#comments-container');
-        if (force || container.children().length <= 0) {
-            console.log("loading comments");
-            $.ajax({
-                method: 'get',
-                url: container.data('api-url'),
-            }).done(function (data) {
-                container.html(data);
-                initDeleteTarget();
-                highLightCodeOfChild(container);
-                if (shouldMoveEnd) {
-                    moveEnd($('#comment-submit'));
-                }
-            });
-        }
-    }
 
     function initComment() {
-        let form = $('#comment-form');
+        $('.comment-form').each(function () {
+            bindCommentFrom($(this));
+        });
+    }
+
+    function bindCommentFrom(form) {
         let submitBtn = form.find('#comment-submit');
         let commentContent = form.find('#comment-content');
 
@@ -106,28 +98,24 @@ require('./boot');
                 commentContent.focus();
                 return false;
             }
+            if ($.trim(captcha.val()) === '') {
+                captcha.focus();
+                return false;
+            }
 
             let usernameValue = username.val();
             let emailValue = email.val();
             let siteValue = site.val();
-            let captchaValue = captcha ? captcha.val() : '';
 
             submitBtn.val('提交中...').addClass('disabled').prop('disabled', true);
+            form.find('#comment_submit_msg').text('').hide();
             $.ajax({
                 method: 'post',
                 url: $(this).attr('action'),
                 headers: {
                     'X-CSRF-TOKEN': XblogConfig.csrfToken
                 },
-                data: {
-                    commentable_id: form.find('input[name=commentable_id]').val(),
-                    commentable_type: form.find('input[name=commentable_type]').val(),
-                    content: commentContent.val(),
-                    username: usernameValue,
-                    email: emailValue,
-                    site: siteValue,
-                    captcha: captchaValue,
-                },
+                data: form.serialize(),
             }).done(function (data) {
                 if (data.status === 200) {
                     if (window.localStorage) {
@@ -138,19 +126,30 @@ require('./boot');
                     username.val('');
                     email.val('');
                     site.val('');
+                    captcha.val('');
                     commentContent.val('');
-                    form.find('#comment_submit_msg').attr('class', 'text-success').text('Comment succeed! Will be shown after review.');
-                    loadComments(true, true);
+                    form.find('#comment_submit_msg').hide();
+                    if (data.comment.reply_id) {
+                        $('#comment-' + data.comment.reply_id + ' > .comment-info > .comment-content').append(data.rendered_html);
+                    } else {
+                        $('#comments-container').append(data.rendered_html);
+                    }
+                    initDeleteTarget();
+                    highLightCodeOfChild($('#comments-container'));
+                    if ($('#comment-' + data.comment.id).length > 0) {
+                        $.smoothScroll({
+                            scrollTarget: '#comment-' + data.comment.id,
+                            autoFocus: true
+                        });
+                    }
+                    form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show on the site once it has been approve.');
                 } else {
                     form.find('#comment_submit_msg').attr('class', 'text-danger').text(data.msg);
                 }
+                form.find('#comment_submit_msg').show();
             }).always(function () {
                 submitBtn.val("回复").removeClass('disabled').prop('disabled', false);
-                form.find('#comment_submit_msg').fadeIn();
-                form.find('#captcha').attr('src', '/captcha/flat?' + Math.random());
-                setTimeout(function () {
-                    form.find('#comment_submit_msg').fadeOut();
-                }, 1500);
+                form.find('#captcha').attr('src', '/captcha/' + XblogConfig.captcha_config + '?' + Math.random());
             });
             return false;
         });
@@ -179,7 +178,6 @@ require('./boot');
 
     function highLightCodeOfChild(parent) {
         $('pre code', parent).each(function (i, block) {
-            console.log(block);
             hljs.highlightBlock(block);
         });
     }
@@ -221,39 +219,9 @@ require('./boot');
         }
     }
 
+    Xblog.bindCommentFrom = bindCommentFrom;
     window.Xblog = Xblog;
 })(jQuery);
 $(document).ready(function () {
     Xblog.init();
 });
-
-window.replySomeone = function (username) {
-    if (!username)
-        return;
-    let commentContent = $("#comment-content");
-    let oldContent = commentContent.val();
-    prefix = "@" + username + " ";
-    let newContent = '';
-    if (oldContent.length > 0) {
-        newContent = oldContent + "\n" + prefix;
-    } else {
-        newContent = prefix
-    }
-    commentContent.focus();
-    commentContent.val(newContent);
-    moveEnd(commentContent);
-}
-
-window.moveEnd = function (obj) {
-    obj.focus();
-    let len = obj.value === undefined ? 0 : obj.value.length;
-
-    if (document.selection) {
-        let sel = obj.createTextRange();
-        sel.moveStart('character', len);
-        sel.collapse();
-        sel.select();
-    } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
-        obj.selectionStart = obj.selectionEnd = len;
-    }
-};

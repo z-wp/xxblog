@@ -14,11 +14,11 @@
 .comment {
   padding: 15px 30px 0;
   margin: 0 -20px;
-  border-bottom: 1px rgba(0, 0, 0, .02) solid
+  border-bottom: 1px rgba(0, 0, 0, .02) solid;
 }
 
-.comment:hover {
-  background-color: #f8f9fa;
+.comment .comment {
+  border-bottom: none;
 }
 
 .comment .comment-header {
@@ -31,7 +31,7 @@
   margin-left: 50px;
 
   .comment-time {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #d0d0d0
   }
 
@@ -39,19 +39,19 @@
     color: #d0d0d0
   }
   .comment-head {
-    font-size: 1.2em
+    font-size: 1.2rem
   }
 }
 
-.comment .comment-content {
+.comment > .comment-info > .comment-content {
   line-height: 1.8;
   font-weight: normal;
   word-wrap: break-word;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   padding-top: 10px;
 }
 
-.comment .comment-content img {
+.comment > .comment-info > .comment-content img {
   display: block;
   max-width: 95%;
 }
@@ -60,10 +60,10 @@
   margin-top: 20px;
 }
 
-.comment .comment-operation {
+.comment > .comment-info > .comment-content > .comment-operation {
   padding-bottom: 10px;
   color: #eee;
-  font-size: .9em;
+  font-size: .9rem;
   .comment-operation-item {
     margin-right: 10px;
     color: #ccc;
@@ -71,4 +71,8 @@
   a:hover {
     text-decoration: underline;
   }
+}
+
+.comment-form {
+  font-size: 1rem;
 }

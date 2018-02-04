@@ -5,6 +5,7 @@
  * Date: 2016/8/19
  * Time: 17:41
  */
+
 namespace App\Http\Repositories;
 
 use App\Comment;
@@ -100,7 +101,10 @@ class CommentRepository extends Repository
             $comment->email = $request->get('email');
             $comment->site = $request->get('site');
         }
-
+        $reply_id = $request->get('reply_id');
+        if ($reply_id) {
+            $comment->reply_id = $reply_id;
+        }
         $content = $request->get('content');
         $comment->ip_id = $request->ip();
         $comment->content = $this->mention->parse($content);

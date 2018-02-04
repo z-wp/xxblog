@@ -30,7 +30,8 @@ class BlogExceptionHandler
                 $msg = 'Sorry, CSRF token mismatched.';
             }
             return response()->json(
-                ['status' => $exception->getCode(), 'msg' => $msg]
+                ['status' => $exception->getCode(), 'msg' => $msg],
+                500
             );
         }
         return false;

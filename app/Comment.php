@@ -54,6 +54,11 @@ class Comment extends Model
         return $this->status == 1;
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'reply_id');
+    }
+
 
     protected $commentableData = [];
 

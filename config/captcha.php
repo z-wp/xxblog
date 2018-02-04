@@ -2,6 +2,8 @@
 
 return [
 
+    'use'  => 'default',
+
     'characters' => '2346789abcdefghjmnpqrtuxyzABCDEFGHJMNPQRTUXYZ',
 
     'default'   => [

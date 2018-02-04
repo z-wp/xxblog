@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Repositories\CommentRepository;
+use function GuzzleHttp\Promise\all;
 use Validator;
 use Gate;
 use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request->all());
         if (!$request->get('content')) {
             return response()->json(
                 ['status' => 500, 'msg' => 'Comment content must not be empty !']
@@ -76,7 +78,14 @@ class CommentController extends Controller
 
         if ($comment = $this->commentRepository->create($request)) {
             if ($request->expectsJson()) {
-                return response()->json(['status' => 200, 'msg' => 'success']);
+                return response()->json([
+                    'status' => 200,
+                    'msg' => 'success',
+                    'rendered_html' => view('comment.comment', compact('comment'))->render(),
+                    'comment' => [
+                        'id' => $comment->id,
+                        'reply_id' => $comment->reply_id,
+                    ]]);
             }
             return back()->with('success', 'Success');
         }
@@ -94,7 +103,13 @@ class CommentController extends Controller
         $this->checkPolicy('manager', $comment);
 
         if ($this->commentRepository->delete($comment, $force)) {
+            if (request()->expectsJson()) {
+                return response()->json(['status' => 200, 'msg' => 'success']);
+            }
             return back()->with('success', '删除成功');
+        }
+        if (request()->expectsJson()) {
+            return response()->json(['status' => 500, 'msg' => '删除失败']);
         }
         return back()->withErrors('删除失败');
     }

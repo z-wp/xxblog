@@ -8,9 +8,9 @@
 
 namespace Lufficc\Exception;
 
-use Exception;
+use RuntimeException;
 
-class CommentNotAllowedException extends Exception
+class CommentNotAllowedException extends RuntimeException
 {
 
 }

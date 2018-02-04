@@ -18,8 +18,8 @@
     @yield('css')
     <script>
         window.XblogConfig = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-                'github_username' => isset($github_username) ? $github_username :  '',
+            'csrfToken' => csrf_token(), 'github_username' => isset($github_username) ? $github_username : '',
+            'captcha_config' => config('captcha.use')
         ]); ?>
     </script>
     @include('widget.google_analytics')

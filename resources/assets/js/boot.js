@@ -9,3 +9,5 @@ require('./codemirror-4.inline-attachment');
 window.Masonry = require("masonry-layout");
 jQueryBridget('masonry', Masonry, $);
 require('./modal');
+require('./comment');
+require('jquery-smooth-scroll');

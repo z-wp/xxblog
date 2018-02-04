@@ -9,7 +9,7 @@ window.dialog = function (settings, onConform) {
     $.extend(options, settings);
 
     if ($('#xblog-modal').length === 0) {
-        html = '<div class="modal fade" id="xblog-modal" tabindex="-1" role="dialog" aria-labelledby="Xblog modal" aria-hidden="true">';
+        let html = '<div class="modal fade" id="xblog-modal" tabindex="-1" role="dialog" aria-labelledby="Xblog modal" aria-hidden="true">';
         html += '<div class="modal-dialog" role="document">';
         html += '<div class="modal-content">';
         html += '<div class="modal-header">';
@@ -41,5 +41,4 @@ window.dialog = function (settings, onConform) {
         modal.modal('hide');
     });
     modal.modal('show');
-
 };
