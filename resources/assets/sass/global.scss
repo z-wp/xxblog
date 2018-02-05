@@ -15,12 +15,6 @@ html, body {
   //font-family: NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
 }
 
-h1,
-h2 {
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-
 #content-wrap {
   min-height: 100%;
   margin-bottom: -$footerHeight;
@@ -33,26 +27,6 @@ h2 {
 
 .center-block {
   text-align: center;
-}
-
-a {
-  outline: none;
-  text-decoration: none;
-}
-
-.alone-divider {
-  height: 1px;
-  width: 100%;
-  margin: 5px 0;
-  background: #ebebeb;
-}
-
-blockquote {
-  font-size: inherit;
-  color: #777;
-  background-color: #f7f7f7;
-  padding: 6px 8px;
-  border-left: 4px solid #ddd;
 }
 
 /*footer*/

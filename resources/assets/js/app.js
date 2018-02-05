@@ -23,9 +23,14 @@ require('./boot');
     };
 
     function initMagnificPopup() {
-        $('.post-detail-content img').attr('data-mfp-src', function () {
+        $('.post-detail-content img:not(.pay img)').attr('data-mfp-src', function () {
             return $(this).attr('src')
-        }).magnificPopup({type: 'image'});
+        }).magnificPopup({
+            type: 'image', gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+            }
+        });
     }
 
     function clipboardCodeSnippets() {
@@ -47,7 +52,7 @@ require('./boot');
         });
 
         function showTooltip(target, title) {
-            $(target).tooltip({placement: 'left', trigger: 'manual'}).tooltip('hide')
+            $(target).tooltip({placement: 'top', trigger: 'manual'}).tooltip('hide')
                 .attr('data-original-title', title)
                 .tooltip('show');
             $(target).mouseleave(function (e) {

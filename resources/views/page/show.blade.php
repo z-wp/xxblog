@@ -10,14 +10,12 @@
                     <li class="breadcrumb-item"><a href="{{ route('post.index') }}">博客</a></li>
                     <li class="breadcrumb-item active">{{ ucfirst($page->display_name) }}</li>
                 </ol>
-                @can('update',$page)
-                    <div class="btn-group">
-                        <a class="btn" href="{{ route('page.edit',$page->id) }}"><i class="fa fa-pencil"></i></a>
-                    </div>
-                @endcan
                 <div class="post-detail">
-                    <div class="center-block">
-                        <div class="post-detail-title">{{ $page->display_name }}</div>
+                    <div class="post-detail-title">
+                        {{ $page->display_name }}
+                        @can('update',$page)
+                            <a class="btn btn-outline-secondary btn-sm" href="{{ route('page.edit',$page->id) }}">编辑</a>
+                        @endcan
                     </div>
                     <div class="post-detail-content">
                         {!! $page->html_content !!}

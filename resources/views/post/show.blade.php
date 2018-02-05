@@ -7,42 +7,14 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-12 phone-no-padding">
                 <div class="post-detail">
-                    <div class="center-block">
-                        <div class="post-detail-title">{{ $post->title }}</div>
-                        <div class="post-meta">
-                            <span class="post-category">
-                           <i class="fa fa-folder-o fa-fw"></i>
-                           <a href="{{ route('category.show',$post->category->name) }}">
-                           {{ $post->category->name }}
-                           </a>
-                           </span>
-                            <span class="post-comments-count">
-                           &nbsp;|&nbsp;
-                           <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>
-                           <span>{{ $post->comments_count }}</span>
-                           </span>
-                            <span>
-                           &nbsp;|&nbsp;
-                           <i class="fa fa-eye"></i>
-                           <span>{{ $post->view_count }}</span>
-                           </span>
-                            @can('update',$post)
-                                <span>
-                                    &nbsp;|&nbsp;
-                                    <a href="{{ route('post.edit',$post->id) }}">
-                                        <i class="fa fa-pencil fa-fw"></i>
-                                    </a>
-                                </span>
-                                <span>
-                                    &nbsp;|&nbsp;
-                                    <a class="swal-dialog-target"
-                                       data-url="{{ route('post.destroy',$post->id) }}"
-                                       data-dialog-msg="Delete {{ $post->title }} ?">
-                                    <i class="fa fa-trash-o fa-fw"></i>
-                                    </a>
-                                </span>
-                            @endcan
-                        </div>
+                    <div class="post-detail-title">
+                        {{ $post->title }}
+                        @can('update',$post)
+                            <div class="btn-group btn-group-sm">
+                                <a class="btn btn-outline-secondary" href="{{ route('post.edit',$post->id) }}">编辑</a>
+                                <a class="btn btn-outline-secondary swal-dialog-target" data-url="{{ route('post.destroy',$post->id) }}" data-dialog-msg="Delete {{ $post->title }} ?">删除</a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="post-detail-content">
                         {!! $post->html_content !!}
@@ -63,10 +35,22 @@
                             </p>
                         @endif
                         <p class="info">
+                            <label class="info-title">文章分类:</label>
+                            <a href="{{ route('category.show',$post->category->name) }}">{{ $post->category->name }}</a>
+                        </p>
+                        <p class="info">
                             <label class="info-title">文章标签:</label>
                             @foreach($post->tags as $tag)
                                 <a class="tag" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
                             @endforeach
+                        </p>
+                        <p class="info">
+                            <label class="info-title">评论个数:</label>
+                            <span>{{ $post->comments_count }}</span>
+                        </p>
+                        <p class="info">
+                            <label class="info-title">阅读次数:</label>
+                            <span>{{ $post->view_count }}</span>
                         </p>
                     </div>
                 </div>

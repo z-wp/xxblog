@@ -69,15 +69,70 @@
   background: white;
 
   .post-detail-title {
-    font-size: 2rem;
-    font-weight: bolder;
-    padding: 5px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
 
   .post-detail-content {
     @extend .markdown-content;
     padding-bottom: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
+    blockquote {
+      display: block;
+      background: #fff;
+      padding: 15px 20px 15px 45px;
+      margin: 1rem 0 1.2rem;
+      position: relative;
+
+      /*Font*/
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.2;
+      color: #666;
+      text-align: justify;
+
+      p {
+        margin-top: 0;
+        margin-bottom: .5rem;
+      }
+
+      border-left: 15px solid $colorAccent;
+      border-right: 2px solid $colorAccent;
+
+      @extend .shadow;
+      &::before {
+        content: "\201C"; /*Unicode for Left Double Quote*/
+
+        /*Font*/
+        font-family: Georgia, serif;
+        font-size: 60px;
+        font-weight: bold;
+        color: #999;
+
+        /*Positioning*/
+        position: absolute;
+        left: 10px;
+        top: 5px;
+      }
+      &::after {
+        /*Reset to make sure*/
+        content: "";
+      }
+
+    }
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f2f3f3;
+    }
+    h1 {
+      margin-top: 2rem * 1.2;
+      margin-bottom: 1rem * 1.2;
+      padding-bottom: 0.5rem * 1.2;
+      border-bottom: 1px solid #f2f3f3;
+    }
   }
 
   img {
