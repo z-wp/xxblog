@@ -21,7 +21,7 @@
     "jquery-bridget": "^2.0.1",
     "jquery-smooth-scroll": "^2.2.0",
     "laravel-mix": "^1.0",
-    "marked": "^0.3.6",
+    "magnific-popup": "^1.1.0",
     "masonry-layout": "^4.2.0",
     "node-sass": "^4.5.3",
     "popper.js": "^1.13.0",

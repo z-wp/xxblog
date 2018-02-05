@@ -7,20 +7,26 @@ require('./boot');
 (function ($) {
     let Xblog = {
         init: function () {
-            this.bootUp();
             $('[data-toggle="tooltip"]').tooltip();
+            this.bootUp();
         },
         bootUp: function () {
             initComment();
-            initMarkdownTarget();
             initTables();
             autoSize();
             initProjects();
             initDeleteTarget();
             clipboardCodeSnippets();
             highLightCode();
+            initMagnificPopup();
         },
     };
+
+    function initMagnificPopup() {
+        $('.post-detail-content img').attr('data-mfp-src', function () {
+            return $(this).attr('src')
+        }).magnificPopup({type: 'image'});
+    }
 
     function clipboardCodeSnippets() {
         let snippets = document.querySelectorAll('pre');
@@ -190,21 +196,6 @@ require('./boot');
         });
     }
 
-    function initMarkdownTarget() {
-        $('.markdown-target').each(function (i, element) {
-            element.innerHTML =
-                marked($(element).data("markdown"), {
-                    renderer: new marked.Renderer(),
-                    gfm: true,
-                    tables: true,
-                    breaks: false,
-                    pedantic: false,
-                    smartLists: true,
-                    smartypants: false,
-                });
-        });
-    }
-
     function highLightCode() {
         $('pre code').each(function (i, block) {
             hljs.highlightBlock(block);
@@ -218,7 +209,7 @@ require('./boot');
     }
 
     function initTables() {
-        $('.post-detail-content table').addClass('table table-striped table-responsive');
+        $('.post-detail-content table').addClass('table table-striped');
     }
 
     function autoSize() {
