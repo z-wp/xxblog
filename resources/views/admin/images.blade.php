@@ -50,22 +50,17 @@
     </div>
 @endsection
 @section('script')
-    <script src="//cdn.bootcss.com/clipboard.js/1.5.12/clipboard.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script>
         new Clipboard('.btn-clipboard');
-        $('.btn-clipboard').tooltip({
+        $('.btn-clipboard').mouseleave(clearTooltip).tooltip({
             trigger: 'click',
         });
+        function clearTooltip(e) {
+            $(e.currentTarget).tooltip('hide');
+        }
         $('#images').imagesLoaded().progress(function () {
             $('#images').masonry();
-        });
-        $('body').on('click', function (e) {
-            $('[data-toggle=tooltip]').each(function () {
-                if (!$(this).is(e.target) && $(this).has(e.target).length === 0) {
-                    $(this).tooltip('hide');
-                }
-            });
         });
     </script>
 @endsection

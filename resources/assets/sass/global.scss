@@ -72,38 +72,6 @@ blockquote {
   border-top: 1px solid #303030;
 }
 
-/*code*/
-$codeBg: rgb(247, 249, 247)/*#20201d*/
-;
-$codeColor: #383a42;
-
-pre, .highlight {
-  overflow: auto;
-  margin: 20px 0;
-  padding: 15px;
-  font-size: 0.95em;
-  color: $codeColor;
-  border: none;
-  border-radius: 8px;
-  background: $codeBg !important;
-  line-height: 1.6em;
-  word-wrap: normal;
-}
-
-pre[class~=CodeMirror-line ] {
-  background-color: inherit !important;
-}
-
-.hljs {
-  background: $codeBg !important;
-}
-
-pre code {
-  overflow: auto;
-  word-wrap: normal;
-  white-space: pre;
-}
-
 @media (max-width: 768px) {
   .phone-no-padding {
     padding-left: 0;

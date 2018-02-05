@@ -1,0 +1,49 @@
+:not(pre) > code {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 80%;
+  margin: 0 2px;
+  padding: 4px 5px;
+  background-color: #eee;
+  vertical-align: middle;
+  color: #555;
+  border-radius: 5px;
+}
+
+pre {
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  background: $codeBg;
+  color: white;
+  padding: 1rem;
+}
+
+pre[class~=CodeMirror-line ] {
+  background-color: inherit !important;
+}
+
+pre code {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+pre button.clipboard-target {
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  padding: 2px 5px;
+  position: absolute;
+  background-color: #eee;
+  color: #555;
+  right: 4px;
+  top: 4px;
+  &:hover {
+    background-color: #aaa;
+  }
+}
+
+pre:hover button.clipboard-target, pre button.clipboard-target:focus {
+  opacity: 1;
+}

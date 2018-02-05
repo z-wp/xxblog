@@ -17,9 +17,39 @@ require('./boot');
             autoSize();
             initProjects();
             initDeleteTarget();
+            clipboardCodeSnippets();
             highLightCode();
         },
     };
+
+    function clipboardCodeSnippets() {
+        let snippets = document.querySelectorAll('pre');
+        [].forEach.call(snippets, function (snippet) {
+            snippet.firstChild.insertAdjacentHTML('beforebegin', '<button class="clipboard-target btn">Copy</button >');
+        });
+        let clipboardSnippets = new Clipboard('.clipboard-target', {
+            target: function (trigger) {
+                return trigger.nextElementSibling;
+            }
+        });
+        clipboardSnippets.on('success', function (e) {
+            e.clearSelection();
+            showTooltip(e.trigger, 'Copied!')
+        });
+        clipboardSnippets.on('error', function (e) {
+            showTooltip(e.trigger, 'Copy failed!')
+        });
+
+        function showTooltip(target, title) {
+            $(target).tooltip({placement: 'left', trigger: 'manual'}).tooltip('hide')
+                .attr('data-original-title', title)
+                .tooltip('show');
+            $(target).mouseleave(function (e) {
+                $(e.currentTarget).tooltip('hide');
+                $(e.currentTarget).blur();
+            })
+        }
+    }
 
     function initDeleteTarget() {
 
@@ -148,6 +178,9 @@ require('./boot');
                 } else {
                     form.find('#comment_submit_msg').attr('class', 'text-danger').text(data.msg);
                 }
+                form.find('#comment_submit_msg').show();
+            }).fail(function () {
+                form.find('#comment_submit_msg').attr('class', 'text-danger').text('Internal Server Error.');
                 form.find('#comment_submit_msg').show();
             }).always(function () {
                 submitBtn.val("回复").removeClass('disabled').prop('disabled', false);

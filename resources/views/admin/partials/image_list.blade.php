@@ -11,7 +11,6 @@
                         <a class="text-white d-block" href="{{ $image->url }}">原图</a>
                         <a  href="javascript:void(0)" class="text-white btn-clipboard"
                                 data-clipboard-text="{{ $image->url }}"
-                                data-toggle="tooltip"
                                 data-placement="left"
                                 title="Copied">
                             复制

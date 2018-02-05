@@ -2,6 +2,7 @@ window.$ = window.jQuery = require('jquery');
 const jQueryBridget = require('jquery-bridget');
 window.Popper = require('popper.js').default;
 require('bootstrap');
+window.Clipboard = require('clipboard');
 window.hljs = require('highlight.js');
 window.marked = require('marked');
 window.autosize = require('autosize');
