@@ -36,7 +36,7 @@ require('./boot');
     }
 
     function clipboardCodeSnippets() {
-        let snippets = document.querySelectorAll('pre');
+        let snippets = document.querySelectorAll('.comment-content pre, .post-detail-content pre');
         [].forEach.call(snippets, function (snippet) {
             snippet.firstChild.insertAdjacentHTML('beforebegin', '<button class="clipboard-target btn">Copy</button >');
         });
