@@ -45,7 +45,7 @@
     </div>
     {{--post footer--}}
     <div class="post-footer clearfix">
-        <div class="pull-left tag-list">
+        <div class="pull-left">
             <i class="fa fa-tags"></i>
             @foreach($post->tags as $tag)
                 <a class="text-secondary mr-2" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>

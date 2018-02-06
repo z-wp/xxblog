@@ -6,22 +6,16 @@
             <li class="breadcrumb-item"><a href="{{ route('post.index') }}">博客</a></li>
             <li class="breadcrumb-item active">标签</li>
         </ol>
-        <div class="row" data-masonry='{ "itemSelector": ".col", "columnWidth":".col" }'>
-            @foreach($tags as $tag)
-                <div class="col col-md-3 col-sm-4 col-6 mb-3">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php $min = 12; $max = 48;?>
-                                <a style="font-size: {{ $min+(int)(($tag->posts_count*1.0/$total)*($max-$min)) }}px" class="text-dark" href="{{ route('tag.show', $tag->name) }}">{{ $tag->name }}</a>
-                            </h4>
-                            <p class="card-text">
-                                <small class="font-italic">{{ $tag->posts_count }} Posts</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        <div class="card">
+            <div class="card-body">
+                @forelse($tags as $tag)
+                    <?php $min = 16; $max = 72;?>
+                    <a class="text-dark mx-2 my-1" style="font-size: {{ $min+(int)(($tag->posts_count*1.0/$total)*($max-$min+1)) }}px" title="{{ $tag->name }}" href="{{ route('tag.show',$tag->name) }}">
+                        {{ $tag->name }}
+                    </a>
+                @empty <p class="meta-item center-block">No tags.</p>
+                @endforelse
+            </div>
         </div>
     </div>
 @endsection

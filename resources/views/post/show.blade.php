@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-12 phone-no-padding">
-                <div class="post-detail">
+                <div class="post-detail" id="main-content">
                     <div class="post-detail-title">
                         {{ $post->title }}
                         @can('update',$post)
@@ -18,7 +18,7 @@
                     </div>
                     <div class="post-detail-content">
                         {!! $post->html_content !!}
-                        <p>-- END</p>
+                        <p><a href="#main-content">⬆️</a></p>
                         @include('widget.pay')
                     </div>
                     <div class="post-info-panel">

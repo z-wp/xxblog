@@ -1,0 +1,71 @@
+.paginate {
+  text-align: center;
+  margin-bottom: .5rem;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    // display: inline-block; // an inline-block will allow you to use it with other contents
+  }
+
+  li {
+    display: inline;
+  }
+
+  a, span {
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px;
+
+    margin: 1px 2px;
+    padding: 5px 10px;
+    display: inline-block;
+    border-top: 1px solid #fff;
+
+    text-decoration: none;
+    color: #717171;
+    font-size: smaller;
+    font-family: "Helvetica Neueu", Helvetica, Arial, sans-serif;
+
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+
+    background-color: #f5f5f5;
+
+    // reset the margins
+    &:first-child, &.first {
+      margin-left: 0;
+    }
+    &:last-child, &.last {
+      margin-right: 0;
+    }
+
+    &:hover, &:focus {
+      border-color: #fff;
+      background-color: #fdfdfd;
+    }
+    &.disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+
+    &.more {
+      box-shadow: 0 0 0 0 transparent;
+      border: 0 none;
+      background: transparent;
+      margin-left: 0;
+      cursor: default;
+      margin-right: 0;
+    }
+
+    &.active {
+      box-shadow: rgba(0, 0, 0, 0.75) 0 0 0 0 inset;
+      border-color: #505050;
+      color: #f2f2f2;
+      text-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+      cursor: default;
+      background-color: #676767;
+    }
+  }
+}

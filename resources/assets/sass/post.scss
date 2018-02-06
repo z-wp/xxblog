@@ -185,6 +185,10 @@
   color: #495057;
   font-size: 14px;
 
+  .tag::after {
+    background: #f8f9fa;
+  }
+
   .info-title {
     margin-right: 10px;
   }

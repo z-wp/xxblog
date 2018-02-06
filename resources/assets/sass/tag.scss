@@ -1,47 +1,56 @@
-.tag-list a {
-  text-decoration: none;
+.tags {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.tags li {
+  float: left;
 }
 
 .tag {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  text-decoration: none;
-  padding: 3px 10px;
-  font-size: 12px;
-  display: inline-block;
-  margin: 4px 5px;
+  background: #ececec;
+  border-radius: 3px 0 0 3px;
   color: $colorPrimary;
-  text-align: center;
-  vertical-align: center;
-  transition: all 0.25s ease-in-out;
-  -webkit-transition: all 0.25s ease-in-out;
-  .badge {
-    background-color: $colorPrimary;
-    color: #fff;
-  }
-}
-
-.tag-active {
-  color: $colorAccent;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 .5rem .6rem 0;
   text-decoration: none;
-  border: 1px solid $colorAccent;
-
-  transition: all 0.25s ease-in-out;
-  -webkit-transition: all 0.25s ease-in-out;
+  -webkit-transition: color 0.2s;
 }
 
-.tag-active .badge-active {
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #ececec;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover, .tag.active {
   background-color: $colorAccent;
+  color: white;
 }
 
-.tag:hover {
-  color: $colorAccent;
-  border: 1px solid $colorAccent;
-  text-decoration: none;
-}
-
-.tag .badge:hover {
-  background-color: $colorAccent;
-  transition: all 0.15s ease-in-out;
-  -webkit-transition: all 0.15s ease-in-out;
+.tag:hover::after, .tag.active::after {
+  border-left-color: $colorAccent;
 }

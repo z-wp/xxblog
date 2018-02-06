@@ -9,6 +9,7 @@ require('./boot');
         init: function () {
             $('[data-toggle="tooltip"]').tooltip();
             this.bootUp();
+            $('.post-detail-content a').smoothScroll();
         },
         bootUp: function () {
             initComment();
