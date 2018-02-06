@@ -4,7 +4,7 @@
 @section('action')
     <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#add-category-modal">New</button>
 @endsection
-<table class="table table-striped table-responsive">
+<table class="table table-striped">
     <thead>
     <tr>
         <th>名称</th>

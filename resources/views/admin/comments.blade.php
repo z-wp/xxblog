@@ -11,7 +11,7 @@
 @if($comments->isEmpty())
     <h3 class="center-block meta-item">No Comments</h3>
 @else
-    <table class="table table-striped table-responsive" id="comments-table">
+    <table class="table table-striped" id="comments-table">
         <thead>
         <tr>
             {{--<th><input type="checkbox" name="select_all"></th>--}}

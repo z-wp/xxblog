@@ -258,14 +258,17 @@ class PostRepository extends Repository
         $galleries = $xpath->query('//div[contains(@class, "figure")]');
         $changed = false;
         foreach ($galleries as $gallery) {
-            $figure = $dom->createElement('figure', '');
+            $figure = $dom->createElement('figure');
             $figure->setAttribute('class', trim(str_replace('figure', '', $gallery->getAttribute('class'))));
             $frag = $dom->createDocumentFragment();
             $alt = '';
             foreach ($xpath->query('p/img', $gallery) as $image) {
                 if (!$alt)
                     $alt = $image->getAttribute('alt');
-                $frag->appendChild($image);
+                //wrapped with div
+                $div = $dom->createElement('div');
+                $div->appendChild($image);
+                $frag->appendChild($div);
             }
             //empty string if no attribute with the given name is found.
             $caption = $gallery->getAttribute('caption');
@@ -298,7 +301,7 @@ class PostRepository extends Repository
         foreach ($images as $image) {
             $src = $image->getAttribute('src');
             $alt = $image->getAttribute('alt');
-            $figure = $dom->createElement('figure', '');
+            $figure = $dom->createElement('figure');
             $frag = $dom->createDocumentFragment(); // create fragment
             $imgNode = $dom->createElement('img');
             $imgNode->setAttribute('src', $src);

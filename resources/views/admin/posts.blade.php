@@ -4,7 +4,7 @@
     @section('action')
         <a data-toggle="tooltip" data-placement="left" title="Download all posts as markdown file" class="btn btn-sm btn-outline-dark" href="{{ route('post.download-all') }}">Download</a>
     @endsection
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>标题</th>

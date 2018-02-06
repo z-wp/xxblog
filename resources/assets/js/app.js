@@ -24,7 +24,7 @@ require('./boot');
     };
 
     function initMagnificPopup() {
-        $('.post-detail-content img:not(.pay img)').attr('data-mfp-src', function () {
+        $('.post-detail-content img').attr('data-mfp-src', function () {
             return $(this).attr('src')
         }).magnificPopup({
             type: 'image', gallery: {

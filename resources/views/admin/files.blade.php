@@ -21,7 +21,7 @@
     </div>
 
     <div class="mt-3">
-        <table class="table table-striped table-responsive">
+        <table class="table table-striped">
             <tbody>
             @forelse($files as $file)
                 <tr>

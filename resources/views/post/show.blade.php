@@ -19,8 +19,8 @@
                     <div class="post-detail-content">
                         {!! $post->html_content !!}
                         <p><a href="#main-content">⬆️</a></p>
-                        @include('widget.pay')
                     </div>
+                    @include('widget.pay')
                     <div class="post-info-panel">
                         <p class="info">
                             <label class="info-title">版权声明:</label><i class="fa fa-fw fa-creative-commons"></i>自由转载-非商用-非衍生-保持署名（<a

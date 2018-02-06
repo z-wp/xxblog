@@ -16,7 +16,7 @@
         </button>
     </div>
 @endsection
-<table class="table table-striped table-responsive">
+<table class="table table-striped">
     <thead>
     <tr>
         <th>IP</th>

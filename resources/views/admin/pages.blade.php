@@ -7,7 +7,7 @@
 @if($pages->isEmpty())
     <div class="center-block">No pages.</div>
 @else
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>名称</th>

@@ -39,33 +39,43 @@
         </div>
     @endif
 </div>
-<div class="form-group">
-    <label for="comment_info" class="form-control-label">评论信息</label>
-    <select style="margin-top: 5px" id="comment_info" name="comment_info" class="form-control">
-        <?php $comment_info = isset($page) && $page->configuration ? $page->configuration->config['comment_info'] : ''?>
-        <option value="default" {{ $comment_info=='default'?' selected' : '' }}>默认</option>
-        <option value="force_disable" {{ $comment_info=='force_disable'?' selected' : '' }}>强制关闭</option>
-        <option value="force_enable" {{ $comment_info=='force_enable'?' selected' : '' }}>强制开启</option>
-    </select>
+
+<div class="mb-3" style="font-size: 80%">
+    <a class="text-secondary font-italic" data-toggle="collapse" href="#page-extra-info" role="button" aria-expanded="false">
+        <span title="评论信息" data-toggle="tooltip">其它信息	&raquo;</span>
+    </a>
 </div>
-<div class="form-group">
-    <label for="comment_type" class="form-control-label">评论类型</label>
-    <select id="comment_type" name="comment_type" class="form-control">
-        <?php $comment_type = isset($page) && $page->configuration ? $page->configuration->config['comment_type'] : ''?>
-        <option value="default" {{ $comment_type=='default'?' selected' : '' }}>默认</option>
-        <option value="raw" {{ $comment_type=='raw'?' selected' : '' }}>自带评论</option>
-        <option value="disqus" {{ $comment_type=='disqus'?' selected' : '' }}>Disqus</option>
-    </select>
+
+<div class="collapse" id="page-extra-info">
+    <div class="form-group">
+        <label for="comment_info" class="form-control-label">评论信息</label>
+        <select style="margin-top: 5px" id="comment_info" name="comment_info" class="form-control">
+            <?php $comment_info = isset($page) && $page->configuration ? $page->configuration->config['comment_info'] : ''?>
+            <option value="default" {{ $comment_info=='default'?' selected' : '' }}>默认</option>
+            <option value="force_disable" {{ $comment_info=='force_disable'?' selected' : '' }}>强制关闭</option>
+            <option value="force_enable" {{ $comment_info=='force_enable'?' selected' : '' }}>强制开启</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="comment_type" class="form-control-label">评论类型</label>
+        <select id="comment_type" name="comment_type" class="form-control">
+            <?php $comment_type = isset($page) && $page->configuration ? $page->configuration->config['comment_type'] : ''?>
+            <option value="default" {{ $comment_type=='default'?' selected' : '' }}>默认</option>
+            <option value="raw" {{ $comment_type=='raw'?' selected' : '' }}>自带评论</option>
+            <option value="disqus" {{ $comment_type=='disqus'?' selected' : '' }}>Disqus</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="allow_resource_comment" class="form-control-label">是否允许评论</label>
+        <select id="allow_resource_comment" name="allow_resource_comment" class="form-control">
+            <?php $allow_resource_comment = isset($page) ? $page->getConfig('allow_resource_comment', 'default') : 'default'?>
+            <option value="default" {{ $allow_resource_comment=='default'?' selected' : '' }}>默认</option>
+            <option value="false" {{ $allow_resource_comment=='false'?' selected' : '' }}>禁止评论</option>
+            <option value="true" {{ $allow_resource_comment=='true'?' selected' : '' }}>允许评论</option>
+        </select>
+    </div>
 </div>
-<div class="form-group">
-    <label for="allow_resource_comment" class="form-control-label">是否允许评论</label>
-    <select id="allow_resource_comment" name="allow_resource_comment" class="form-control">
-        <?php $allow_resource_comment = isset($page) ? $page->getConfig('allow_resource_comment', 'default') : 'default'?>
-        <option value="default" {{ $allow_resource_comment=='default'?' selected' : '' }}>默认</option>
-        <option value="false" {{ $allow_resource_comment=='false'?' selected' : '' }}>禁止评论</option>
-        <option value="true" {{ $allow_resource_comment=='true'?' selected' : '' }}>允许评论</option>
-    </select>
-</div>
+
 <div class="form-group">
     <?php $display = isset($page) && $page->configuration ? $page->configuration->config['display'] : 'false'?>
     <div class="form-check">

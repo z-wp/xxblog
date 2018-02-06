@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <h4>ENV info</h4>
-        <table class="table table-striped table-bordered table-responsive">
+        <table class="table table-striped table-bordered">
             <tbody>
             <tr>
                 <th>Laravel version</th>
@@ -67,7 +67,7 @@
         @if($failed_jobs->isEmpty())
             <div style="text-align: center;"> Congratulations! You don't have failed jobs.</div>
         @else
-            <table class="table table-striped table-responsive">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>

@@ -1,5 +1,5 @@
 @if(isset($open_pay) && $open_pay == 'true')
-    <div class="pay">
+    <div class="pay mb-3">
         <div class="center">
             <p class="center-block">{{ $pay_description or '写的不错，赞助一下主机费'}}</p>
             <button class="btn btn-success center" type="button"
