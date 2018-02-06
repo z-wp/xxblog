@@ -1,4 +1,15 @@
 <div class="form-group">
+    <label for="cover_img" class="form-control-label">封面图片</label>
+    <input id="cover_img" type="text" class="form-control{{ $errors->has('cover_img') ? ' is-invalid' : '' }}" name="cover_img"
+           value="{{ isset($post) ? $post->cover_img : old('cover_img') }}">
+    @if ($errors->has('cover_img'))
+        <div class="invalid-feedback">
+            <strong>{{ $errors->first('cover_img') }}</strong>
+        </div>
+    @endif
+</div>
+
+<div class="form-group">
     <label for="title" class="form-control-label">文章标题*</label>
     <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"
            value="{{ isset($post) ? $post->title : old('title') }}"
@@ -13,7 +24,7 @@
     <label for="description" class="form-control-label">文章描述*</label>
 
     <textarea id="post-description-textarea" style="resize: vertical;" rows="3" spellcheck="false"
-              id="description" class="form-control autosize-target{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="请使用 Markdown 格式书写"
+              id="description" class="form-control autosize-target{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="支持 Markdown 格式"
               name="description">{{ isset($post) ? $post->description : old('description') }}</textarea>
 
     @if ($errors->has('description'))

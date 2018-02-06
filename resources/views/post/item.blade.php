@@ -1,4 +1,7 @@
 <article class="post card">
+    @if($post->cover_img)
+        <img style="max-height: 120px;object-fit: cover" src="{{ $post->cover_img }}" class="card-img-top">
+    @endif
     <!-- post header -->
     <div class="post-header">
         <h1 class="post-title">

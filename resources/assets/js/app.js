@@ -10,6 +10,7 @@ require('./boot');
             $('[data-toggle="tooltip"]').tooltip();
             this.bootUp();
             $('.post-detail-content a').smoothScroll();
+            $('#comments a').smoothScroll();
         },
         bootUp: function () {
             initComment();

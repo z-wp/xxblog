@@ -211,7 +211,7 @@
 
         </div>
         <div class="p-3">
-            @include('partials.msg')
+            @includeWhen(!isset($include_msg) || $include_msg, 'partials.msg')
             @yield('content')
         </div>
     </div>

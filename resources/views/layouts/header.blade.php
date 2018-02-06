@@ -1,12 +1,23 @@
-@if(isset($header_bg_image) && $header_bg_image)
+<?php
+$use_post_cover_img = false;
+$header_img_url = '';
+if (isset($post) && $post->cover_img) {
+    $use_post_cover_img = true;
+    $header_img_url = $post->cover_img;
+}
+if (!$use_post_cover_img) {
+    $header_img_url = isset($header_bg_image) && $header_bg_image ? $header_bg_image : '';
+}
+?>
+@if($header_img_url)
     <style>
         .main-header {
-            background: url("{{ $header_bg_image }}") no-repeat center center;
+            background: url("{{ $header_img_url }}") no-repeat center center;
             background-size: cover;
         }
     </style>
 @endif
-<header class="main-header bg-placeholder">
+<header class="main-header bg-placeholder" style="min-height: 180px">
     <div class="container-fluid" style="margin-top: -15px">
         <nav class="navbar navbar-dark navbar-expand-lg">
             <a href="{{ route('post.index') }}" id="blog-navbar-brand" class="navbar-brand">{{ $author or 'Blog' }}</a>
@@ -76,7 +87,11 @@
             </div>
         </nav>
     </div>
-    <div class="container-fluid">
-        <div class="description">{{ $description or 'Stay Hungry. Stay Foolish.' }}</div>
+    <div class="container-fluid mt-3">
+        @if($use_post_cover_img)
+            <h1>{{ $post->title }}</h1>
+        @elseif($description)
+            <h2>{{ $description }}</h2>
+        @endif
     </div>
 </header>

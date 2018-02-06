@@ -202,6 +202,7 @@ class PostController extends Controller
     private function validatePostForm(Request $request, $update = false)
     {
         $v = [
+            'cover_img' => 'nullable|url',
             'title' => 'required',
             'description' => 'required',
             'category_id' => 'required',

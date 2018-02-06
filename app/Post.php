@@ -36,6 +36,7 @@ class Post extends Model
         'id',
         'user_id',
         'category_id',
+        'cover_img',
         'title',
         'slug',
         'view_count',
@@ -46,7 +47,7 @@ class Post extends Model
         'status'
     ];
 
-    protected $fillable = ['title', 'description', 'slug', 'category_id', 'user_id', 'content', 'published_at', 'status', 'html_content'];
+    protected $fillable = ['title', 'description', 'slug', 'category_id', 'user_id', 'content', 'published_at', 'status', 'html_content', 'cover_img'];
 
     public function category()
     {
