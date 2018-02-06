@@ -7,15 +7,17 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-12 phone-no-padding">
                 <div class="post-detail" id="main-content">
-                    <div class="post-detail-title">
-                        {{ $post->title }}
-                        @can('update',$post)
-                            <div class="btn-group btn-group-sm">
-                                <a class="btn btn-outline-secondary" href="{{ route('post.edit',$post->id) }}">编辑</a>
-                                <a class="btn btn-outline-secondary swal-dialog-target" data-url="{{ route('post.destroy',$post->id) }}" data-dialog-msg="Delete {{ $post->title }} ?">删除</a>
-                            </div>
-                        @endcan
-                    </div>
+                    @if(!$post->cover_img)
+                        <div class="post-detail-title">
+                            {{ $post->title }}
+                        </div>
+                    @endif
+                    @can('update',$post)
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-outline-secondary" href="{{ route('post.edit',$post->id) }}">编辑</a>
+                            <a class="btn btn-outline-secondary swal-dialog-target" data-url="{{ route('post.destroy',$post->id) }}" data-dialog-msg="Delete {{ $post->title }} ?">删除</a>
+                        </div>
+                    @endcan
                     <div class="post-detail-content">
                         {!! $post->html_content !!}
                         <p><a href="#main-content">⬆️</a></p>
