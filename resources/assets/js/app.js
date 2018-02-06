@@ -54,7 +54,7 @@ require('./boot');
         });
 
         function showTooltip(target, title) {
-            $(target).tooltip({placement: 'top', trigger: 'manual'}).tooltip('hide')
+            $(target).tooltip({placement: 'left', trigger: 'manual'}).tooltip('hide')
                 .attr('data-original-title', title)
                 .tooltip('show');
             $(target).mouseleave(function (e) {
@@ -68,26 +68,22 @@ require('./boot');
 
         $('.swal-dialog-target').each(function () {
             if ($(this).attr('appended-form') == '1') {
-                return
+                return;
             }
             $(this).attr('appended-form', '1');
             $(this).append(function () {
-                return "\n" +
-                    "<form action='" + $(this).attr('data-url') + "' method='post' style='display:none'>\n" +
-                    "   <input type='hidden' name='_method' value='" + ($(this).data('method') ? $(this).data('method') : 'delete') + "'>\n" +
-                    "   <input type='hidden' name='_token' value='" + XblogConfig.csrfToken + "'>\n" +
-                    "</form>\n"
+                return "<form action='" + $(this).attr('data-url') + "' method='post' style='display:none'>" +
+                    "<input type='hidden' name='_method' value='" + ($(this).data('method') ? $(this).data('method') : 'delete') + "'>" +
+                    "<input type='hidden' name='_token' value='" + XblogConfig.csrfToken + "'>" +
+                    "</form>"
             }).click(function () {
                 let deleteForm = $(this).find("form");
-                let method = ($(this).data('method') ? $(this).data('method') : 'delete');
-                let url = $(this).attr('data-url');
                 let data = $(this).data('request-data') ? $(this).data('request-data') : '';
                 let title = $(this).data('dialog-title') ? $(this).data('dialog-title') : '删除';
                 let message = $(this).data('dialog-msg');
                 let type = $(this).data('dialog-type') ? $(this).data('dialog-type') : 'danger';
                 let cancel_text = $(this).data('dialog-cancel-text') ? $(this).data('dialog-cancel-text') : '取消';
                 let confirm_text = $(this).data('dialog-confirm-text') ? $(this).data('dialog-confirm-text') : '确定';
-                console.log(data);
                 dialog({
                         title: title,
                         body: message,
@@ -118,20 +114,21 @@ require('./boot');
         let email = form.find('input[name=email]');
         let site = form.find('input[name=site]');
         let captcha = form.find('input[name=captcha]');
+        let has_username = username.length > 0;
 
-        if (window.localStorage) {
-            username.val(localStorage.getItem('comment_username') === undefined ? '' : localStorage.getItem('comment_username'));
-            email.val(localStorage.getItem('comment_email') === undefined ? '' : localStorage.getItem('comment_email'));
-            site.val(localStorage.getItem('comment_site') === undefined ? '' : localStorage.getItem('comment_site'));
+        if (has_username && window.localStorage) {
+            username.val(localStorage.getItem('comment_username'));
+            email.val(localStorage.getItem('comment_email'));
+            site.val(localStorage.getItem('comment_site'));
         }
 
         form.on('submit', function () {
-            if (username.length > 0) {
+            if (has_username) {
                 if ($.trim(username.val()) === '') {
                     username.focus();
                     return false;
                 }
-                else if ($.trim(email.val()) === '') {
+                if ($.trim(email.val()) === '') {
                     email.focus();
                     return false;
                 }
@@ -146,10 +143,6 @@ require('./boot');
                 return false;
             }
 
-            let usernameValue = username.val();
-            let emailValue = email.val();
-            let siteValue = site.val();
-
             submitBtn.val('提交中...').addClass('disabled').prop('disabled', true);
             form.find('#comment_submit_msg').text('').hide();
             $.ajax({
@@ -161,10 +154,16 @@ require('./boot');
                 data: form.serialize(),
             }).done(function (data) {
                 if (data.status === 200) {
-                    if (window.localStorage) {
-                        localStorage.setItem('comment_username', usernameValue);
-                        localStorage.setItem('comment_email', emailValue);
-                        localStorage.setItem('comment_site', siteValue);
+                    if (has_username && window.localStorage) {
+                        let usernameValue = username.val();
+                        let emailValue = email.val();
+                        let siteValue = site.val();
+                        if (usernameValue)
+                            localStorage.setItem('comment_username', usernameValue);
+                        if (emailValue)
+                            localStorage.setItem('comment_email', emailValue);
+                        if (siteValue)
+                            localStorage.setItem('comment_site', siteValue);
                     }
                     username.val('');
                     email.val('');

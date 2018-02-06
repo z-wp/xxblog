@@ -31,7 +31,7 @@ Artisan::command('post {action}', function ($action) {
             break;
         case 'content2html':
             foreach (\App\Post::all() as $post) {
-                $post->html_content = $markdownParser->parse($post->content, false);
+                $post->html_content = $markdownParser->parse($post->content, false, true);
                 $this->comment($post->save());
             }
             break;

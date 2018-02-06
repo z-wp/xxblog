@@ -5,12 +5,12 @@
  * Date: 2016/8/19
  * Time: 17:41
  */
+
 namespace App\Http\Repositories;
 
-use App\Configuration;
 use App\Page;
 use Illuminate\Http\Request;
-use Parsedown;
+use Lufficc\MarkDownParser;
 
 /**
  * Class PageRepository
@@ -19,11 +19,11 @@ use Parsedown;
 class PageRepository extends Repository
 {
     static $tag = 'page';
-    protected $parseDown;
+    protected $markdownParser;
 
-    public function __construct()
+    public function __construct(MarkDownParser $markDownParser)
     {
-        $this->parseDown = new Parsedown();
+        $this->markdownParser = $markDownParser;
     }
 
     public function model()
@@ -66,7 +66,7 @@ class PageRepository extends Repository
         $this->clearCache();
         $page = Page::create(array_merge(
             $request->except('_token'),
-            ['html_content' => $this->parseDown->text($request->get('content'))]
+            ['html_content' => $this->markdownParser->parse($request->get('content'), false, true)]
         ));
 
         $page->saveConfig($request->all());
@@ -79,7 +79,7 @@ class PageRepository extends Repository
         $page->saveConfig($request->all());
         return $page->update(array_merge(
             $request->except('_token'),
-            ['html_content' => $this->parseDown->text($request->get('content'))]
+            ['html_content' => $this->markdownParser->parse($request->get('content'), false, true)]
         ));
     }
 

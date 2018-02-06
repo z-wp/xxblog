@@ -73,6 +73,9 @@
       .post-title {
         a {
           color: white;
+          &:hover {
+            color: $colorAccent;
+          }
         }
       }
     }
