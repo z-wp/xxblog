@@ -90,8 +90,8 @@ if (!$use_post_cover_img) {
     <div class="container-fluid mt-3">
         @if($use_post_cover_img)
             <h1>{{ $post->title }}</h1>
-        @elseif($description)
-            <h2>{{ $description }}</h2>
+        @elseif(isset($site_header_title) && $site_header_title)
+            <h2>{{ $site_header_title }}</h2>
         @endif
     </div>
 </header>
