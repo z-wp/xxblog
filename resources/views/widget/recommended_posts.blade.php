@@ -1,5 +1,5 @@
 @if(!$recommendedPosts->isEmpty())
-    <div class="alert alert-dismissible fade show" style="background-color: #fff;color:inherit;padding:15px 20px 10px;border-color:#ededed;border-radius: 0">
+    <div class="alert alert-dismissible fade show border-0 shadow" style="background-color: #fff;color:inherit;padding:15px 20px 10px;border-color:#ededed;border-radius: 0">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

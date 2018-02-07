@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item"><a href="{{ route('post.index') }}">博客</a></li>
                     <li class="breadcrumb-item active">{{ ucfirst($page->display_name) }}</li>
                 </ol>
-                <div class="post-detail">
+                <div class="post-detail shadow">
                     <div class="post-detail-title">
                         {{ $page->display_name }}
                         @can('update',$page)

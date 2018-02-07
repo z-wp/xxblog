@@ -3,11 +3,11 @@
         <a class="text-muted" href="{{ route('tag.index') }}">标签</a>
         <span class="badge badge-secondary badge-pill">{{ count($tags) }}</span>
     </h5>
-    <ul class="tags bg-white p-3">
+    <ul class="tags bg-white p-3 shadow rounded">
         @forelse($tags as $tag)
-            @if(str_contains(urldecode(request()->getPathInfo()),'tag/'.$tag->name))
+            @if(request()->is('tag/'.$tag->name))
                 <li>
-                        <span class="tag active" title="{{ $tag->name }}">
+                    <span class="tag active" title="{{ $tag->name }}">
                         {{ $tag->name }}
                             <span class="font-weight-bold">{{ $tag->posts_count }}</span>
                     </span>

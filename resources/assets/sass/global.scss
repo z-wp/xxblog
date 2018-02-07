@@ -59,4 +59,10 @@ html, body {
 
 .breadcrumb {
   background-color: #fff;
+  @extend .shadow;
+}
+
+.card {
+  border: none;
+  @extend .shadow;
 }
