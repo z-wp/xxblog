@@ -1,4 +1,4 @@
-<div class="card card-user mb-3" style="overflow: hidden">
+<div class="card card-user mb-4" style="overflow: hidden">
     <?php
     if (isset($profile_image) && $profile_image)
         $style = "background: url($profile_image) no-repeat center center;background-size: cover";

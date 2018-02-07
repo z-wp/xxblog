@@ -1,12 +1,14 @@
-<div class="card mb-3">
-    <div class="card-header bg-white"><i class="fa fa-fire fa-fw"></i>热门文章</div>
-    <div class="card-body hot-posts">
+<div class="order-md-2 mb-4">
+    <h5 class="d-flex justify-content-between align-items-center mb-2">
+        <span class="text-muted">热门文章</span>
+        <span class="badge badge-secondary badge-pill">{{ count($hotPosts) }}</span>
+    </h5>
+    <div class="hot-posts">
         <ul class="list-group">
             @foreach($hotPosts as $post)
                 <a class="list-group-item list-group-item-action" title="{{ $post->title }}" href="{{ route('post.show',$post->slug) }}">
-                    <span class="badge badge-pill">{{ $post->view_count.'+'.$post->comments_count }}</span>
-                    {{ str_limit($post->title,32) }}
-                    <span class="clearfix"></span>
+                    <h6 class="my-0">{{ $post->title }}</h6>
+                    <small class="text-muted">阅读量: {{ $post->view_count }}, 评论: {{ $post->comments_count }}</small>
                 </a>
             @endforeach
         </ul>

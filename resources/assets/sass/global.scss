@@ -11,7 +11,6 @@ html, body {
   font-size: 14px;
   height: 100%;
   background: $body-bg;
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
 #content-wrap {
