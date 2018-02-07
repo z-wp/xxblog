@@ -2,7 +2,6 @@
 @section('title', 'Edit ' . $post->title)
 @section('css')
     <link href="//cdn.bootcss.com/select2/4.0.3/css/select2.min.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/simplemde/1.11.2/simplemde.min.css" rel="stylesheet">
 @endsection
 @section('content')
     <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
@@ -23,7 +22,6 @@
 
 @section('script')
     <script src="//cdn.bootcss.com/select2/4.0.3/js/select2.min.js"></script>
-    <script src="//cdn.bootcss.com/simplemde/1.11.2/simplemde.min.js"></script>
     <script>
         $('#cover_img').change(function () {
             let src = $(this).val();
@@ -31,30 +29,6 @@
         });
         $("#post-tags").select2({
             tags: true
-        });
-        $(document).ready(function () {
-            var simplemde = new SimpleMDE({
-                autoDownloadFontAwesome: true,
-                autosave: {
-                    enabled: true,
-                    uniqueId: "post.edit." + $('#data').data('id'),
-                    delay: 1000,
-                },
-                element: document.getElementById("post-content-textarea"),
-                renderingConfig: {
-                    codeSyntaxHighlighting: true,
-                },
-                spellChecker: false,
-                toolbar: ["bold", "italic", "heading", "|", "quote", 'code', 'ordered-list', 'unordered-list', 'link', 'image', 'table', '|', 'preview', 'side-by-side', 'fullscreen'],
-            });
-            inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
-                uploadUrl: $("#upload-img-url").data('upload-img-url'),
-                uploadFieldName: 'image',
-                extraParams: {
-                    '_token': XblogConfig.csrfToken,
-                    'type': 'xrt'
-                },
-            });
         });
     </script>
 @endsection

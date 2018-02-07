@@ -46,6 +46,12 @@ return [
                     'label' => 'Github用户名',
                 ],
                 [
+                    'name' => 'blog_brand',
+                    'label' => 'Logo',
+                    "placeholder" => "支持 text 和 html",
+                    "type" => "textarea"
+                ],
+                [
                     'name' => 'site_title',
                     'label' => '标题',
                 ],
@@ -73,6 +79,10 @@ return [
                     'label' => '热门文章数量',
                     'default' => 5,
                     "type" => "number"
+                ],
+                [
+                    'name'=>'case_number',
+                    'label' => '备案号'
                 ],
             ]
         ],

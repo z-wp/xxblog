@@ -84,7 +84,10 @@
 </div>
 <div class="form-group">
     <label for="post-content-textarea" class="form-control-label">文章内容*</label>
-    <textarea spellcheck="false" id="post-content-textarea" class="form-control{{ $errors->has('content') ? ' is-invalid ' : ' ' }}" name="content"
+    <textarea data-save-id="{{ isset($post)?'post.edit.'.$post->id.'.by@' . request()->ip():'post.create' }}" id="simplemde-textarea"
+              class="form-control{{ $errors->has('content') ? ' is-invalid ' : ' ' }}"
+              name="content"
+              spellcheck="false"
               rows="36"
               placeholder="请使用 Markdown 格式书写"
               style="resize: vertical">{{ isset($post) ? $post->content : old('content') }}</textarea>

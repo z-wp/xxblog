@@ -1,86 +1,110 @@
 @import "common";
 
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    color: $color;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $color;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $color;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: $color;
+  }
+}
+
 .main-header {
   text-align: center;
   background-color: $colorPrimary;
   background-size: 100% auto;
   color: #fff;
+  min-height: 180px;
   margin-bottom: 20px;
-  padding-top: 30px;
   padding-bottom: 30px;
 
   box-shadow: 1px 1px 1px $shadowColor;
   -moz-box-shadow: 1px 1px 1px $shadowColor;
   -webkit-box-shadow: 1px 1px 1px $shadowColor;
-}
+  .site-header-title {
+    font-family: 'Pacifico', cursive, Serif;
+    font-size: 1.6em;
+    text-align: center;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 1rem;
+  }
+  a:active, a:focus, a img {
+    outline: none;
+  }
+  .navbar-toggler {
+    border: 1px solid $colorPrimaryDark;
+  }
+  .navbar-toggler:focus, .navbar-toggler:hover {
+    background-color: $colorPrimaryDark;
+  }
+  form input[type="text"] {
+    border: 1px solid $colorPrimaryDark;
+    color: white;
+    background: transparent;
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px;
+    @include placeholder-color(#aaa);
+    &:focus {
+      @include placeholder-color(#eee)
+    }
+  }
+  .navbar-nav > li > a {
+    margin: 8px 10px;
+    padding: 8px 20px !important;
+    border: $colorPrimaryDark solid 1px !important;
+    border-radius: 50px;
+    background: $colorPrimaryDarkTransparent !important;
+    color: white !important;
+    font-size: 1em;
+    line-height: 1.1em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    @extend .transition;
+  }
+  .navbar-nav > li > a:hover {
+    color: $colorAccent !important;
+    border: $colorAccent solid 1px !important;
+    background: $colorPrimaryDark;
+    @extend .transition;
+  }
+  .navbar-brand {
+    font-family: 'Pacifico', cursive;
+    text-decoration: none;
+    font-size: 1.9em;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    @extend .transition;
+  }
 
-.main-header h2 {
-  font-size: 2.9em;
-  color: white;
-  text-shadow: 5px 5px 5px $colorPrimaryDark;
-}
-
-.main-header p {
-  font-size: 1.25em;
-  color: white;
-}
-
-a:active, a:focus, a img {
-  outline: none;
-}
-
-.main-header .navbar-toggler {
-  border: 1px solid $colorPrimaryDark;
-}
-
-.main-header .navbar-toggler:focus, .main-header .navbar-toggler:hover {
-  background-color: $colorPrimaryDark;
-}
-
-.main-header form input[type="text"] {
-  border: 1px solid $colorPrimaryDark;
-  color: white;
-  background: transparent;
-  vertical-align: middle;
-}
-
-.main-header .navbar-nav > li > a {
-  margin: 8px 10px;
-  padding: 8px 20px !important;
-  border: $colorPrimaryDark solid 1px !important;
-  border-radius: 50px;
-  background: $colorPrimaryDarkTransparent !important;
-  color: white !important;
-  font-size: 1em;
-  line-height: 1.1em;
-  text-shadow: $shadowColor 1px 1px 2px;
-  @extend .transition;
-}
-
-.main-header .navbar-nav > li > a:hover {
-  color: $colorAccent !important;
-  border: $colorAccent solid 1px !important;
-  background: $colorPrimaryDark;
-  @extend .transition;
-}
-
-.main-header .navbar-brand {
-  font-family: 'Pacifico', cursive;
-  text-decoration: none;
-  font-size: 1.9em;
-  color: white;
-  text-shadow: 5px 5px 5px $colorPrimaryDark;
-  @extend .transition;
+  .header-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    width: 100%;
+    .header-title, .header-desc {
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      text-align: start;
+      margin-bottom: 1rem;
+    }
+    .header-title {
+      font-size: 3rem;
+    }
+    .header-desc {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 #blog-navbar-brand:hover {
   color: $colorAccent;
-  text-shadow: 5px 5px 5px $colorPrimaryDark;
   @extend .transition;
 }
 
-header .description {
-  font-family: 'Pacifico', cursive;
-  font-size: 1.4em;
-  text-shadow: 5px 5px 5px $colorPrimaryDark;
-}

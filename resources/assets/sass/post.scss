@@ -22,12 +22,17 @@
         }
       }
     }
-  }
-
-  .post-meta {
-    color: $metaColor;
-    font-size: 0.85em;
-    padding: 0 $postItemPaddingLeftRight $postItemPaddingUpDown/2 $postItemPaddingLeftRight;
+    .post-meta {
+      color: $metaColor;
+      font-size: 0.85em;
+      padding: 0 $postItemPaddingLeftRight $postItemPaddingUpDown/2 $postItemPaddingLeftRight;
+    }
+    img {
+      max-height: 20rem;
+      width: 100%;
+      height: auto;
+      object-fit: cover
+    }
   }
 
   .post-description {
@@ -35,6 +40,9 @@
     line-height: 1.6em;
     color: #444443;
     margin: $postItemPaddingUpDown $postItemPaddingLeftRight $postItemPaddingUpDown;
+    p{
+      margin-bottom: 0;
+    }
     img {
       max-width: 100%;
     }
@@ -49,56 +57,6 @@
     padding: $postItemPaddingUpDown * 0.5 $postItemPaddingLeftRight;
     a {
       color: $secondary;
-    }
-  }
-
-  &.with-cover-img img.post-cover-img {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    filter: blur(5px) grayscale(20%);
-    -webkit-filter: blur(5px) grayscale(20%);
-    z-index: 1;
-    object-fit: cover;
-  }
-  /* with image */
-  &.with-cover-img {
-    .post-wrapper {
-      z-index: 3;
-      background-color: rgba(0, 0, 0, 0.25) !important;
-    }
-    .post-header {
-      border-bottom: none;
-      .post-title {
-        a {
-          color: white;
-          &:hover {
-            color: $colorAccent;
-          }
-        }
-      }
-    }
-    .post-meta {
-      color: #eee;
-    }
-    .post-description {
-      color: #eee;
-    }
-    .post-permalink {
-      > a {
-        color: #f8f9fa;
-        border-color: #f8f9fa;
-        &:hover {
-          border-color: #343A3F;
-        }
-      }
-    }
-    .post-footer {
-      border-top: none;
-      i, a {
-        color: white;
-      }
     }
   }
 }
@@ -125,7 +83,7 @@
     blockquote {
       display: block;
       background: #fff;
-      padding: 15px 20px 15px 45px;
+      padding: 15px 20px 5px 45px;
       margin: 1rem 0 1.2rem;
       position: relative;
 

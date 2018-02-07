@@ -10,9 +10,8 @@ html, body {
   //color: #505050;
   font-size: 14px;
   height: 100%;
-  //position: relative;
   background: $body-bg;
-  //font-family: NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
 #content-wrap {

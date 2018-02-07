@@ -1,3 +1,4 @@
+require('./editor');
 require('chart.js');
 const Uppy = require('uppy/lib/core');
 const Dashboard = require('uppy/lib/plugins/Dashboard');

@@ -17,15 +17,16 @@ if (!$use_post_cover_img) {
         }
     </style>
 @endif
-<header class="main-header bg-placeholder" style="min-height: 180px">
-    <div class="container-fluid" style="margin-top: -15px">
+<header class="main-header bg-placeholder">
+    <div class="container-fluid">
         <nav class="navbar navbar-dark navbar-expand-lg">
-            <a href="{{ route('post.index') }}" id="blog-navbar-brand" class="navbar-brand">{{ $author or 'Blog' }}</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse"
-                    data-target="#blog-navbar-collapse">
+            <a href="{{ route('post.index') }}" id="blog-navbar-brand" class="navbar-brand">
+                {!! $blog_brand or 'Blog' !!}
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#blog-navbar-collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="blog-navbar-collapse">
+            <div class="navbar-collapse collapse" id="blog-navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="{{ route('achieve') }}">归档</a></li>
                     @if(XblogConfig::getValue('github_username'))
@@ -87,11 +88,18 @@ if (!$use_post_cover_img) {
             </div>
         </nav>
     </div>
-    <div class="container-fluid mt-3">
+    <div class="header-wrapper">
         @if($use_post_cover_img)
-            <h1>{{ $post->title }}</h1>
+            <div class="container mt-3">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-sm-12">
+                        <h1 class="header-title">{{ $post->title }}</h1>
+                        <div class="header-desc">{!! $post->description !!}</div>
+                    </div>
+                </div>
+            </div>
         @elseif(isset($site_header_title) && $site_header_title)
-            <h2>{{ $site_header_title }}</h2>
+            <h2 class="site-header-title">{{ $site_header_title }}</h2>
         @endif
     </div>
 </header>

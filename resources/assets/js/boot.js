@@ -5,7 +5,6 @@ require('bootstrap');
 window.Clipboard = require('clipboard');
 window.hljs = require('highlight.js');
 window.autosize = require('autosize');
-require('./codemirror-4.inline-attachment');
 window.Masonry = require("masonry-layout");
 jQueryBridget('masonry', Masonry, $);
 require('./modal');

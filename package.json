@@ -25,6 +25,7 @@
     "masonry-layout": "^4.2.0",
     "node-sass": "^4.5.3",
     "popper.js": "^1.13.0",
+    "simplemde": "^1.11.2",
     "uppy": "^0.22.2"
   },
   "dependencies": {}

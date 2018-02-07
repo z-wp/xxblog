@@ -30,7 +30,9 @@
 <div class="form-group">
     <label for="content" class="form-control-label">页面内容*</label>
 
-    <textarea spellcheck="false" id="content" type="text" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="content"
+    <textarea spellcheck="false" id="simplemde-textarea"
+              data-save-id="{{ isset($page)?'page.edit.'.$page->id.'.by@' . request()->ip():'page.create' }}"
+              type="text" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="content"
               rows="25"
               style="line-height: 1.85em; resize: vertical">{{ isset($page) ? $page->content : old('content') }}</textarea>
     @if ($errors->has('content'))

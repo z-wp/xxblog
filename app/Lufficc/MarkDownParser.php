@@ -71,7 +71,7 @@ class MarkDownParser
             $figure->setAttribute('class', trim(str_replace('figure', '', $gallery->getAttribute('class'))));
             $frag = $dom->createDocumentFragment();
             $alt = '';
-            foreach ($xpath->query('p/img', $gallery) as $image) {
+            foreach ($xpath->query('.//img', $gallery) as $image) {
                 if (!$alt)
                     $alt = $image->getAttribute('alt');
                 //wrapped with div

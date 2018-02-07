@@ -24,15 +24,15 @@
     </script>
     @include('widget.google_analytics')
 </head>
-<body id="body">
-@include('layouts.header')
+<body>
+@includeWhen(!isset($include_header) || $include_header, 'layouts.header')
 <div id="content-wrap">
-    <div class="container">
-        @includeWhen(!isset($include_msg) || $include_msg, 'partials.msg')
-    </div>
+    @if(!isset($include_msg) || $include_msg)
+        @include('partials.msg')
+    @endif
     @yield('content')
 </div>
-@include('layouts.footer')
+@includeWhen(!isset($include_footer) || $include_footer, 'layouts.footer')
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('script')
 </body>
