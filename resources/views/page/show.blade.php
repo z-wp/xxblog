@@ -8,7 +8,7 @@
             <div class="col-md-10 col-sm-12 phone-no-padding">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('post.index') }}">博客</a></li>
-                    <li class="breadcrumb-item active">{{ ucfirst($page->display_name) }}</li>
+                    <li class="breadcrumb-item active">{{ $page->display_name }}</li>
                 </ol>
                 <div class="post-detail shadow">
                     <div class="post-detail-title">

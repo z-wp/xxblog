@@ -27,6 +27,22 @@ return [
                     'name' => 'avatar',
                     'label' => '头像',
                 ],
+                [
+                    'name' => 'social_facebook',
+                    'label' => 'Facebook link',
+                ],
+                [
+                    'name' => 'social_twitter',
+                    'label' => 'Twitter link',
+                ],
+                [
+                    'name' => 'social_github',
+                    'label' => 'GitHub link',
+                ],
+                [
+                    'name' => 'social_weibo',
+                    'label' => 'Weibo link',
+                ],
             ]
         ],
         [
@@ -81,7 +97,7 @@ return [
                     "type" => "number"
                 ],
                 [
-                    'name'=>'case_number',
+                    'name' => 'case_number',
                     'label' => '备案号'
                 ],
             ]

@@ -20,10 +20,8 @@
         </p>
         <p class="links">
             <font aria-hidden="true">»</font>
-            @foreach(config('social') as $key => $value)
-                <a href="{{ $value['url'] }}" target="_blank" aria-label="{{ $author or 'author' }} 的 {{ ucfirst($key) }} 地址">
-                    <i class="fa fa-{{ $value['icon'] }} fa-fw" title="{{ ucfirst($key) }}"></i>
-                </a>
+            @foreach(['facebook','twitter','github','weibo'] as $social)
+                @include('partials.social_icon', ['name' => $social])
             @endforeach
         </p>
     </div>

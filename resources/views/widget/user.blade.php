@@ -16,11 +16,10 @@
     </div>
     <div class="card-user-footer">
         <div class="row">
-            <?php $count = count(config('social'))?>
-            @foreach(config('social') as $key => $value)
-                <div class="col center-block">
+            @foreach(['facebook','twitter','github','weibo'] as $social)
+                <div class="col">
                     <div class="description-block">
-                        <a href="{{ $value['url'] }}" title="{{ ucfirst($key) }}" class="description-header text-muted"><i class="{{ 'fa fa-'.$value['icon'].' fa-lg' }}"></i></a>
+                        @include('partials.social_icon', ['name' => $social])
                     </div>
                 </div>
             @endforeach

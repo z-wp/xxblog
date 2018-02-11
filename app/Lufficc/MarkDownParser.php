@@ -12,6 +12,7 @@ use League\HTMLToMarkdown\HtmlConverter;
 use ParsedownExtra;
 use DOMDocument;
 use DOMXPath;
+use function PHPSTORM_META\elementType;
 
 class MarkDownParser
 {
@@ -123,6 +124,48 @@ class MarkDownParser
         }
         return $changed;
 
+    }
+
+    public function generateToc(DOMDocument $dom, $from = 1, $to = 4, $max_depth = 2, $list = 'ul')
+    {
+        assert($to - $from + 1 >= $max_depth, 'depth should smaller than to minus from.');
+        $tags = '//*[';
+        $xpath = new DOMXpath($dom);
+        for ($i = $from; $i <= $to; $i++) {
+            $tags .= 'self::h' . $i;
+            if ($i != $to) {
+                $tags .= ' or ';
+            } else {
+                $tags .= ']';
+            }
+        }
+        $hs = $xpath->query($tags);
+        $init_depth = 0;
+        $depth = 0;
+        $last_level = -1;
+        $toc = '';
+        $depth_map = [];
+        foreach ($hs as $h) {
+            sscanf($h->tagName, 'h%u', $level);
+            if ($level > $last_level) {
+                $toc .= "<$list>";
+                $depth++;
+                $depth_map[$level] = $depth;
+            } elseif ($level == $last_level) {
+                $toc .= '</li>';
+            } elseif ($level < $last_level) {
+                if (array_has($depth_map, $level)) {
+                    $last_depth = $depth_map[$level];
+                    $toc .= str_repeat("</li></$list>", $depth - $last_depth);
+                    $toc .= "</li>";
+                    $depth = $last_depth;
+                }
+            }
+            $id = $h->textContent;
+            $toc .= "<li><a href=#$id>$h->textContent</a>";
+            $last_level = $level;
+        }
+        return $toc;
     }
 
     private function convertHtml($html)
