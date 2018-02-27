@@ -14,7 +14,7 @@ pre {
   border: none;
   border-radius: 5px;
   background: $codeBg;
-  color: white;
+  color: $codeColor;
   padding: 1rem;
 }
 
@@ -35,7 +35,7 @@ pre button.clipboard-target {
   opacity: 0;
   padding: 2px 5px;
   position: absolute;
-  background-color: #eee;
+  background-color: #ccc;
   color: #333;
   right: 4px;
   top: 4px;
