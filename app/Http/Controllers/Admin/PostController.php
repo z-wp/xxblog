@@ -204,7 +204,6 @@ class PostController extends Controller
         $v = [
             'cover_img' => 'nullable|url',
             'title' => 'required',
-            'description' => 'required',
             'category_id' => 'required',
             'content' => 'required',
         ];

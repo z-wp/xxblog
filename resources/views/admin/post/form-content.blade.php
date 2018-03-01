@@ -21,7 +21,7 @@
     @endif
 </div>
 <div class="form-group">
-    <label for="description" class="form-control-label">文章描述*</label>
+    <label for="description" class="form-control-label">文章描述</label>
 
     <textarea id="post-description-textarea" style="resize: vertical;" rows="3" spellcheck="false"
               id="description" class="form-control autosize-target{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="支持 Markdown 格式"

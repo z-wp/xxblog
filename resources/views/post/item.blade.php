@@ -1,5 +1,4 @@
 <article class="post card">
-    <!-- post header -->
     <div class="post-header">
         <h1 class="post-title">
             <a title="{{ $post->title }}" href="{{ route('post.show',$post->slug) }}">
@@ -38,16 +37,12 @@
             <img src="{{ $post->cover_img }}">
         @endif
     </div>
-    {{--post content--}}
-    <div class="post-description">
-        {!! $post->description !!}
-    </div>
-    {{--read more--}}
-    <div class="post-permalink">
-        <a title="阅读全文" href="{{ route('post.show',$post->slug) }}" class="btn btn-outline-dark">阅读全文</a>
-    </div>
-    {{--post footer--}}
-    <div class="post-footer clearfix">
+    @if($post->description)
+        <div class="post-description">
+            {!! $post->description !!}
+        </div>
+    @endif
+    <div class="post-footer clearfix {{ $post->description?'':'border-top-0' }}">
         <div class="pull-left">
             <i class="fa fa-tags"></i>
             @foreach($post->tags as $tag)
