@@ -40,7 +40,7 @@
     line-height: 1.6em;
     color: #444443;
     margin: $postItemPaddingUpDown $postItemPaddingLeftRight $postItemPaddingUpDown;
-    p{
+    p {
       margin-bottom: 0;
     }
     img {
@@ -79,6 +79,11 @@
     @extend .markdown-content;
     padding-bottom: 20px;
     padding-top: 10px;
+    .alert {
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
     blockquote {
       display: block;
       background: #fff;

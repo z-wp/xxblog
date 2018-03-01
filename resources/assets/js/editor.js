@@ -39,8 +39,23 @@ require('./codemirror-4.inline-attachment');
                             cm.replaceSelection(gallery);
                             cm.focus();
                         },
-                        className: "fa fa-youtube-play",
+                        className: "fa fa-newspaper-o",
                         title: "Gallery",
+                    },
+                    {
+                        name: "note",
+                        action: function (simplemde) {
+                            let cm = simplemde.codemirror;
+                            let pos = cm.getCursor();
+                            cm.setSelection(pos, pos);
+                            let note = '<div markdown="1" class="alert alert-info">\n' +
+                                '\n' +
+                                '</div>\n';
+                            cm.replaceSelection(note);
+                            cm.focus();
+                        },
+                        className: "fa fa-info",
+                        title: "Note",
                     },
                     'table',
                     '|', 'preview', 'side-by-side', 'fullscreen'],
