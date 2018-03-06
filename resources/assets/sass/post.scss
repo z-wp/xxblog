@@ -80,7 +80,7 @@
     padding-bottom: 20px;
     padding-top: 10px;
     .alert {
-      p:last-child {
+      p:last-child, ul:last-child, ol:last-child, div:last-child {
         margin-bottom: 0;
       }
     }

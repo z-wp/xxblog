@@ -28,7 +28,7 @@
 
     <!-- Next Page Link -->
         @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a></li>
+            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">⟩</a></li>
         @else
             <li><span class="disabled">⟩</span></li>
         @endif
