@@ -12,7 +12,6 @@ use App\Http\Repositories\PageRepository;
 use App\Http\Repositories\PostRepository;
 use App\Http\Repositories\TagRepository;
 use App\Http\Repositories\UserRepository;
-use App\Http\Requests;
 use App\Ip;
 use App\Page;
 use App\Post;
@@ -103,7 +102,7 @@ class AdminController extends Controller
     {
         $variables = config('configurable_variables');
         $groups = $variables['groups'];
-        return view('admin.settings', compact('variables',  'groups'));
+        return view('admin.settings', compact('variables', 'groups'));
     }
 
     public function saveSettings(Request $request)
@@ -123,7 +122,13 @@ class AdminController extends Controller
     {
         $comments = Comment::withoutGlobalScopes()->where($request->except(['page']))->orderBy('created_at', 'desc')->paginate(20);
         $comments->appends($request->except('page'));
-        return view('admin.comments', compact('comments'));
+        $unverified_ids = Comment::withoutGlobalScopes()->where('status', 0)->select('id')->get();
+        $unverified_ids = $unverified_ids->map(function ($item, $key) {
+            return $item['id'];
+        })->toArray();
+        $unverified_count = count($unverified_ids);
+        $unverified_ids = implode(',', $unverified_ids);
+        return view('admin.comments', compact('comments', 'unverified_ids', 'unverified_count'));
     }
 
     public function tags()

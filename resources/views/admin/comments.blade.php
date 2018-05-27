@@ -2,11 +2,13 @@
 @section('title','Comments')
 @section('content')
 @section('action')
-    <button class="btn btn-sm btn-outline-danger swal-dialog-target"
-            data-dialog-msg="Delete all unverified comments? "
-            data-url="{{ route('comment.delete-un-verified') }}"
-            data-method="delete">Delete Un Verified
-    </button>
+    @if($unverified_count>0)
+        <button class="btn btn-sm btn-outline-danger swal-dialog-target"
+                data-dialog-msg="删除 {{ $unverified_count }} 条未审核评论？"
+                data-url="{{ route('comment.delete-un-verified', ['ids'=>$unverified_ids]) }}"
+                data-method="delete">删除未审核
+        </button>
+    @endif
 @endsection
 @if($comments->isEmpty())
     <h3 class="center-block meta-item">No Comments</h3>
