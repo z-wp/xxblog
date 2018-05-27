@@ -188,6 +188,7 @@ return [
                     'values' => [
                         'none' => '关闭',
                         'bing' => '必应每日壁纸',
+                        'picsum' => 'Picsum',
                     ],
                 ],
                 [

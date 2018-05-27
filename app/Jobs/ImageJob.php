@@ -27,7 +27,8 @@ abstract class ImageJob implements ShouldQueue
     public static function get_job($name)
     {
         $jobs = [
-            'bing' => BingImageJob::class
+            'bing' => BingImageJob::class,
+            'picsum' => PicsumImageJob::class,
         ];
         return $jobs[$name];
     }
