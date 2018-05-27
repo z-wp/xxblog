@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\ImageJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -19,13 +20,15 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $header_image_provider = get_config('header_image_provider', 'none');
+        if ($header_image_provider != 'none') {
+            $schedule->job(ImageJob::get_job($header_image_provider))->everyMinute();
+        }
     }
 
     /**

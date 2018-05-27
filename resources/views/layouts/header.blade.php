@@ -7,6 +7,10 @@ if (isset($post) && $post->cover_img) {
 }
 if (!$use_post_cover_img) {
     $header_img_url = isset($header_bg_image) && $header_bg_image ? $header_bg_image : '';
+    //use dynamic image url
+    if (isset($header_image_provider) && $header_image_provider != 'none') {
+        $header_img_url = isset($dynamic_header_bg_image) && $dynamic_header_bg_image ? $dynamic_header_bg_image : $header_img_url;
+    }
 }
 ?>
 @if($header_img_url)

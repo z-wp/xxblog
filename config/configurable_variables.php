@@ -13,6 +13,72 @@
 return [
     'groups' => [
         [
+            'group_name' => '常用',
+            'children' => [
+                [
+                    'name' => 'google_analytics',
+                    'type' => 'radio',
+                    'default' => 'false',
+                    'values' => [
+                        'true' => '启用谷歌分析',
+                        'false' => '禁用谷歌分析',
+                    ],
+                ],
+                [
+                    'name' => 'enable_mail_notification',
+                    'type' => 'radio',
+                    'default' => 'false',
+                    'values' => [
+                        'true' => '启用邮件通知',
+                        'false' => '禁用邮件通知',
+                    ],
+                ],
+                [
+                    'name' => 'comment_type',
+                    'type' => 'radio',
+                    'default' => 'raw',
+                    'values' => [
+                        'none' => '关闭评(不显示)',
+                        'raw' => '自带评论',
+                        'disqus' => 'Disqus',
+                    ],
+                ],
+                [
+                    'name' => 'allow_comment',
+                    'type' => 'radio',
+                    'default' => 'true',
+                    'values' => [
+                        'true' => '允许评论',
+                        'false' => '禁止评论(仍会显示已有评论)',
+                    ],
+                ],
+                [
+                    'name' => 'enable_hot_posts',
+                    'type' => 'radio',
+                    'default' => 'false',
+                    'values' => [
+                        'true' => '启用热门文章',
+                        'false' => '禁用热门文章',
+                    ],
+                ],
+                [
+                    'name' => 'open_pay',
+                    'type' => 'radio',
+                    'default' => 'false',
+                    'values' => [
+                        'true' => '开启赞赏',
+                        'false' => '关闭赞赏',
+                    ],
+                ],
+                [
+                    'name' => 'pay_description',
+                    'label' => '赞赏描述',
+                    'default' => '写的不错，赞助一下主机费'
+                ],
+            ]
+        ],
+
+        [
             'group_name' => '个人信息',
             'children' => [
                 [
@@ -115,6 +181,16 @@ return [
                     'label' => 'Header背景图片',
                 ],
                 [
+                    'name' => 'header_image_provider',
+                    'type' => 'radio',
+                    'default' => 'none',
+                    'label' => '动态Header背景图片',
+                    'values' => [
+                        'none' => '关闭',
+                        'bing' => '必应每日壁纸',
+                    ],
+                ],
+                [
                     'name' => 'admin_sidebar_bg_image',
                     'label' => 'Dashboard背景图片',
                 ],
@@ -135,66 +211,4 @@ return [
             ]
         ],
     ],
-    'children' => [
-        [
-            'name' => 'google_analytics',
-            'type' => 'radio',
-            'default' => 'false',
-            'values' => [
-                'true' => '启用谷歌分析',
-                'false' => '禁用谷歌分析',
-            ],
-        ],
-        [
-            'name' => 'enable_mail_notification',
-            'type' => 'radio',
-            'default' => 'false',
-            'values' => [
-                'true' => '启用邮件通知',
-                'false' => '禁用邮件通知',
-            ],
-        ],
-        [
-            'name' => 'comment_type',
-            'type' => 'radio',
-            'default' => 'raw',
-            'values' => [
-                'none' => '关闭评(不显示)',
-                'raw' => '自带评论',
-                'disqus' => 'Disqus',
-            ],
-        ],
-        [
-            'name' => 'allow_comment',
-            'type' => 'radio',
-            'default' => 'true',
-            'values' => [
-                'true' => '允许评论',
-                'false' => '禁止评论(仍会显示已有评论)',
-            ],
-        ],
-        [
-            'name' => 'enable_hot_posts',
-            'type' => 'radio',
-            'default' => 'false',
-            'values' => [
-                'true' => '启用热门文章',
-                'false' => '禁用热门文章',
-            ],
-        ],
-        [
-            'name' => 'open_pay',
-            'type' => 'radio',
-            'default' => 'false',
-            'values' => [
-                'true' => '开启赞赏',
-                'false' => '关闭赞赏',
-            ],
-        ],
-        [
-            'name' => 'pay_description',
-            'label' => '赞赏描述',
-            'default' => '写的不错，赞助一下主机费'
-        ],
-    ]
 ];
