@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $header_image_provider = get_config('header_image_provider', 'none');
         if ($header_image_provider != 'none') {
-            $schedule->job(ImageJob::get_job($header_image_provider))->everyMinute();
+            $schedule->job(ImageJob::get_job($header_image_provider))->daily();
         }
     }
 
