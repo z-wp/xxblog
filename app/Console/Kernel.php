@@ -27,7 +27,17 @@ class Kernel extends ConsoleKernel
     {
         $header_image_provider = get_config('header_image_provider', 'none');
         if ($header_image_provider != 'none') {
-            $schedule->job(ImageJob::get_job($header_image_provider))->daily();
+            $header_image_update_rate = get_config('header_image_provider', 'every_day');
+            $event = $schedule->job(ImageJob::get_job($header_image_provider));
+            if ($header_image_update_rate == 'every_minute') {
+                $event->everyMinute();
+            } elseif ($header_image_update_rate == 'every_hour') {
+                $event->hourly();
+            } elseif ($header_image_update_rate == 'every_day') {
+                $event->daily();
+            } elseif ($header_image_update_rate == 'every_week') {
+                $event->weekly();
+            }
         }
     }
 

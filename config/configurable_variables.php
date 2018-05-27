@@ -191,6 +191,18 @@ return [
                     ],
                 ],
                 [
+                    'name' => 'header_image_update_rate',
+                    'type' => 'radio',
+                    'default' => 'every_day',
+                    'label' => '动态Header背景图片更新频率',
+                    'values' => [
+                        'every_minute' => '每分钟',
+                        'every_hour' => '每小时',
+                        'every_day' => '每天',
+                        'every_week' => '每周',
+                    ],
+                ],
+                [
                     'name' => 'admin_sidebar_bg_image',
                     'label' => 'Dashboard背景图片',
                 ],
