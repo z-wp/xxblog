@@ -215,7 +215,7 @@ require('./boot');
     }
 
     function initTables() {
-        $('.post-detail-content table').addClass('table table-striped');
+        $('.post-detail-content table').addClass('table thead-light');
     }
 
     function autoSize() {
