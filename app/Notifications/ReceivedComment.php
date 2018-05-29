@@ -50,7 +50,7 @@ class ReceivedComment extends BaseNotification
             ->replyTo($email)
             ->subject('您收到了一条新的评论')
             ->line('您的' . $data['type'] . ':' . $data['title'] . ', 收到了一条来自' . $this->comment->username . '的评论：')
-            ->line($this->comment->content)
+            ->line($this->comment->html_content)
             ->action('查看', $data['url']);
     }
 

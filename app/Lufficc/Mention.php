@@ -33,11 +33,11 @@ class Mention
         return $this->content_parsed;
     }
 
-    public function mentionUsers(Comment $comment, $users, $raw_content)
+    public function mentionUsers(Comment $comment, $users, $html_content)
     {
         foreach ($users as $user) {
             if (!isAdmin($users)) {
-                $user->notify(new MentionedInComment($comment, $raw_content));
+                $user->notify(new MentionedInComment($comment, $html_content));
             }
         }
     }

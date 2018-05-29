@@ -10,12 +10,12 @@ class MentionedInComment extends BaseNotification
 {
     use Queueable;
     protected $comment;
-    protected $raw_content;
+    protected $html_content;
 
-    public function __construct(Comment $comment, $raw_content)
+    public function __construct(Comment $comment, $html_content)
     {
         $this->comment = $comment;
-        $this->raw_content = $raw_content;
+        $this->html_content = $html_content;
     }
 
     /**
@@ -47,7 +47,7 @@ class MentionedInComment extends BaseNotification
             ->replyTo($notifiable->email)
             ->subject('有一条评论提到了您')
             ->line($this->comment->username . '在' . $data['type'] . ':' . $data['title'] . ' 的评论中提到了您:')
-            ->line($this->raw_content)
+            ->line($this->html_content)
             ->action('查看', $data['url']);
     }
 
