@@ -75,7 +75,7 @@ class Comment extends Model
                         return $this->commentableData;
                     }
                     $this->commentableData['title'] = $post->title;
-                    $this->commentableData['url'] = route('post.show', $post->slug);
+                    $this->commentableData['url'] = route('post.show', $post->slug) . '#comment-' . $this->id;
                     break;
                 case 'App\Page':
                     $page = app('App\Page')->where('id', $this->commentable_id)->select('name', 'display_name')->first();
@@ -85,7 +85,7 @@ class Comment extends Model
                         return $this->commentableData;
                     }
                     $this->commentableData['title'] = $page->display_name;
-                    $this->commentableData['url'] = route('page.show', $page->name);
+                    $this->commentableData['url'] = route('page.show', $page->name) . '#comment-' . $this->id;
                     break;
             }
         }
