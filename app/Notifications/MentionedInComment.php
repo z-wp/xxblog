@@ -5,6 +5,7 @@ namespace App\Notifications;
 use App\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\HtmlString;
 
 class MentionedInComment extends BaseNotification
 {
@@ -47,7 +48,7 @@ class MentionedInComment extends BaseNotification
             ->replyTo($notifiable->email)
             ->subject('有一条评论提到了您')
             ->line($this->comment->username . '在' . $data['type'] . ':' . $data['title'] . ' 的评论中提到了您:')
-            ->line($this->html_content)
+            ->line(new HtmlString($this->html_content))
             ->action('查看', $data['url']);
     }
 
