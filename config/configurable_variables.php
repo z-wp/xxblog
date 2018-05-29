@@ -109,6 +109,42 @@ return [
                     'name' => 'social_weibo',
                     'label' => 'Weibo link',
                 ],
+                [
+                    'name' => 'social_instagram',
+                    'label' => 'Instagram link',
+                ],
+                [
+                    'name' => 'social_googleplus',
+                    'label' => 'Google+ link',
+                ],
+                [
+                    'name' => 'social_tumblr',
+                    'label' => 'Tumblr link',
+                ],
+                [
+                    'name' => 'social_stackoverflow',
+                    'label' => 'StackOverflow link',
+                ],
+                [
+                    'name' => 'social_dribbble',
+                    'label' => 'Dribbble link',
+                ],
+                [
+                    'name' => 'social_linkedin',
+                    'label' => 'LinkedIn link',
+                ],
+                [
+                    'name' => 'social_gitlab',
+                    'label' => 'GitLab link',
+                ],
+                [
+                    'name' => 'social_pinterest',
+                    'label' => 'Pinterest link',
+                ],
+                [
+                    'name' => 'social_youtube',
+                    'label' => 'YouTube link',
+                ],
             ]
         ],
         [

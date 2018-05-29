@@ -123,11 +123,8 @@ class AdminController extends Controller
         $comments = Comment::withoutGlobalScopes()->where($request->except(['page']))->orderBy('created_at', 'desc')->paginate(20);
         $comments->appends($request->except('page'));
         $unverified_ids = Comment::withoutGlobalScopes()->where('status', 0)->select('id')->get();
-        $unverified_ids = $unverified_ids->map(function ($item, $key) {
-            return $item['id'];
-        })->toArray();
         $unverified_count = count($unverified_ids);
-        $unverified_ids = implode(',', $unverified_ids);
+        $unverified_ids = $unverified_ids->implode('id', ',');
         return view('admin.comments', compact('comments', 'unverified_ids', 'unverified_count'));
     }
 

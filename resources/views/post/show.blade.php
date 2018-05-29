@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('description',$post->description)
-@section('keywords',$post->category->name)
+@section('description',trim(strip_tags($post->description)))
+@section('keywords',$post->tags->implode('name', ',').',')
 @section('title',$post->title)
 @section('content')
     <div class="container">

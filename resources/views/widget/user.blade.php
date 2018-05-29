@@ -16,12 +16,16 @@
     </div>
     <div class="card-user-footer">
         <div class="row">
-            @foreach(['facebook','twitter','github','weibo'] as $social)
-                <div class="col">
-                    <div class="description-block">
-                        @include('partials.social_icon', ['name' => $social])
+            @foreach(['facebook','twitter','github','weibo','instagram','googleplus','tumblr','stackoverflow',
+            'dribbble','linkedin','gitlab','pinterest','youtube'] as $social)
+                <?php $social_link = "social_" . $social ?>
+                @if(isset($$social_link) && $$social_link)
+                    <div class="col">
+                        <div class="description-block">
+                            @include('partials.social_icon', ['name' => $social])
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>

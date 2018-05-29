@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title',$page->display_name)
-@section('keywords',$page->display_name)
+@section('keywords',$page->display_name.',')
 @section('description',$page->display_name)
 @section('content')
     <div class="container">
