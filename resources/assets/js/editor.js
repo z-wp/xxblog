@@ -33,7 +33,7 @@ require('./codemirror-4.inline-attachment');
                             let cm = simplemde.codemirror;
                             let pos = cm.getCursor();
                             cm.setSelection(pos, pos);
-                            let gallery = '<div markdown="1" class="figure third">\n' +
+                            let gallery = '<div markdown="1" class="figure third"  caption="">\n' +
                                 '\n' +
                                 '</div>\n';
                             cm.replaceSelection(gallery);

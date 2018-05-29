@@ -4,8 +4,29 @@
 @section('title',$post->title)
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-sm-12 phone-no-padding">
+        <?php
+        $meta = $post->meta;
+        $toc = isset($meta['toc']) ? $meta['toc'] : false;
+        $toc_enabled = $post->toc_enabled() && $toc;
+        ?>
+        <div class="row justify-content-center {{ $toc_enabled?'with-toc':'' }}">
+            @if($toc_enabled)
+                <div class="col-md-3 col-sm-12 mb-3 phone-no-padding">
+                    <aside style="position: sticky;top: 0;">
+                        <nav class="toc">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    目录
+                                </h5>
+                                <div class="card-body">
+                                    {!! $toc !!}
+                                </div>
+                            </div>
+                        </nav>
+                    </aside>
+                </div>
+            @endif
+            <div class="{{ $toc_enabled?'col-md-8':'col-md-10' }} col-sm-12 phone-no-padding">
                 <div class="post-detail shadow" id="main-content">
                     @if(!$post->cover_img)
                         <div class="post-detail-title">

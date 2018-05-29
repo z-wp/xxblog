@@ -9,8 +9,7 @@ require('./boot');
         init: function () {
             $('[data-toggle="tooltip"]').tooltip();
             this.bootUp();
-            $('.post-detail-content a').smoothScroll();
-            $('#comments a').smoothScroll();
+            new SmoothScroll("#comments a[href*='#'], .post-detail-content a[href*='#'], .toc a[href*='#']");
         },
         bootUp: function () {
             initComment();
@@ -180,10 +179,8 @@ require('./boot');
                     highLightCodeOfChild($('#comments-container'));
                     if ($('#comment-' + data.comment.id).length > 0) {
                         setTimeout(function () {
-                            $.smoothScroll({
-                                scrollTarget: '#comment-' + data.comment.id,
-                                autoFocus: true
-                            });
+                            let scroll = new SmoothScroll();
+                            scroll.animateScroll(document.querySelector('#comment-' + data.comment.id));
                         }, 500)
                     }
                     form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show on the site once it has been approve.');

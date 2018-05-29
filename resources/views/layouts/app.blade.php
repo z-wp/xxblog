@@ -62,7 +62,7 @@
 <body>
 @includeWhen(!isset($include_header) || $include_header, 'layouts.header')
 <div id="content-wrap">
-    @if(!isset($include_msg) || $include_msg)
+    @if((!isset($include_msg) || $include_msg ) && (session()->has('success') || (isset($errors)&&count($errors) > 0)))
         <div class="container">
             @include('partials.msg')
         </div>

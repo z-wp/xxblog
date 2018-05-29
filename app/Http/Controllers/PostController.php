@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\CommentRepository;
 use App\Http\Repositories\PostRepository;
-use App\Http\Requests;
 use App\Notifications\UserRegistered;
 use Gate;
 use XblogConfig;

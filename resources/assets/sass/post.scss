@@ -169,6 +169,9 @@
     flex-wrap: wrap;
     flex-flow: row wrap;
     align-content: flex-end;
+    & > img {
+      align-self: center;
+    }
     figcaption {
       color: #898c8f;
       width: 100%;
@@ -258,4 +261,51 @@
     margin-top: 5px;
     margin-bottom: 5px;
   }
+}
+
+/* toc */
+.toc {
+  a, h5, h3, h4 {
+    font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .card {
+    border-radius: 0;
+    .card-header {
+      color: #fff;
+      background-color: #7a8288;
+    }
+    .card-body {
+      padding-left: .75rem;
+    }
+  }
+  ol, ul {
+    margin: 0;
+    padding-left: 1rem;
+    text-align: left;
+    /*list-style: none;*/
+    list-style-position: inside;
+    font-size: 15px;
+    ol, ul {
+      font-size: 90%;
+    }
+    li {
+      padding-top: .2rem;
+      padding-bottom: .2rem;
+    }
+    a {
+      @extend .transition;
+      color: #212529;
+      text-decoration: none;
+      border-bottom: dashed 1px #333;
+      &:hover {
+        color: $colorAccent;
+        border-bottom: dashed 1px $colorAccent;
+      }
+    }
+  }
+}
+
+.with-toc [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
 }

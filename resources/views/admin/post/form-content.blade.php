@@ -104,7 +104,7 @@
 </div>
 <div class="collapse" id="post-extra-info">
     <div class="form-group">
-        <label for="comment_info" class="form-control-label">评论信息</label>
+        <label for="comment_info" class="form-control-label">其它信息</label>
         <select style="margin-top: 5px" id="comment_info" name="comment_info" class="form-control">
             <?php $comment_info = isset($post) ? $post->getConfig('comment_info', 'default') : 'default'?>
             <option value="default" {{ $comment_info=='default'?' selected' : '' }}>默认</option>
@@ -129,6 +129,15 @@
             <option value="default" {{ $allow_resource_comment=='default'?' selected' : '' }}>默认</option>
             <option value="false" {{ $allow_resource_comment=='false'?' selected' : '' }}>禁止评论</option>
             <option value="true" {{ $allow_resource_comment=='true'?' selected' : '' }}>允许评论</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="enable_toc" class="form-control-label">是否显示TOC</label>
+        <select id="enable_toc" name="enable_toc" class="form-control">
+            <?php $enable_toc = isset($post) ? $post->getConfig('enable_toc', 'true') : 'true'?>
+            <option value="false" {{ $enable_toc=='false'?' selected' : '' }}>关闭</option>
+            <option value="true" {{ $enable_toc=='true'?' selected' : '' }}>显示</option>
         </select>
     </div>
 </div>

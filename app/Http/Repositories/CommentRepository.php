@@ -23,18 +23,15 @@ use Lufficc\Mention;
 class CommentRepository extends Repository
 {
     static $tag = 'comment';
-    protected $markdownParser;
     protected $mention;
 
     /**
      * PostRepository constructor.
      * @param Mention $mention
-     * @param MarkDownParser $markDownParser
      */
-    public function __construct(Mention $mention, MarkDownParser $markDownParser)
+    public function __construct(Mention $mention)
     {
         $this->mention = $mention;
-        $this->markdownParser = $markDownParser;
     }
 
     public function model()
@@ -108,7 +105,8 @@ class CommentRepository extends Repository
         $content = $request->get('content');
         $comment->ip_id = $request->ip();
         $comment->content = $this->mention->parse($content);
-        $comment->html_content = $this->markdownParser->parse($comment->content);
+        $markdownParser = new MarkDownParser($comment->content);
+        $comment->html_content = $markdownParser->clean(true)->parse();
         $result = $commentable->comments()->save($comment);
 
 
@@ -124,7 +122,8 @@ class CommentRepository extends Repository
     public function update($content, $comment)
     {
         $comment->content = $this->mention->parse($content);
-        $comment->html_content = $this->markdownParser->parse($comment->content);
+        $markdownParser = new MarkDownParser($comment->content);
+        $comment->html_content = $markdownParser->clean(true)->parse();
         $result = $comment->save();
         if ($result)
             $this->clearCache();

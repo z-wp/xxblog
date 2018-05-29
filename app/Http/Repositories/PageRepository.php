@@ -19,12 +19,7 @@ use Lufficc\MarkDownParser;
 class PageRepository extends Repository
 {
     static $tag = 'page';
-    protected $markdownParser;
 
-    public function __construct(MarkDownParser $markDownParser)
-    {
-        $this->markdownParser = $markDownParser;
-    }
 
     public function model()
     {
@@ -64,9 +59,10 @@ class PageRepository extends Repository
     public function create(Request $request)
     {
         $this->clearCache();
+        $markDownParser = new MarkDownParser($request->get('content'));
         $page = Page::create(array_merge(
             $request->except('_token'),
-            ['html_content' => $this->markdownParser->parse($request->get('content'), false, true)]
+            ['html_content' => $markDownParser->clean(false)->figure(true)->gallery(true)->parse()]
         ));
 
         $page->saveConfig($request->all());
@@ -77,9 +73,10 @@ class PageRepository extends Repository
     {
         $this->clearCache();
         $page->saveConfig($request->all());
+        $markDownParser = new MarkDownParser($request->get('content'));
         return $page->update(array_merge(
             $request->except('_token'),
-            ['html_content' => $this->markdownParser->parse($request->get('content'), false, true)]
+            ['html_content' => $markDownParser->clean(false)->figure(true)->gallery(true)->parse()]
         ));
     }
 

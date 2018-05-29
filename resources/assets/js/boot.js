@@ -9,5 +9,5 @@ window.Masonry = require("masonry-layout");
 jQueryBridget('masonry', Masonry, $);
 require('./modal');
 require('./comment');
-require('jquery-smooth-scroll');
 require('magnific-popup');
+window.SmoothScroll = require('smooth-scroll');

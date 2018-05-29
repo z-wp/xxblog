@@ -12,35 +12,117 @@ use League\HTMLToMarkdown\HtmlConverter;
 use ParsedownExtra;
 use DOMDocument;
 use DOMXPath;
-use function PHPSTORM_META\elementType;
 
 class MarkDownParser
 {
-    protected $parser;
-    protected $htmlConverter;
+    private $parser;
+    private $htmlConverter;
+
+    private $markdown;
+    private $convertedHtml;
+    private $toc = '';
+
+    private $clean = true;
+    private $use_gallery = false;
+    private $use_figure = false;
+    private $generate_toc = false;
 
     /**
      * MarkDownParser constructor.
+     * @param $markdown string
      */
-    public function __construct()
+    public function __construct($markdown = '')
     {
-        $this->parser = new ParsedownExtra();
+        try {
+            $this->parser = new ParsedownExtra();
+        } catch (\Exception $e) {
+            dd($e);
+        }
         $this->htmlConverter = new HtmlConverter();
+        $this->markdown = $markdown;
+        $this->convertedHtml = '';
     }
 
-    public function html2md($html)
+    public function with($markdown)
     {
-        return $this->htmlConverter->convert($html);
+        $this->reset();
+        $this->markdown = $markdown;
+        return $this;
     }
 
-    public function parse($markdown, $clean = true, $use_gallery = false)
+    public function reset()
     {
-        $convertedHtml = $this->parser->setBreaksEnabled(true)->text($markdown);
-        if ($clean) {
+        $this->markdown = '';
+        $this->convertedHtml = '';
+
+        $this->toc = '';
+        $this->clean = true;
+        $this->use_gallery = false;
+        $this->use_figure = false;
+        $this->generate_toc = false;
+
+        return $this;
+    }
+
+    public function getToc()
+    {
+        return $this->toc;
+    }
+
+    public function clean($clean = true)
+    {
+        $this->clean = $clean;
+        return $this;
+    }
+
+    public function gallery($use_gallery = false)
+    {
+        $this->use_gallery = $use_gallery;
+        return $this;
+    }
+
+    public function figure($use_figure = false)
+    {
+        $this->use_figure = $use_figure;
+        return $this;
+    }
+
+    public function toc($generate_toc = false)
+    {
+        $this->generate_toc = $generate_toc;
+        return $this;
+    }
+
+
+    public function parse()
+    {
+        $convertedHtml = $this->parser->setBreaksEnabled(true)->text($this->markdown);
+        if ($this->clean) {
             $convertedHtml = clean($convertedHtml, 'user_comment_content');
         }
-        if ($use_gallery) {
-            $convertedHtml = $this->convertHtml($convertedHtml);
+        if (!$convertedHtml)
+            // avoid empty string
+            return $convertedHtml;
+        $dom = new DOMDocument();
+        $dom->loadHTML(mb_convert_encoding($convertedHtml, 'HTML-ENTITIES', 'UTF-8'));
+        if ($this->use_gallery) {
+            $changed = $this->parseGallery($dom);
+            if ($changed) {
+                $convertedHtml = $dom->saveHTML();
+            }
+        }
+        if ($this->use_figure) {
+            $changed = $this->parseFigure($dom);
+            if ($changed) {
+                $convertedHtml = $dom->saveHTML();
+            }
+        }
+        if ($this->generate_toc) {
+            $toc = $this->generateToc($dom);
+            if (strlen($toc) > 0) {
+                $convertedHtml = $dom->saveHTML();
+                $this->toc = $toc;
+            }
         }
         return $convertedHtml;
     }
@@ -62,7 +144,7 @@ class MarkDownParser
      * @param DOMDocument $dom
      * @return bool
      */
-    private function parseDiv(DOMDocument $dom)
+    private function parseGallery(DOMDocument $dom)
     {
         $xpath = new DOMXpath($dom);
         $galleries = $xpath->query('//div[contains(@class, "figure")]');
@@ -77,6 +159,14 @@ class MarkDownParser
                     $alt = $image->getAttribute('alt');
                 //wrapped with div
                 $div = $dom->createElement('div');
+                // images inside <figure> may not has figure class.
+                $imageClasses = $image->getAttribute('class');
+                $imageClasses = trim(str_replace('figure', '', $imageClasses));
+                if ($imageClasses) {
+                    $image->setAttribute('class', $imageClasses);
+                } else {
+                    $image->removeAttribute('class');
+                }
                 $div->appendChild($image);
                 $frag->appendChild($div);
             }
@@ -103,7 +193,7 @@ class MarkDownParser
      * @param DOMDocument $dom
      * @return bool
      */
-    private function parseImage(DOMDocument $dom)
+    private function parseFigure(DOMDocument $dom)
     {
         $xpath = new DOMXpath($dom);
         $images = $xpath->query('//img[contains(@class, "figure")]');
@@ -126,7 +216,7 @@ class MarkDownParser
 
     }
 
-    public function generateToc(DOMDocument $dom, $from = 1, $to = 4, $max_depth = 2, $list = 'ul')
+    private function generateToc(DOMDocument $dom, $from = 1, $to = 4, $max_depth = 2, $list = 'ol')
     {
         assert($to - $from + 1 >= $max_depth, 'depth should smaller than to minus from.');
         $tags = '//*[';
@@ -139,12 +229,15 @@ class MarkDownParser
                 $tags .= ']';
             }
         }
+        // forbid duplicate ids
+        $used_ids = [];
         $hs = $xpath->query($tags);
         $init_depth = 0;
         $depth = 0;
         $last_level = -1;
         $toc = '';
         $depth_map = [];
+
         foreach ($hs as $h) {
             sscanf($h->tagName, 'h%u', $level);
             if ($level > $last_level) {
@@ -162,21 +255,21 @@ class MarkDownParser
                 }
             }
             $id = $h->textContent;
-            $toc .= "<li><a href=#$id>$h->textContent</a>";
+            // remove all spaces
+            $id = preg_replace('/\s/', '', $id);
+            if (isset($used_ids[$id])) {
+                $index = $used_ids[$id];
+                $id = $id . '-' . $index;
+                $used_ids[$id] = $index + 1;
+            } else {
+                $used_ids[$id] = 1;
+            }
+
+            $h->setAttribute('id', $id);
+            $title = $h->textContent;
+            $toc .= "<li><a href=#$id>$title</a>";
             $last_level = $level;
         }
         return $toc;
-    }
-
-    private function convertHtml($html)
-    {
-        $dom = new DOMDocument();
-        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
-        $changed = $this->parseImage($dom);
-        $changed = $this->parseDiv($dom) || $changed;
-        if ($changed) {
-            $html = $dom->saveHTML();
-        }
-        return $html;
     }
 }
