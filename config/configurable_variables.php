@@ -94,6 +94,12 @@ return [
                     'label' => '头像',
                 ],
                 [
+                    'name' => 'other_information',
+                    'type' => 'textarea',
+                    "placeholder" => "支持 text 和 html",
+                    'label' => '其他信息',
+                ],
+                [
                     'name' => 'social_facebook',
                     'label' => 'Facebook link',
                 ],

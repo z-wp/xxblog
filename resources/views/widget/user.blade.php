@@ -29,4 +29,8 @@
             @endforeach
         </div>
     </div>
+
+    @if(isset($other_information) && $other_information)
+        {!! $other_information !!}
+    @endif
 </div>

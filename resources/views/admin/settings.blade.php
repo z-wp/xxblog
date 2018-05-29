@@ -33,4 +33,14 @@
         </div>
     </form>
 @endsection
+@section('script')
+    <script>
+        // textarea in tab-content is invisible, autosize will not effect. Update after visible.
+        $("[data-toggle=tab]").click(function () {
+            setTimeout(function () {
+                autosize.update($('.autosize-target'), $(this).attr('href'));
+            }, 200);
+        });
+    </script>
+@endsection
 
