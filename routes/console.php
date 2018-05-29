@@ -31,13 +31,19 @@ Artisan::command('post {action}', function ($action) {
             break;
         case 'content2html':
             foreach (\App\Post::all() as $post) {
-                $post->html_content = $markdownParser->with($post->content)->clean(false)
-                    ->figure(true)
-                    ->gallery(true)
-                    ->toc(true)
-                    ->parse();
-                $post->setMetaInfo('toc', $markdownParser->getToc());
-                $this->comment($post->save());
+                try {
+                    $post->html_content = $markdownParser->with($post->content)->clean(false)
+                        ->figure(true)
+                        ->gallery(true)
+                        ->toc(true)
+                        ->parse();
+                    $post->setMetaInfo('toc', $markdownParser->getToc());
+                    $post->save();
+                    $this->comment('Converted ' . $post->title);
+                } catch (Exception $e) {
+                    $this->comment($post->title);
+                    $this->comment($e);
+                }
             }
             break;
     }

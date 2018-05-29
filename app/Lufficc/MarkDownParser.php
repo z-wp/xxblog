@@ -104,7 +104,10 @@ class MarkDownParser
             // avoid empty string
             return $convertedHtml;
         $dom = new DOMDocument();
+        //To suppress the Warnings
+        libxml_use_internal_errors(true);
         $dom->loadHTML(mb_convert_encoding($convertedHtml, 'HTML-ENTITIES', 'UTF-8'));
+        libxml_use_internal_errors(false);
         if ($this->use_gallery) {
             $changed = $this->parseGallery($dom);
             if ($changed) {
