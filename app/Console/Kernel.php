@@ -25,21 +25,25 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $header_image_provider = get_config('header_image_provider', 'none');
-        if ($header_image_provider != 'none') {
-            $header_image_update_rate = get_config('header_image_update_rate', 'every_day');
-            $imageJob = ImageJob::get_job($header_image_provider);
-            $method = 'daily';
-            if ($header_image_update_rate == 'every_minute') {
-                $method = 'everyMinute';
-            } elseif ($header_image_update_rate == 'every_hour') {
-                $method = 'hourly';
-            } elseif ($header_image_update_rate == 'every_day') {
+        try {
+            $header_image_provider = get_config('header_image_provider', 'none');
+            if ($header_image_provider != 'none') {
+                $header_image_update_rate = get_config('header_image_update_rate', 'every_day');
+                $imageJob = ImageJob::get_job($header_image_provider);
                 $method = 'daily';
-            } elseif ($header_image_update_rate == 'every_week') {
-                $method = 'weekly';
+                if ($header_image_update_rate == 'every_minute') {
+                    $method = 'everyMinute';
+                } elseif ($header_image_update_rate == 'every_hour') {
+                    $method = 'hourly';
+                } elseif ($header_image_update_rate == 'every_day') {
+                    $method = 'daily';
+                } elseif ($header_image_update_rate == 'every_week') {
+                    $method = 'weekly';
+                }
+                $schedule->job(app($imageJob))->$method();
             }
-            $schedule->job(app($imageJob))->$method();
+        } catch (\Exception $e) {
+            //ignore. schedule will be called when installing, which db is not configured.
         }
     }
 
