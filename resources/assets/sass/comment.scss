@@ -15,11 +15,6 @@
   padding: 15px 20px 0;
   margin: 0 -20px;
   border-bottom: 1px rgba(0, 0, 0, .02) solid;
-  //.comment-header {
-  //  padding: 10px $widgetPaddingLeftRight;
-  //  color: #333;
-  //  border-bottom: 1px solid #ddd;
-  //}
   .comment-avatar {
     width: 40px;
     height: 40px;
@@ -51,7 +46,7 @@
     word-wrap: break-word;
     font-size: 1.2rem;
     padding-top: 10px;
-    img {
+    img:not(.comment-avatar) {
       display: block;
       max-width: 95%;
     }
@@ -68,7 +63,6 @@
       }
     }
   }
-
 }
 
 #comment-form {

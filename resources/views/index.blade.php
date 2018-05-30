@@ -1,4 +1,4 @@
-@extends('layouts.plain')
+@extends('layouts.home')
 @section('content')
     <div class="home-box">
         <h2 title="{{ $site_title or 'title' }}" style="margin: 0;">
@@ -11,16 +11,17 @@
             {{ $description or 'Stay Hungry. Stay Foolish.' }}
         </h3>
         <p class="links">
-            <font aria-hidden="true">»</font>
+            <span aria-hidden="true">»</span>
             <a href="{{ route('post.index') }}" aria-label="点击查看博客文章列表">博客</a>
             @foreach($pages as $page)
-                <font aria-hidden="true">/</font>
+                <span aria-hidden="true">/</span>
                 <a href="{{ route('page.show',$page->name) }}" aria-label="查看{{ $author or 'author' }}的{{ $page->display_name }}">{{$page->display_name }}</a>
             @endforeach
         </p>
         <p class="links">
-            <font aria-hidden="true">»</font>
-            @foreach(['facebook','twitter','github','weibo'] as $social)
+            <span aria-hidden="true">»</span>
+            @foreach(['facebook','twitter','github','weibo','instagram','googleplus','tumblr','stackoverflow',
+            'dribbble','linkedin','gitlab','pinterest','youtube'] as $social)
                 @include('partials.social_icon', ['name' => $social])
             @endforeach
         </p>

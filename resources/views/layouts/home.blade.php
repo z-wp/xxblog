@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="Zh_cn" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="{{ app()->getLocale() }}" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

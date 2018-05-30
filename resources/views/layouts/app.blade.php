@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="{{ app()->getLocale() }}" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     @php
         $site_title = ($site_title ? $site_title : '');

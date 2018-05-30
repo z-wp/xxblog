@@ -13,18 +13,18 @@
 
 .home-box {
   font-family: Garamond, Times, Georgia, serif;
-  -webkit-user-select: none;
+  -webkit-user-select: text;
   position: absolute;
   z-index: 10;
   width: 440px;
   height: 240px;
-  background: rgba(97, 97, 97, 0.4);
+  background: rgba(97, 97, 97, 0.5);
   left: 50%;
   top: 42%;
   margin-left: -220px;
   margin-top: -120px;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 10px;
   color: #eee;
 }
 
@@ -34,7 +34,6 @@
   font-size: 24px;
   text-align: center;
   line-height: 36px;
-  *font-weight: bold;
   margin: 0;
   padding: 0
 }
@@ -65,43 +64,6 @@
   -webkit-margin-after: 1em;
   -webkit-margin-start: 0;
   -webkit-margin-end: 0;
-}
-
-.home-box .links {
-  text-align: left;
-  background: rgba(154, 154, 154, 0.5);
-  *background: #9a9a9a;
-  padding: 10px;
-  line-height: 24px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  font-size: 18px;
-  *color: #000;
-}
-
-.home-box .links:hover {
-  background: rgba(228, 228, 228, 0.7);
-  *background: #e4e4e4;
-  color: #9c9c9c;
-  *color: #9c9c9c;
-  transition: all 0.25s ease-in-out;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-}
-
-.home-box .links a {
-  color: #eee;
-  *font-weight: bold;
-  *color: #000;
-}
-
-.home-box .links:hover a {
-  color: #000;
-}
-
-.home-box .links a i {
-  font-size: 18px;
 }
 
 @media screen and (max-width: 481px) {
