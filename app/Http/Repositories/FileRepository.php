@@ -26,9 +26,9 @@ abstract class FileRepository extends Repository
         $this->fileUploadManager = $fileUploadManager;
     }
 
-    public function delete($key)
+    public function delete($key, $disk)
     {
-        $result = $this->fileUploadManager->deleteFile($key);
+        $result = $this->fileUploadManager->deleteFile($key, $disk);
         if ($result) {
             $this->clearCache();
             $this->clearCache('files');
@@ -65,7 +65,7 @@ abstract class FileRepository extends Repository
     {
         $files = File::where('type', $this->type())->get();
         foreach ($files as $file) {
-            $this->delete($file->key);
+            $this->delete($file->key, $file->disk);
         }
     }
 
@@ -76,14 +76,15 @@ abstract class FileRepository extends Repository
         } else {
             $key = $this->type() . '/' . $key;
         }
-        if ($this->fileUploadManager->uploadFile($key, $file->getRealPath())) {
+        list($upload_result, $disk_name) = $this->fileUploadManager->uploadFile($key, $file->getRealPath());
+        if ($upload_result) {
             $fileModel = File::firstOrNew([
                 'name' => $file->getClientOriginalName(),
                 'key' => $key,
                 'size' => $file->getSize(),
                 'type' => $this->type(),
-                'url' => $this->fileUploadManager->url($key),
-                'disk' => 'qiniu'
+                'url' => $this->fileUploadManager->url($key, $disk_name),
+                'disk' => $disk_name,
             ]);
             if ($fileModel->save()) {
                 $result = $fileModel->url;

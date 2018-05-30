@@ -35,7 +35,7 @@ class ImageRepository extends FileRepository
         return $this->uploadFile($file, $key);
     }
 
-    public function uploadImageToQiNiu(Request $request, $html)
+    public function uploadImageForBlog(Request $request, $html)
     {
         $file = $request->file('image');
         $name = $file->getClientOriginalName() or 'image';
@@ -54,27 +54,6 @@ class ImageRepository extends FileRepository
             $data['error'] = 'upload failed';
         }
         return $data;
-    }
-
-    public function uploadImageToLocal(Request $request)
-    {
-        $file = $request->file('image');
-        $path = $file->store('public/images');
-        $url = Storage::url($path);
-
-        if ($path) {
-            $image = File::firstOrNew([
-                'name' => $file->getClientOriginalName(),
-                'key' => $url,
-                'size' => $file->getSize(),
-                'type' => 'image'
-            ]);
-            $result = $image->save();
-        } else {
-            $result = false;
-        }
-        $this->clearCache();
-        return $result;
     }
 
     public function count()

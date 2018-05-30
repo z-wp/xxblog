@@ -14,23 +14,24 @@ class FileUploadManager
 {
     public function uploadFile($key, $filePath)
     {
-        $disk = Storage::disk('qiniu');
+        $disk_name = config('filesystems.default');
+        $disk = Storage::disk($disk_name);
         if ($disk->put($key, file_get_contents($filePath))) {
-            return true;
+            return [true, $disk_name];
         } else {
-            return false;
+            return [false, $disk_name];
         }
     }
 
-    public function url($key)
+    public function url($key, $disk_name)
     {
-        $disk = Storage::disk('qiniu');
+        $disk = Storage::disk($disk_name);
         return $disk->url($key);
     }
 
-    public function deleteFile($key)
+    public function deleteFile($key, $disk_name)
     {
-        $disk = Storage::disk('qiniu');
+        $disk = Storage::disk($disk_name);
         if ($disk->delete($key)) {
             return true;
         } else {

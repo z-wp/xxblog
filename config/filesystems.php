@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => env('disk', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,18 +56,22 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => env('S3_REGION'),
+            'bucket' => env('S3_BUCKET'),
         ],
         'qiniu' => [
-            'driver'     => 'qiniu',
+            'driver' => 'qiniu',
             'access_key' => env('QINIU_AK'),  //AccessKey
             'secret_key' => env('QINIU_SK'),  //SecretKey
-            'bucket'     => env('QINIU_BUCKET'),  //Bucket
-            'domain'     => env('QINIU_DOMAIN')
+            'bucket' => env('QINIU_BUCKET'),  //Bucket
+            'domain' => env('QINIU_DOMAIN')
         ],
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'access_token' => env('DROPBOX_ACCESS_TOKEN')
+        ]
     ],
 
 ];

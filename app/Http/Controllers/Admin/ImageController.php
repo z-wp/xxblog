@@ -47,10 +47,10 @@ class ImageController extends Controller
         ]);
         $type = $request->input('type', null);
         if ($request->expectsJson() || ($type != null && $type == 'xrt')) {
-            $result = $this->imageRepository->uploadImageToQiNiu($request, false);
+            $result = $this->imageRepository->uploadImageForBlog($request, false);
             return response()->json($result, array_key_exists('error', $result) ? 500 : 200);
         } else {
-            if ($this->imageRepository->uploadImageToQiNiu($request, true))
+            if ($this->imageRepository->uploadImageForBlog($request, true))
                 return back()->with('success', '上传成功');
             return back()->withErrors('上传失败');
         }
