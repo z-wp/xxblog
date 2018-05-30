@@ -43,7 +43,8 @@ const XHRUpload = require('uppy/lib/plugins/XHRUpload');
         if ($('.UppyDragDrop').length === 0) {
             return;
         }
-        const uppy = Uppy({
+        let anchor = $('.UppyDragDrop');
+        new Uppy({
             autoProceed: false,
             meta: {
                 _token: window.XblogConfig.csrfToken,
@@ -58,18 +59,17 @@ const XHRUpload = require('uppy/lib/plugins/XHRUpload');
             target: '.UppyDragDrop',
             replaceTargetContent: true,
             note: 'Images only, up to 5 MB',
-            maxHeight: 360
+            proudlyDisplayPoweredByUppy: false,
+            height: anchor.attr('uppy-height') ? parseInt(anchor.attr('uppy-height')) : 360
         }).use(XHRUpload, {
             endpoint: '/admin/upload/image',
             formData: true,
             fieldName: 'image',
-            getResponseData: function getResponseData(xhr) {
-                return xhr.response;
-            },
-        }).run();
-
-        uppy.on('complete', result => {
-            if (result.successful.length > 0) {
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).on('complete', result => {
+            if (anchor.attr('refresh-image-list') && result.successful.length > 0) {
                 $.get('/admin/images-list', function (html) {
                     $('#images-list').html(html);
                     Xblog.init();
@@ -79,7 +79,7 @@ const XHRUpload = require('uppy/lib/plugins/XHRUpload');
                     $('#images').masonry();
                 });
             }
-        })
+        }).run()
     }
 
     initCharts();

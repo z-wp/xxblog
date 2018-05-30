@@ -44,21 +44,23 @@
     </style>
 @endsection
 @section('content')
-    <div style="max-width: 750px" class="mx-auto UppyDragDrop mb-3"></div>
+    <div style="max-width: 750px" class="mx-auto UppyDragDrop mb-3" refresh-image-list="1" uppy-height="360"></div>
     <div id="images-list">
         @include('admin.partials.image_list')
     </div>
 @endsection
 @section('script')
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
     <script>
         new Clipboard('.btn-clipboard');
         $('.btn-clipboard').mouseleave(clearTooltip).tooltip({
             trigger: 'click',
         });
+
         function clearTooltip(e) {
             $(e.currentTarget).tooltip('hide');
         }
+
         $('#images').imagesLoaded().progress(function () {
             $('#images').masonry();
         });
