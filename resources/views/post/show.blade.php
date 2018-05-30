@@ -12,7 +12,7 @@
         <div class="row justify-content-center {{ $toc_enabled?'with-toc':'' }}">
             @if($toc_enabled)
                 <div class="col-md-3 col-sm-12 mb-3 phone-no-padding">
-                    <aside style="position: sticky;top: 0;">
+                    <aside class="sticky-top">
                         <nav class="toc">
                             <div class="card">
                                 <h5 class="card-header">

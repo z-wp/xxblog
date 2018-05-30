@@ -11,8 +11,7 @@
         $commentFragment = "comment-$comment->id"
         ?>
         <a name="{{ $commentFragment }}" href="{{ $href }}">
-            <img width="40px" height="40px" class="rounded-circle"
-                 src="{{ $imgSrc }}">
+            <img class="comment-avatar" src="{{ $imgSrc }}">
         </a>
     </div>
     <div class="comment-info">
