@@ -2,8 +2,8 @@
 <html lang="{{ app()->getLocale() }}" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     @php
-        $site_title = ($site_title ? $site_title : '');
-        $site_description = ($site_description ? $site_description : '');
+        $site_title = (isset($site_title) && $site_title ? $site_title : '');
+        $site_description = (isset($site_description) && $site_description ? $site_description : '');
     @endphp
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
