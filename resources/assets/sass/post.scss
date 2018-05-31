@@ -265,6 +265,8 @@
 
 /* toc */
 .toc {
+  max-height: 100vh;
+  overflow-y: auto;
   .card {
     border-radius: 0;
     .card-header {

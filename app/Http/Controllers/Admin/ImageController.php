@@ -25,6 +25,7 @@ class ImageController extends Controller
     public function images()
     {
         $images = $this->imageRepository->getAll(32);
+        $images->withPath(route('admin.images'));
         $image_count = $this->imageRepository->count();
         return view('admin.images', compact('images', 'image_count'));
     }
@@ -32,6 +33,7 @@ class ImageController extends Controller
     public function images_list()
     {
         $images = $this->imageRepository->getAll(32);
+        $images->withPath(route('admin.images'));
         $image_count = $this->imageRepository->count();
         return view('admin.partials.image_list', compact('images', 'image_count'));
     }
