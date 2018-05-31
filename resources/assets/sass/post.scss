@@ -265,14 +265,10 @@
 
 /* toc */
 .toc {
-  a, h5, h3, h4 {
-    font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
-  }
   .card {
     border-radius: 0;
     .card-header {
-      color: #fff;
-      background-color: #7a8288;
+      background-color: #fff;
     }
     .card-body {
       padding-left: .75rem;
@@ -282,11 +278,10 @@
     margin: 0;
     padding-left: 1rem;
     text-align: left;
-    /*list-style: none;*/
     list-style-position: inside;
-    font-size: 15px;
+    font-size: 16px;
     ol, ul {
-      font-size: 90%;
+      font-size: 92%;
     }
     li {
       padding-top: .2rem;
@@ -296,7 +291,6 @@
       @extend .transition;
       color: #212529;
       text-decoration: none;
-      border-bottom: dashed 1px #333;
       &:hover {
         color: $colorAccent;
         border-bottom: dashed 1px $colorAccent;

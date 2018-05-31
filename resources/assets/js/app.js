@@ -212,7 +212,7 @@ require('./boot');
     }
 
     function initTables() {
-        $('.post-detail-content table').addClass('table thead-light');
+        $('.post-detail-content table').addClass('table table-bordered');
     }
 
     function autoSize() {
