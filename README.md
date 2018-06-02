@@ -6,8 +6,7 @@
   <a href="https://packagist.org/packages/lufficc/xblog"><img src="https://poser.pugx.org/lufficc/xblog/license.svg" alt="License"></a>
 
 </p>
-<p align="center">Powerful and responsive blog system powered by laravel 5.4. Click https://lufficc.com to view live demo.</p>
-<p align="center"><img src="https://github.com/lufficc/images/blob/master/Xblog/main1.png"  width="800"><p>
+<p align="center">Powerful and responsive blog system powered by laravel 5.5. Click https://lufficc.com to view live demo.</p>
 <br>
 
 # Xblog
@@ -21,26 +20,10 @@ Later I will share some experience of writing this blog, welcome your watch.
 
 If you find bugs , glad you to issue.
 
-## Features
 
-1. Markdown editor,upload images to qiniu cloud by drag or from clipboard.
-1. Write in fullscreen mode, real time preview, hot keys, auto saving, code highlight. 
-1. Manage your post!!(publish, undo, soft delete, delete, restore, draft).
-1. Improved comment system ,support markdown. Optional for duoshuo, disqus comment,
-1. Support close comment. You can also use different comment system(duoshuo,disqus) for special post or force open or close special comment.
-1. Notification with email when someone reply your post.
-1. Posts with category, tags,code highlight and different status. 
-1. Images and files management, admin settings.
-1. ..............More..............
- 
-## Requires
+## Docs
 
-1. "php": ">=5.6.4"
-
-
-## Thanks
-
-[laravel-china](https://laravel-china.org/)
+Click [here](https://lufficc.com/blog/how-to-install-my-blog) for details.
 
 ## License
 
