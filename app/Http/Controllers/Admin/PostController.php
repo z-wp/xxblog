@@ -61,11 +61,18 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validatePostForm($request);
+        $post = $this->postRepository->create($request);
 
-        if ($this->postRepository->create($request))
-            return redirect('admin/posts')->with('success', '文章' . $request['name'] . '创建成功');
-        else
+        if ($post) {
+            if ($post->isPublished()) {
+                $link = route('post.show', $post->slug);
+            } else {
+                $link = route('post.preview', $post->slug);
+            }
+            return redirect('admin/posts')->with('success', '文章' . "<a href='$link'>$post->title</a>" . '创建成功.');
+        } else {
             return redirect('admin/posts')->withErrors('文章' . $request['name'] . '创建失败');
+        }
     }
 
     public function preview($slug)
@@ -87,12 +94,16 @@ class PostController extends Controller
         if ($post->status == 0) {
             $post->status = 1;
             $post->published_at = Carbon::now();
-            if ($post->save())
-                return back()->with('success', $post->title . '发布成功');
+            if ($post->save()) {
+                $link = $this->getPostLink($post);
+                return back()->with('success', "<a href='$link'>$post->title</a> " . '发布成功.');
+            }
         } else if ($post->status == 1) {
             $post->status = 0;
-            if ($post->save())
-                return back()->with('success', $post->title . '撤销发布成功');
+            if ($post->save()) {
+                $link = $this->getPostLink($post);
+                return back()->with('success', "<a href='$link'>$post->title</a> " . '撤销发布成功.');
+            }
         }
         return back()->withErrors($post->title . '操作失败');
     }
@@ -121,7 +132,8 @@ class PostController extends Controller
         $this->validatePostForm($request, true);
 
         if ($this->postRepository->update($request, $post)) {
-            return redirect('admin/posts')->with('success', '文章' . $request['name'] . '修改成功');
+            $link = $this->getPostLink($post);
+            return redirect('admin/posts')->with('success', "<a href='$link'>$post->title</a> " . '修改成功.');
         } else
             return redirect('admin/posts')->withErrors('文章' . $request['name'] . '修改失败');
     }
@@ -174,9 +186,10 @@ class PostController extends Controller
         if ($post->trashed()) {
             $post->restore();
             $this->clearAllCache();
-            return redirect()->route('admin.posts')->with('success', '恢复成功');
+            $link = $this->getPostLink($post);
+            return redirect()->route('admin.posts')->with('success', "<a href='$link'>$post->title</a>" . '恢复成功.');
         }
-        return redirect()->route('admin.posts')->withErrors('恢复失败');
+        return redirect()->route('admin.posts')->withErrors('恢复失败.');
     }
 
 
@@ -194,9 +207,9 @@ class PostController extends Controller
         }
         if ($result) {
             $this->clearAllCache();
-            return redirect($redirect)->with('success', '删除成功');
+            return redirect($redirect)->with('success', "删除 $post->title 成功.");
         } else
-            return redirect($redirect)->withErrors('删除失败');
+            return redirect($redirect)->withErrors('删除失败.');
     }
 
     private function validatePostForm(Request $request, $update = false)
@@ -223,5 +236,15 @@ class PostController extends Controller
         if ($post->saveConfig($request->all()))
             return back()->withSuccess('Update configure successfully');
         return back()->withErrors('Update Configure failed');
+    }
+
+    private function getPostLink(Post $post)
+    {
+        if ($post->isPublished()) {
+            $link = route('post.show', $post->slug);
+        } else {
+            $link = route('post.preview', $post->slug);
+        }
+        return $link;
     }
 }
