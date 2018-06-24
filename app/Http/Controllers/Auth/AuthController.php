@@ -120,7 +120,7 @@ class AuthController extends Controller
             else {
                 $githubData = $this->getDataFromGithubUser($githubUser);
                 session()->put('githubData', $githubData);
-                return redirect($this->redirect)->route('github.register');
+                return redirect()->route('github.register');
             }
         }
     }
