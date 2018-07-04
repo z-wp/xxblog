@@ -49,7 +49,7 @@
                         @else
                             <a data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}"
                                target="_blank"
-                               href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
+                               href="{{ $commentableData['url'] }}">{{$commentableData['title'] }}
                             </a>
                         @endif
                     @endif
