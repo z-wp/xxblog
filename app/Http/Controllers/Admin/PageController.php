@@ -50,9 +50,9 @@ class PageController extends Controller
         ]);
 
         if ($this->pageRepository->create($request)) {
-            return redirect()->route('admin.index')->with('success', '页面' . $request['name'] . '创建成功');
+            return redirect()->route('admin.index')->with('success', __('web.PAGE') . $request['name'] . __('web.CREATE_SUCCESS'));
         }
-        return back()->withInput()->with('error', '页面' . $request['name'] . '创建失败');
+        return back()->withInput()->with('error', '页面' . $request['name'] . __('web.CREATE_FAIL'));
     }
 
     public function pageShowing($page)
@@ -99,9 +99,9 @@ class PageController extends Controller
             'content' => 'required',
         ]);
         if ($this->pageRepository->update($request, $page)) {
-            return redirect()->route('admin.index')->with('success', '页面' . $request['name'] . '修改成功');
+            return redirect()->route('admin.index')->with('success', __('web.PAGE') . $request['name'] . __('web.EDIT_SUCCESS'));
         }
-        return back()->withInput()->withErrors('页面' . $request['name'] . '修改失败');
+        return back()->withInput()->withErrors(__('web.PAGE') . $request['name'] . __('web.EDIT_FAIL'));
     }
 
     /**

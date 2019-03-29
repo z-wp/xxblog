@@ -63,10 +63,10 @@ class AuthController extends Controller
         if ($this->bindGithub($user, $githubData)) {
             auth()->loginUsingId($user->id);
             session()->forget('githubData');
-            return redirect($this->redirect)->with('success', '使用Github注册成功');
+            return redirect($this->redirect)->with('success', __('web.USE_GITHUB_SING_UP_SUCCESS'));
         } else {
             session()->forget('githubData');
-            return redirect($this->redirect)->with('success', '使用Github注册失败');
+            return redirect($this->redirect)->with('success', __('web.USE_GITHUB_SING_UP_FAIL'));
         }
     }
 
@@ -105,9 +105,9 @@ class AuthController extends Controller
                 } /*返回的Github账号没有被绑定，正常绑定*/
                 else {
                     if ($this->bindGithub($currentUser, $this->getDataFromGithubUser($githubUser))) {
-                        return redirect($this->redirect)->with('success', '绑定 Github 成功');
+                        return redirect($this->redirect)->with('success', __('web.BIND_GITHUB_SUCCESS'));
                     }
-                    return redirect($this->redirect)->withErrors('绑定 Github 失败');
+                    return redirect($this->redirect)->withErrors(__('web.BIND_GITHUB_FAIL'));
                 }
             }
         } /*用户没有登陆*/
@@ -115,7 +115,7 @@ class AuthController extends Controller
             /*让绑定的用户直接登陆*/
             if ($user) {
                 auth()->loginUsingId($user->id);
-                return redirect($this->redirect)->with('success', '登录成功');
+                return redirect($this->redirect)->with('success', __('web.LOGIN').__('web.SUCCESS'));
             } /*一个全新的用户来了！！！尝试注册*/
             else {
                 $githubData = $this->getDataFromGithubUser($githubUser);

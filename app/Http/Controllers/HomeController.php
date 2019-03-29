@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         $key = trim($request->get('q'));
         if ($key == '')
-            return back()->withErrors("请输入关键字");
+            return back()->withErrors(__('web.PLEASE_KEY_IN_KEYWORD'));
         $page_size = XblogConfig::getValue('page_size', 7);
         $key = "%$key%";
         $posts = Post::where('title', 'like', $key)

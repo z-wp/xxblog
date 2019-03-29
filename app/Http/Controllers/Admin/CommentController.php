@@ -31,9 +31,9 @@ class CommentController extends Controller
         if ($comment->trashed()) {
             $comment->restore();
             $this->commentRepository->clearAllCache();
-            return redirect()->route('admin.comments')->with('success', '恢复成功');
+            return redirect()->route('admin.comments')->with('success', __('web.RECOVERY_SUCCESS'));
         }
-        return redirect()->route('admin.comments')->withErrors('恢复失败');
+        return redirect()->route('admin.comments')->withErrors(__('web.RECOVERY_FAIL'));
     }
 
     public function verify($comment_id)

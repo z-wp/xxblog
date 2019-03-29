@@ -48,7 +48,7 @@ class PostController extends Controller
     public function create()
     {
         if ($this->categoryRepository->count() <= 0) {
-            return redirect()->route('admin.categories')->withErrors('请先创建一个分类');
+            return redirect()->route('admin.categories')->withErrors(__('web.PLEASE_CREATE_CATEGORY'));
         }
         return view('admin.post.create',
             [
@@ -69,9 +69,9 @@ class PostController extends Controller
             } else {
                 $link = route('post.preview', $post->slug);
             }
-            return redirect('admin/posts')->with('success', '文章' . "<a href='$link'>$post->title</a>" . '创建成功.');
+            return redirect('admin/posts')->with('success', __('web.ARTICLE') . "<a href='$link'>$post->title</a>" . __('web.CREATE_SUCCESS'));
         } else {
-            return redirect('admin/posts')->withErrors('文章' . $request['name'] . '创建失败');
+            return redirect('admin/posts')->withErrors(__('web.ARTICLE') . $request['name'] . __('web.CREATE_FAIL'));
         }
     }
 
@@ -88,7 +88,7 @@ class PostController extends Controller
     {
         $post = Post::withoutGlobalScopes()->find($id);
         if ($post->trashed()) {
-            return back()->withErrors($post->title . '发布失败，请先恢复删除');
+            return back()->withErrors($post->title . __('web.PUBLISH_FAIL_REMOVE'));
         }
         $this->clearAllCache();
         if ($post->status == 0) {
@@ -96,16 +96,16 @@ class PostController extends Controller
             $post->published_at = Carbon::now();
             if ($post->save()) {
                 $link = $this->getPostLink($post);
-                return back()->with('success', "<a href='$link'>$post->title</a> " . '发布成功.');
+                return back()->with('success', "<a href='$link'>$post->title</a> " . __('web.PUBLISH_SUCCESS'));
             }
         } else if ($post->status == 1) {
             $post->status = 0;
             if ($post->save()) {
                 $link = $this->getPostLink($post);
-                return back()->with('success', "<a href='$link'>$post->title</a> " . '撤销发布成功.');
+                return back()->with('success', "<a href='$link'>$post->title</a> " . __('web.REVOKE_PUBLISH_SUCCESS'));
             }
         }
-        return back()->withErrors($post->title . '操作失败');
+        return back()->withErrors($post->title . __('web.OPERATING_FAIL'));
     }
 
 
@@ -133,9 +133,9 @@ class PostController extends Controller
 
         if ($this->postRepository->update($request, $post)) {
             $link = $this->getPostLink($post);
-            return redirect('admin/posts')->with('success', "<a href='$link'>$post->title</a> " . '修改成功.');
+            return redirect('admin/posts')->with('success', "<a href='$link'>$post->title</a> " . __('web.EDIT_SUCCESS'));
         } else
-            return redirect('admin/posts')->withErrors('文章' . $request['name'] . '修改失败');
+            return redirect('admin/posts')->withErrors(__('web.ARTICLE') . $request['name'] . __('web.EDIT_FAIL'));
     }
 
     public function download($id)
@@ -187,9 +187,9 @@ class PostController extends Controller
             $post->restore();
             $this->clearAllCache();
             $link = $this->getPostLink($post);
-            return redirect()->route('admin.posts')->with('success', "<a href='$link'>$post->title</a>" . '恢复成功.');
+            return redirect()->route('admin.posts')->with('success', "<a href='$link'>$post->title</a>" . __('web.RECOVERY_SUCCESS'));
         }
-        return redirect()->route('admin.posts')->withErrors('恢复失败.');
+        return redirect()->route('admin.posts')->withErrors(__('web.RECOVERY_FAIL'));
     }
 
 
@@ -207,9 +207,9 @@ class PostController extends Controller
         }
         if ($result) {
             $this->clearAllCache();
-            return redirect($redirect)->with('success', "删除 $post->title 成功.");
+            return redirect($redirect)->with('success', __('web.REMOVE'). $post->title.__('web.SUCCESS'));
         } else
-            return redirect($redirect)->withErrors('删除失败.');
+            return redirect($redirect)->withErrors(__('web.REMOVE_FAIL'));
     }
 
     private function validatePostForm(Request $request, $update = false)

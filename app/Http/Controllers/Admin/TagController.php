@@ -30,9 +30,9 @@ class TagController extends Controller
 
         if ($this->tagRepository->create($request)) {
             $this->tagRepository->clearCache();
-            return back()->with('success', 'Tag' . $request['name'] . '创建成功');
+            return back()->with('success', 'Tag' . $request['name'] . __('web.CREATE_SUCCESS'));
         } else
-            return back()->with('error', 'Tag' . $request['name'] . '创建失败');
+            return back()->with('error', 'Tag' . $request['name'] . __('web.CREATE_FAIL'));
     }
 
     public function edit(Tag $tag)
@@ -47,21 +47,21 @@ class TagController extends Controller
         ]);
 
         if ($this->tagRepository->update($request, $tag)) {
-            return redirect()->route('admin.tags')->with('success', '标签' . $request['name'] . '修改成功');
+            return redirect()->route('admin.tags')->with('success', __('web.TAG') . $request['name'] . __('web.EDIT_SUCCESS'));
         }
 
-        return back()->withInput()->withErrors('分类' . $request['name'] . '修改失败');
+        return back()->withInput()->withErrors(__('web.CATEGORY') . $request['name'] . __('web.EDIT_FAIL'));
     }
 
     public function destroy(Tag $tag)
     {
         if ($tag->posts()->withoutGlobalScopes()->count() > 0) {
-            return redirect()->route('admin.tags')->withErrors($tag->name . '下面有文章，不能刪除');
+            return redirect()->route('admin.tags')->withErrors($tag->name . __('web.HAVE_POST_CANT_REMOVE'));
         }
         if ($tag->delete()) {
             $this->tagRepository->clearCache();
-            return back()->with('success', $tag->name . '刪除成功');
+            return back()->with('success', $tag->name . __('web.REMOVE_SUCCESS'));
         }
-        return back()->withErrors($tag->name . '刪除失败');
+        return back()->withErrors($tag->name . __('web.REMOVE_FAIL'));
     }
 }

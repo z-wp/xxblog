@@ -28,10 +28,10 @@ class CommentController extends Controller
         if ($this->commentRepository->update($request->get('content'), $comment)) {
             $redirect = request('redirect');
             if ($redirect)
-                return redirect($redirect)->with('success', '修改成功');
-            return back()->with('success', '修改成功');
+                return redirect($redirect)->with('success', __('web.EDIT_SUCCESS'));
+            return back()->with('success',__('web.EDIT_SUCCESS') );
         }
-        return back()->withErrors('修改失败');
+        return back()->withErrors(__('web.EDIT_FAIL'));
     }
 
     public function edit(Comment $comment)
@@ -106,12 +106,12 @@ class CommentController extends Controller
             if (request()->expectsJson()) {
                 return response()->json(['status' => 200, 'msg' => 'success']);
             }
-            return back()->with('success', '删除成功');
+            return back()->with('success', __('web.REMOVE_SUCCESS'));
         }
         if (request()->expectsJson()) {
-            return response()->json(['status' => 500, 'msg' => '删除失败']);
+            return response()->json(['status' => 500, 'msg' => __('web.REMOVE_FAIL')]);
         }
-        return back()->withErrors('删除失败');
+        return back()->withErrors(__('web.REMOVE_FAIL'));
     }
 
     protected function findComment($id)
