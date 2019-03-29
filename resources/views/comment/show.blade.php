@@ -5,5 +5,5 @@
         @include('comment.comment',['comment'=>$comment])
     @endif
 @empty
-    <p class="meta-item center-block" style="padding:10px">暂无评论~~</p>
+    <p class="meta-item center-block" style="padding:10px">{{__('web.NO_COMMENT')}}~~</p>
 @endforelse

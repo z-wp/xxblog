@@ -177,13 +177,13 @@
                 <ul class="nav navbar-nav ml-auto justify-content-end">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('post.index') }}">
-                            回到站点
+                            {{__('web.GO_TO_INDEX')}}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/logout') }}"
                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            退出登录
+                            {{__('web.LOGOUT')}}
                         </a>
                     </li>
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

@@ -6,7 +6,7 @@
             <form action="{{ route('tag.update',$tag->id) }}"
                   method="post">
                 <div class="form-group">
-                    <label for="name" class="control-label">标签名称</label>
+                    <label for="name" class="control-label">{{__('web.TAG_NAME')}}</label>
                     <input id="name" type="text"
                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
                            value="{{ $tag->name }}"
@@ -22,7 +22,7 @@
                 <input type="hidden" name="_method" value="put">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        修改
+                        {{__('web.EDIT')}}
                     </button>
                 </div>
             </form>

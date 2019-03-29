@@ -13,7 +13,7 @@
                 @include('admin.post.form-content')
                 <input type="hidden" name="_method" value="put">
                 <button type="submit" class="btn btn-primary">
-                    修改
+                    {{__('web.EDIT')}}
                 </button>
             </form>
         </div>

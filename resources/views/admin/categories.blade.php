@@ -7,10 +7,10 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>名称</th>
-        <th>描述</th>
-        <th>文章</th>
-        <th>操作</th>
+        <th>{{__('web.NAME')}}</th>
+        <th>{{__('web.DESCRIPTION')}}</th>
+        <th>{{__('web.ARTICLE')}}</th>
+        <th>{{__('web.OPERATING')}}</th>
     </tr>
     </thead>
     <tbody>
@@ -22,13 +22,13 @@
             <td>
                 <div>
                     <a href="{{ route('category.edit',$category->id) }}" class="btn btn-info"
-                       data-toggle="tooltip" data-placement="top" title="编辑">
+                       data-toggle="tooltip" data-placement="top" title="{{__('web.EDIT')}}">
                         <i class="fa fa-pencil fa-fw"></i>
                     </a>
                     <button class="btn btn-danger swal-dialog-target"
-                            data-toggle="tooltip" data-placement="top" title="删除"
+                            data-toggle="tooltip" data-placement="top" title="{{__('web.REMOVE')}}"
                             data-url="{{ route('category.destroy',$category->id) }}"
-                            data-dialog-msg="删除{{ $category->name }}?">
+                            data-dialog-msg="{{__('web.REMOVE')}}{{ $category->name }}?">
                         <i class="fa fa-trash-o fa-fw"></i>
                     </button>
                 </div>

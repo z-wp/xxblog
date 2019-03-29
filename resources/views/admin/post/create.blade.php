@@ -10,7 +10,7 @@
         <form class="form-horizontal" action="{{ route('post.store') }}" method="post">
             @include('admin.post.form-content')
             <button type="submit" class="btn btn-primary">
-                创建
+                {{__('web.CREATE')}}
             </button>
         </form>
     </div>

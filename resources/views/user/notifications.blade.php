@@ -8,7 +8,7 @@
         <ul class="nav nav-tabs mb-3" id="notificationTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#received-comment" role="tab" aria-controls="home" aria-selected="true">
-                    评论
+                    {{__('web.COMMENTS')}}
                     @if(($count = $notifications->where('type',"App\\Notifications\\ReceivedComment")->where('read_at', null)->count()) > 0)
                         <span class="badge badge-danger">{{ $count }}</span>
                     @endif
@@ -16,7 +16,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#mentioned-comment" role="tab" aria-controls="profile" aria-selected="false">
-                    提到了你
+                    {{__('web.MENTIONED_COMMENT')}}
                     @if(($count = $notifications->where('type',"App\\Notifications\\MentionedInComment")->where('read_at', null)->count()) > 0)
                         <span class="badge badge-danger">{{ $count }}</span>
                     @endif
@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#base-notification" role="tab" aria-controls="contact" aria-selected="false">
-                    基本提醒
+                    {{__('web.BASE_NOTIFICATION')}}
                     @if(($count = $notifications->where('type',"App\\Notifications\\BaseNotification")->where('read_at', null)->count()) > 0)
                         <span class="badge badge-danger">{{ $count }}</span>
                     @endif

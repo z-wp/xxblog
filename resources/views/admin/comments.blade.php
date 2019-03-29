@@ -4,9 +4,9 @@
 @section('action')
     @if($unverified_count>0)
         <button class="btn btn-sm btn-outline-danger swal-dialog-target"
-                data-dialog-msg="删除 {{ $unverified_count }} 条未审核评论？"
+                data-dialog-msg="{{__('web.REMOVE')}} {{ $unverified_count }} {{__('web.UNVERIFIED_COMMENT')}}"
                 data-url="{{ route('comment.delete-un-verified', ['ids'=>$unverified_ids]) }}"
-                data-method="delete">删除未审核
+                data-method="delete">{{__('web.DELETE_UNVERIFIED')}}
         </button>
     @endif
 @endsection
@@ -17,12 +17,12 @@
         <thead>
         <tr>
             {{--<th><input type="checkbox" name="select_all"></th>--}}
-            <th>用户</th>
-            <th>Email</th>
-            <th>地址</th>
-            <th>状态</th>
+            <th>{{__('web.USER')}}</th>
+            <th>{{__('web.E_MAIL')}}</th>
+            <th>{{__('web.ADDRESS')}}</th>
+            <th>{{__('web.STATUS')}}</th>
             <th>IP</th>
-            <th>操作</th>
+            <th>{{__('web.OPERATING')}}</th>
         </tr>
         </thead>
         <tbody>
@@ -41,7 +41,7 @@
                 <td>
                     @if($commentableData['deleted'])
                         <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['type'] }}
-                            已删除</span>
+                            {{__('web.IS_REMOVE')}}</span>
                     @else
                         @if($comment->trashed())
                             <span data-html="true" data-toggle="tooltip"
@@ -55,35 +55,35 @@
                     @endif
                 </td>
                 <td>
-                    <span class="p-2 p badge {{ $comment->trashed() ? 'badge-danger':($comment->isVerified() ? 'badge-success' : 'badge-secondary') }}">{{ $comment->trashed() ? '已删除':($comment->isVerified() ? '已审核' : '未审核') }}</span>
+                    <span class="p-2 p badge {{ $comment->trashed() ? 'badge-danger':($comment->isVerified() ? 'badge-success' : 'badge-secondary') }}">{{ $comment->trashed() ? __('web.IS_REMOVE'):($comment->isVerified() ? __('web.IS_VERIFIED') : __('web.NOT_VERIFIED')) }}</span>
                 </td>
                 <td>{{ $comment->ip_id?$comment->ip_id:'NONE' }}</td>
                 <td>
                     @if($comment->trashed())
                         <button type="submit"
                                 class="btn btn-danger swal-dialog-target"
-                                data-dialog-msg="永久删除这条评论？"
+                                data-dialog-msg="{{__('web.DELETE_THIS_COMMENT_FOREVER')}}？"
                                 data-url="{{ route('comment.destroy',[$comment->id,'force'=>'true']) }}"
                                 data-method="delete"
                                 data-toggle="tooltip"
                                 data-placement="top"
-                                title="永久删除">
+                                title="{{__('web.DELETE_FOREVER')}}">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </button>
                         <form class="d-inline-block" method="post" action="{{ route('comment.restore',$comment->id) }}">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                    title="恢复">
+                                    title="{{__('web.RECOVERY')}}">
                                 <i class="fa fa-repeat fa-fw"></i>
                             </button>
                         </form>
                     @else
                         <button type="submit"
                                 class="btn btn-danger swal-dialog-target"
-                                data-dialog-msg="确定删除此评论？"
+                                data-dialog-msg="{{__('web.SURE_DELETE_THIS_COMMENT')}}？"
                                 data-toggle="tooltip"
                                 data-url="{{ route('comment.destroy',$comment->id) }}"
-                                title="删除">
+                                title="{{__('web.DELETE')}}">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </button>
                         <a class="btn btn-info"

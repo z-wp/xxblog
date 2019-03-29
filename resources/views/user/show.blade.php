@@ -16,7 +16,7 @@
                 <img width="64" height="64" src="{{ $user->avatar  }}" class="rounded-circle mb-3">
             @endif
             <div class="form-group">
-                <label>名称：</label>
+                <label>{{__('web.NAME')}}：</label>
                 <span>
                     {{ $user->name }}
                     @if(isAdminById($user->id))
@@ -25,19 +25,19 @@
                 </span>
             </div>
             <div class="form-group">
-                <label>描述：</label>
+                <label>{{__('web.DESCRIPTION')}}：</label>
                 @if($user->description)
                     <span>{{ $user->description }}</span>
                 @else
-                    <span class="text-secondary font-italic">空</span>
+                    <span class="text-secondary font-italic">{{__('web.NULL')}}</span>
                 @endif
             </div>
             <div class="form-group">
-                <label>个人网站：</label>
+                <label>{{__('web.WEBSITE')}}：</label>
                 @if($user->website)
                     <a href="{{ httpUrl($user->website) }}">{{ httpUrl($user->website) }}</a>
                 @else
-                    <span class="text-secondary font-italic">空</span>
+                    <span class="text-secondary font-italic">{{__('web.NULL')}}</span>
                 @endif
             </div>
             @if($user->meta)
@@ -47,7 +47,7 @@
                         @if($value)
                             <a href="{{ $value }}">{{ $value }}</a>
                         @else
-                            <span class="text-secondary font-italic">空</span>
+                            <span class="text-secondary font-italic">{{__('web.NULL')}}</span>
                         @endif
                     </div>
                 @endforeach

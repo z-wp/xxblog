@@ -7,9 +7,9 @@
                 <div class="media-body-content">
                     {!! $notificationData['html_content'] !!}
                     @if(!$notification->read_at)
-                        <a class="text-success" href="{{ route('user.read_notification',$notification->id) }}">已读</a>
+                        <a class="text-success" href="{{ route('user.read_notification',$notification->id) }}">{{__('web.READ_NOTIFICATION')}}</a>
                     @endif
-                    <a class="text-danger" href="{{ route('user.delete_notification',$notification->id) }}">删除</a>
+                    <a class="text-danger" href="{{ route('user.delete_notification',$notification->id) }}">{{__('web.REMOVE')}}</a>
                 </div>
             </div>
         </div>
@@ -21,13 +21,13 @@
     @endphp
     <div class="btn-group d-flex justify-content-center">
         <a class="btn btn-outline-success mt-3" href="{{ route('user.read_notification', ["all", 'type'=>$notifications[0]->type]) }}">
-            <i class="fa fa-eye fw mr-2"></i>全部已读({{ $unreadCount }})
+            <i class="fa fa-eye fw mr-2"></i>{{__('web.READ_ALL_NOTIFICATION')}}({{ $unreadCount }})
         </a>
         <button class="btn btn-outline-danger mt-3 swal-dialog-target"
                 data-dialog-msg="Delete {{ $readCount }} read notifications?"
                 data-url="{{ route('user.delete_read_notifications', ['type'=>$notifications[0]->type]) }}"
                 data-method="delete">
-            <i class="fa fa-trash fw mr-2"></i>删除已读<span class="badge badge-danger">{{ $readCount }}</span>
+            <i class="fa fa-trash fw mr-2"></i>{{__('web.DELETE_READ')}}<span class="badge badge-danger">{{ $readCount }}</span>
         </button>
     </div>
 @else

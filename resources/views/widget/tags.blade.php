@@ -1,6 +1,6 @@
 <div class="order-md-2 mb-4">
     <h5 class="d-flex justify-content-between align-items-center mb-2">
-        <a class="text-muted" href="{{ route('tag.index') }}">标签</a>
+        <a class="text-muted" href="{{ route('tag.index') }}">{{__('web.TAG')}}</a>
         <span class="badge badge-secondary badge-pill">{{ count($tags) }}</span>
     </h5>
     <ul class="tags bg-white p-3 shadow rounded">
@@ -20,7 +20,7 @@
                     </a>
                 </li>
             @endif
-        @empty <p class="meta-item center-block">No tags.</p>
+        @empty <p class="meta-item center-block">{{__('web.NO_TAGS')}}</p>
         @endforelse
     </ul>
 </div>

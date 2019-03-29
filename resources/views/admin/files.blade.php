@@ -3,7 +3,7 @@
 @section('content')
     <div class="card mb-3">
         <div class="card-header">
-            <h6><i class="fa fa-file-archive-o fa-fw"></i>文件</h6>
+            <h6><i class="fa fa-file-archive-o fa-fw"></i>{{__('web.DOCUMENT')}}</h6>
         </div>
         <div class="card-body">
             <form class="form-inline justify-content-center" action="{{ route('upload.file') }}"
@@ -42,7 +42,7 @@
                             <i class="fa fa-cloud-download fa-fw"></i>
                         </a>
                         <button class="btn btn-danger swal-dialog-target"
-                                data-dialog-msg="确定删除{{ $file->key }}？"
+                                data-dialog-msg="{{__('web.SURE_TO_DELETE')}}{{ $file->key }}？"
                                 data-url="{{ route('delete.file').'?key='.$file->key."&type=".$file->type }}">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </button>

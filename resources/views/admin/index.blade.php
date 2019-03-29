@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>用户</span>
+                            <span>{{__('web.USER')}}</span>
                             <div class="info-title">{{ $info['user_count'] }}</div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>页面</span>
+                            <span>{{__('web.PAGE')}}</span>
                             <div class="info-title">{{ $info['page_count'] }}</div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>文章</span>
+                            <span>{{__('web.PAGE')}}</span>
                             <div class="info-title">{{ $info['post_count'] }}</div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>评论</span>
+                            <span>{{__('web.COMMENTS')}}</span>
                             <div class="info-title">{{ $info['comment_count'] }}</div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>标签</span>
+                            <span>{{__('web.TAG')}}</span>
                             <div class="info-title">{{ $info['tag_count'] }}</div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>分类</span>
+                            <span>{{__('web.CATEGORY')}}</span>
                             <div class="info-title">{{ $info['category_count'] }}</div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>图片</span>
+                            <span>{{__('web.IMAGE')}}</span>
                             <div class="info-title">{{ $info['image_count'] }}</div>
                         </div>
                     </div>

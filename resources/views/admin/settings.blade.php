@@ -26,7 +26,7 @@
                 {{ csrf_field() }}
                 <div class="col-md-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-outline-success">
-                        保存
+                        {{__('web.SAVE')}}
                     </button>
                 </div>
             </div>

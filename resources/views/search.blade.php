@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','搜索')
+@section('title',__('web.SEARCH'))
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,8 +7,8 @@
                 @if($posts->count() == 0)
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">搜索 "{{ request('q') }}"</h4>
-                            <p class="card-text">什么也没搜到...</p>
+                            <h4 class="card-title">{{__('web.SEARCH')}} "{{ request('q') }}"</h4>
+                            <p class="card-text">{{__('web.SEARCH_NOTHING')}}</p>
                         </div>
                     </div>
                 @else

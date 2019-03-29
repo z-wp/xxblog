@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">注册
+                    <div class="card-header">{{__('web.SIGN_UP')}}
                     </div>
                     <div class="card-body">
                         <form method="POST" class="col-md-6" action="{{ url('/register') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group">
-                                <label for="name" class="form-control-label">昵称</label>
+                                <label for="name" class="form-control-label">{{__('web.NICK_NAME')}}</label>
                                 <input id="name" type="text"
                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                        name="name"
@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="form-control-label">邮箱</label>
+                                <label for="email" class="form-control-label">{{__('web.EMAIL')}}</label>
                                 <input id="email" type="email"
                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                        name="email"
@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="form-control-label">密码</label>
+                                <label for="password" class="form-control-label">{{__('web.PASSWORD')}}</label>
                                 <input id="password" type="password"
                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                        name="password">
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm" class="form-control-label">确认密码</label>
+                                <label for="password-confirm" class="form-control-label">{{__('web.CONFIRM').__('web.PASSWORD')}}</label>
                                 <input id="password-confirm" type="password"
                                        class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
                                        name="password_confirmation">
@@ -64,11 +64,11 @@
                                 @endif
                             </div>
                             <button type="submit" class="btn btn-primary">
-                                注册
+                                {{__('web.SIGN_UP')}}
                             </button>
                         </form>
                         <a class="pull-right" style="text-decoration: none" href="{{ route('github.login') }}">
-                            使用<i class="fa fa-lg fa-github fa-fw"></i>注册
+                            {{__('web.USE')}}<i class="fa fa-lg fa-github fa-fw"></i>{{__('web.SIGN_UP')}}
                         </a>
                     </div>
                 </div>
