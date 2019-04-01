@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    //index.blade.php
+    //view/index.blade.php
     'MY_BLOG'=>'我的個人部落格',
     'CLICK_SEE_LIST'=>'點擊查看部落格文章列表',
     'BLOG'=>'部落格',
@@ -11,29 +11,29 @@ return array(
     'NO_POSTS' => '沒有文章.',
     'CLASSIFICATION' => '分類',
     'ITEM' => '項目',
-    //projects.blade.php
+    //view/projects.blade.php
     'LOADING' => '載入中...',
-    //search.blade.php
+    //view/search.blade.php
     'SEARCH' => '搜索',
     'SEARCH_NOTHING'=>'什麼也沒搜到...',
-    //admin/category/edit.blade.php
+    //view/admin/category/edit.blade.php
     'CATEGORY_NAME' => '分類名稱',
     'CATEGORY_DESCRIPTION' => '分類描述',
     'CATEGORY_IMG'=>'分類圖片',
     'EDIT' => '修改',
     'EDIT2' => '編輯',
-    //admin/layouts/app.blade.php
+    //view/admin/layouts/app.blade.php
     'GO_TO_INDEX' => '回到首頁',
-    //admin/modals/add-category-modal.blade.php
+    //view/admin/modals/add-category-modal.blade.php
     'NEW_CATEGORY' => '新的分類',
     'CANCEL' => '取消',
     'CONFIRM' => '確認',
-    //admin/modals/add-tag-modal.blade.php
+    //view/admin/modals/add-tag-modal.blade.php
     'NEW_TAG'=>'新的Tag',
     'TAG_NAME' => 'Tag名稱',
-    //admin/page/create.blade.php
+    //view/admin/page/create.blade.php
     'CREATE' => '創建',
-    //admim/page/form-content.blade.php
+    //view/admim/page/form-content.blade.php
     'FORM_CONTENT_URI' => '頁面uri',
     'FORM_CONTENT_NAME' => '頁面名稱',
     'FORM_CONTENT' => '頁面內容',
@@ -50,17 +50,17 @@ return array(
     'DISPLAY_AT_INDEX' => '顯示在主頁面',
     'HIDE_AT_INDEX' => '不顯示在主頁面',
     'ORDER'=>'順序',
-    //admin/partials/image_list.blade.php
+    //view/admin/partials/image_list.blade.php
     'ORIGINAL_IMAGE' => '原圖',
     'COPY' => '複製',
     'CONFIRM_TO_REMOVE'=>'確定刪除',
     'REMOVE' => '刪除',
     'NO_IMAGE'=>'沒有圖片',
-    //admin/partials/ip_button.blade.php
+    //view/admin/partials/ip_button.blade.php
     'BLOCK' => '阻擋',
     'UNBLOCK'=>'取消阻擋',
     'BLOCK_DESCRIPTION' => '阻檔後此IP將不能訪問你的網站',
-    //admin/post/form-content.blade.php
+    //view/admin/post/form-content.blade.php
     'COVER_IMAGE'=>'封面圖片',
     'ARTICLE_TITLE'=>'文章標題',
     'ARTICLE_DESCRIPTION'=>'文章描述',
@@ -76,12 +76,12 @@ return array(
     'SHOW' =>'顯示',
     'PUBLISH'=> '發佈',
     'DRAFT'=>'草稿',
-    //admin/categories.blade.php
+    //view/admin/categories.blade.php
     'NAME'=>'名稱',
     'DESCRIPTION' => '描述',
     'ARTICLE' => '文章',
     'OPERATING'=>'操作',
-    //admin/comments.blade.php
+    //view/admin/comments.blade.php
     'UNVERIFIED_COMMENT'=>'條未審核評論？',
     'DELETE_UNVERIFIED'=>'刪除未審核',
     'USER'=>'使用者',
@@ -95,16 +95,16 @@ return array(
     'DELETE_THIS_COMMENT_FOREVER'=>'永久刪除這條評論',
     'RECOVERY'=>'恢復',
     'SURE_DELETE_THIS_COMMENT'=>'確定刪除此評論',
-    //admin/files.blade.php
+    //view/admin/files.blade.php
     'DOCUMENT'=>'文件',
     'SURE_TO_DELETE'=>'確定刪除',
-    //admin/index.blade.php
+    //view/admin/index.blade.php
     'PAGE'=>'頁面',
     'CATEGORY'=>'分類',
     'IMAGE'=>'圖片',
-    //admin/ips.blade.php
+    //view/admin/ips.blade.php
     'COMMENT_NUM'=>'評論數量',
-    //admin/posts.blade.php
+    //view/admin/posts.blade.php
     'TITLE'=>'標題',
     'UNPUBLISHED'=>'未發表',
     'PUBLISHED' => '已發表',
@@ -113,25 +113,25 @@ return array(
     'REMOVE_TIPS' => '刪除(浙江永久刪除)',
     'HIDE_COMMENT' =>'不顯示評論',
     'DISPLAY_COMMENT' => '顯示評論',
-    //admin/settings.blade.php
+    //view/admin/settings.blade.php
     'SAVE'=>'保存',
-    //admin/user.blade.php
+    //view/admin/user.blade.php
     'SIGN_UP_DATE' => '註冊日期',
     'SOURCE'=>'來源',
-    //auth/github_register.blade.php
+    //view/auth/github_register.blade.php
     'NICK_NAME'=>'暱稱',
     'CONFIRM_PASSWORD' => '確認密碼',
     'SIGN_UP' => '註冊',
-    //auth/login.blade.php
+    //view/auth/login.blade.php
     'PASSWORD'=>'密碼',
     'REMEMBER_PASSWORD'=>'記住密碼',
     'FORGOT_PASSWORD'=>'忘記密碼',
     'USE'=>'使用',
-    //comment/comment.blade.php
+    //view/comment/comment.blade.php
     'BLOGGER'=>'Write by',
-    //comment/show.blade.php
+    //view/comment/show.blade.php
     'NO_COMMENT'=>'暫無評論',
-    //post/show.blade.php
+    //view/post/show.blade.php
     'INDEX'=>'目錄',
     'COPYRIGHT'=>'版權聲明',
     'COPYRIGHT_STATEMENT1'=>'自由轉載-非商用-非衍生-保持署名',
@@ -139,24 +139,24 @@ return array(
     'CREATE_DATE'=>'創建日期',
     'EDIT_DATE'=>'修改日期',
     'READ_NUM'=>'閱讀次數',
-    //user/notifications.blade.php
+    //view/user/notifications.blade.php
     'COMMENTS' => '評論',
     'MENTIONED_COMMENT'=>'提到了你',
     'BASE_NOTIFICATION'=>'基本提醒',
-    //user/pictures.blade.php
+    //view/user/pictures.blade.php
     'CHANGE_USER_IMG'=>'修改頭像',
     'CHANGE_INFO_IMG'=>'修改簡介圖片',
-    //user/render-notification.blade.php
+    //view/user/render-notification.blade.php
     'READ_NOTIFICATION'=>'已讀',
     'READ_ALL_NOTIFICATION'=>'全部已讀',
     'DELETE_READ'=>'刪除已讀',
-    //user/settings.blade.php
+    //view/user/settings.blade.php
     'REAL_NAME'=>'真實姓名',
     'NULL'=>'空',
-    //user/socials.blade.php
+    //view/user/socials.blade.php
     'BIND'=>'绑定',
     'IS_BIND'=>'已绑定',
-    //layouts/header.blade.php
+    //view/layouts/header.blade.php
     'ACCOUNT_CENTER' => '個人中心',
     'WEB_CONSOLE' => '後台管理',
     'NOTIFICATION' => '通知中心',
@@ -164,14 +164,14 @@ return array(
     'LOGIN' => '登入',
     'POP_ARTICLES' => '熱門文章',
     'VIEWS' => '閱讀量',
-    //pay.blade.php
+    //view/pay.blade.php
     'WRITE_WELL_DONATE' => '寫得不錯，贊助一下主機費',
     'DONATE' => '贊助',
     'ZHIFUBAO' => '支付寶',
     'WECHAT' => '微信',
     'ZHIFUBAO_TABPANEL' => '掃一掃，用支付寶贊助',
     'WECHAT_TABPANEL' => '掃一掃，用微信贊助',
-    //raw_comment.blade.php
+    //view/raw_comment.blade.php
     'USERNAME' => '姓名',
     'YOUR_NAME'=>'您的大名',
     'EMAIL' => 'E-mail',
@@ -182,15 +182,44 @@ return array(
     'SUPPORT'=>'支持',
     'REVIEW_N_SHOW' => '審核後才會顯示',
     'COMMENT_SUBMIT' => '回覆',
-    //recommended_posts.blade.php
+    //view/recommended_posts.blade.php
     'RECOMMENDED_POSTS'=>'推薦閱讀',
-    //tags.balde.php
+    //view/tags.balde.php
     'TAG'=>'標籤',
     'NO_TAGS'=>'No tags.',
-    //archieve.blade.php
+    //view/archieve.blade.php
     'TOTAL' => '共',
     'TOTAL_POSTS' => '篇文章',
 
+    //controller/AdminController.php
+    'SAVE_SUCCESS'=>'儲存成功',
+    'SAVE_FAIl'=>'\'儲存失敗哦\'',
+    //controller/CategoryController.php
+    'HAVE_POST_CANT_REMOVE'=>'下面有文章，不能刪除',
+    //controller/FileController.php
+    'UPLOAD_SUCCESS'=>'上傳成功',
+    'UPLOAD_FAIL'=>'上傳失敗',
     //controller/PostController.php
-    'PLEASE_CREATE_CATEGORY'=>'请先建立一個分類',
+    'PLEASE_CREATE_CATEGORY'=>'請先創建一個分類',
+    'CREATE_SUCCESS'=>'建立成功',
+    'CREATE_FAIL'=>'建立失敗',
+    'PUBLISH_FAIL_REMOVE'=>'發佈失敗，請先恢復刪除',
+    'PUBLISH_SUCCESS'=>'發佈成功',
+    'REVOKE_PUBLISH_SUCCESS'=>'撤銷發佈成功.',
+    'OPERATING_FAIL'=>'操作失敗',
+    'EDIT_SUCCESS'=>'修改成功',
+    'EDIT_FAIL'=>'修改失敗',
+    'RECOVERY_SUCCESS'=>'恢復成功',
+    'RECOVERY_FAIL'=>'恢復失敗',
+    'SUCCESS'=>'成功',
+    'REMOVE_SUCCESS'=> '刪除成功',
+    'REMOVE_FAIL' => '刪除失敗',
+    //controller/Auth/AuthController.php
+    'USE_GITHUB_SING_UP_SUCCESS'=>'使用Github註冊成功',
+    'USE_GITHUB_SING_UP_FAIL'=>'使用Github註冊失败',
+    'BIND_GITHUB_SUCCESS'=>'绑定 Github 成功',
+    'BIND_GITHUB_FAIL'=>'绑定 Github 失敗',
+    //controller/HomeController.php
+    'PLEASE_KEY_IN_KEYWORD'=>'請輸入關鍵字',
+    'PLEASE_KEY_IN_URL_OR_IMG'=>'請輸入 URL 或者上傳圖片'
 );
