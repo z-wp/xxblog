@@ -7,7 +7,7 @@ return array(
     'BLOG'=>'部落格',
     'CHECK'=>'查看',
     '`S' => '的',
-    'ARCHIVE' => '歸檔',
+    'ARCHIVE' => '歷史軸',
     'NO_POSTS' => '沒有文章.',
     'CLASSIFICATION' => '分類',
     'ITEM' => '項目',

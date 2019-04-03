@@ -84,8 +84,8 @@ if (!$use_post_cover_img) {
                             </div>
                         </li>
                     @else
-                        <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">{{__('web.LOGIN')}}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('register') }}">{{__('web.SIGN_UP')}}</a></li>
+                        {{--<li class="nav-item"><a class="nav-link" href="{{ url('login') }}">{{__('web.LOGIN')}}</a></li>--}}
+                        {{--<li class="nav-item"><a class="nav-link" href="{{ url('register') }}">{{__('web.SIGN_UP')}}</a></li>--}}
                     @endif
 
                 </ul>
