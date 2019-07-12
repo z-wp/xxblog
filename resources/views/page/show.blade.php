@@ -36,5 +36,6 @@
     </div>
 @endsection
 @section('script')
+    <script src=//recaptcha.net/recaptcha/api.js></script>
     @include('widget.mathjax')
 @endsection

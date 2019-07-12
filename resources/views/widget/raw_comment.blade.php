@@ -36,7 +36,6 @@
                               class="form-control markdown-content autosize-target"></textarea>
                 </div>
                 @if($final_allow_comment)
-                    <script src=//recaptcha.net/recaptcha/api.js></script>
                     {!! htmlFormSnippet() !!}
                 @endif
                 <div class="form-group">

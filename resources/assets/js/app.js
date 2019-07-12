@@ -177,7 +177,7 @@ require('./boot');
                             scroll.animateScroll(document.querySelector('#comment-' + data.comment.id));
                         }, 500)
                     }
-                    form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show on the site once it has been approve.');
+                    form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show once it has been approved.');
                 } else {
                     form.find('#comment_submit_msg').attr('class', 'text-danger').text(data.msg);
                 }
