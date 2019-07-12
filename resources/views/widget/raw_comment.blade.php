@@ -36,10 +36,8 @@
                               class="form-control markdown-content autosize-target"></textarea>
                 </div>
                 @if($final_allow_comment)
-                    <div class="form-group d-flex">
-                        <img id="captcha" class="mr-3" src="{{ captcha_src(config('captcha.use')) }}" onclick="this.src='/captcha/'+XblogConfig.captcha_config+'?'+Math.random()">
-                        <input class="form-control col-md-2 col-sm-3" type="text" size="6" name="captcha">
-                    </div>
+                    <script src=//recaptcha.net/recaptcha/api.js></script>
+                    {!! htmlFormSnippet() !!}
                 @endif
                 <div class="form-group">
                     <span class="help-block required"><strong id="comment_submit_msg"></strong></span>

@@ -12,7 +12,6 @@ window.replyComment = function (obj, username, comment_id) {
     let form = html.find('#comment-form');
     form.attr('id', 'comment-reply-form');
     form.find('#comment-submit').attr('id', 'comment-reply-submit');
-    form.find('#captcha').attr('src', form.find('#captcha').attr('src') + Math.random());
     form.append('<input type="hidden" name="reply_id" value=' + comment_id + '>');
     $(obj).parent().after(html.html());
     let contentTextarea = $('#comment-reply-form').find('#comment-content');

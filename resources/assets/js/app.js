@@ -112,7 +112,6 @@ require('./boot');
         let username = form.find('input[name=username]');
         let email = form.find('input[name=email]');
         let site = form.find('input[name=site]');
-        let captcha = form.find('input[name=captcha]');
         let has_username = username.length > 0;
 
         if (has_username && window.localStorage) {
@@ -135,10 +134,6 @@ require('./boot');
 
             if ($.trim(commentContent.val()) === '') {
                 commentContent.focus();
-                return false;
-            }
-            if ($.trim(captcha.val()) === '') {
-                captcha.focus();
                 return false;
             }
 
@@ -167,7 +162,6 @@ require('./boot');
                     username.val('');
                     email.val('');
                     site.val('');
-                    captcha.val('');
                     commentContent.val('');
                     form.find('#comment_submit_msg').hide();
                     if (data.comment.reply_id) {
@@ -193,7 +187,6 @@ require('./boot');
                 form.find('#comment_submit_msg').show();
             }).always(function () {
                 submitBtn.val("回复").removeClass('disabled').prop('disabled', false);
-                form.find('#captcha').attr('src', '/captcha/' + XblogConfig.captcha_config + '?' + Math.random());
             });
             return false;
         });

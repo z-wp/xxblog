@@ -29,7 +29,7 @@ class CommentController extends Controller
             $redirect = request('redirect');
             if ($redirect)
                 return redirect($redirect)->with('success', __('web.EDIT_SUCCESS'));
-            return back()->with('success',__('web.EDIT_SUCCESS') );
+            return back()->with('success', __('web.EDIT_SUCCESS'));
         }
         return back()->withErrors(__('web.EDIT_FAIL'));
     }
@@ -49,7 +49,6 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
         if (!$request->get('content')) {
             return response()->json(
                 ['status' => 500, 'msg' => 'Comment content must not be empty !']
@@ -68,11 +67,10 @@ class CommentController extends Controller
                 );
             }
         }
-
-        $validator = Validator::make($request->only('captcha'), ['captcha' => 'required|captcha']);
+        $validator = Validator::make($request->only('g-recaptcha-response'), ['g-recaptcha-response' => 'recaptcha']);
         if ($validator->fails()) {
             return response()->json(
-                ['status' => 500, 'msg' => 'Captcha incorrect !']
+                ['status' => 500, 'msg' => 'reCAPTCHA incorrect !']
             );
         }
 
