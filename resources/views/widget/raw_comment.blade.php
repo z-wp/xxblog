@@ -36,7 +36,7 @@
                               class="form-control markdown-content autosize-target"></textarea>
                 </div>
                 @if($final_allow_comment)
-                    {!! htmlFormSnippet() !!}
+                    <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.api_site_key') }}" widget-id="0"></div>
                 @endif
                 <div class="form-group">
                     <span class="help-block required"><strong id="comment_submit_msg"></strong></span>

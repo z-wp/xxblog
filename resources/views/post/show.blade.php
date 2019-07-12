@@ -95,6 +95,6 @@
     </div>
 @endsection
 @section('script')
-    <script src=//recaptcha.net/recaptcha/api.js></script>
+    <script src="//recaptcha.net/recaptcha/api.js" async defer></script>
     @include('widget.mathjax')
 @endsection

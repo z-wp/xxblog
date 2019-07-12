@@ -14,16 +14,24 @@ window.replyComment = function (obj, username, comment_id) {
     form.find('#comment-submit').attr('id', 'comment-reply-submit');
     form.find('#comment_submit_msg').text('');
     form.append('<input type="hidden" name="reply_id" value=' + comment_id + '>');
+
+    // remove old recaptcha
     let g_recaptcha = form.find('.g-recaptcha');
     let site_key = g_recaptcha.attr('data-sitekey');
     g_recaptcha.remove();
-    form.append('<div class="g-recaptcha" id="comment-reply-recaptcha"></div>');
+
+    form.find('#comment-content').parent().after('<div class="g-recaptcha" id="comment-reply-recaptcha"></div>');
     $(obj).parent().after(html.html());
-    grecaptcha.render('comment-reply-recaptcha', {'sitekey': site_key});
-    let contentTextarea = $('#comment-reply-form').find('#comment-content');
+
+    // render new recaptcha
+    let widget_id = grecaptcha.render('comment-reply-recaptcha', {'sitekey': site_key});
+
+    let comment_reply_form = $('#comment-reply-form')
+    comment_reply_form.find('#comment-reply-recaptcha').attr('widget-id', widget_id);
+    let contentTextarea = comment_reply_form.find('#comment-content');
     contentTextarea.focus();
     contentTextarea.text('@' + username + ' ');
-    Xblog.bindCommentFrom($('#comment-reply-form'));
+    Xblog.bindCommentFrom(comment_reply_form);
 };
 
 window.deleteComment = function (comment_id) {

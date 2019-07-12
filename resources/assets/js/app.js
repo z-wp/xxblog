@@ -137,6 +137,13 @@ require('./boot');
                 return false;
             }
 
+            let recaptcha_id = form.find('.g-recaptcha').attr('widget-id');
+            if (grecaptcha && grecaptcha.getResponse(recaptcha_id).length === 0) {
+                form.find('#comment_submit_msg').attr('class', 'text-danger').text('Prove that you are not a robot!');
+                form.find('#comment_submit_msg').show();
+                return false;
+            }
+
             submitBtn.val('提交中...').addClass('disabled').prop('disabled', true);
             form.find('#comment_submit_msg').text('').hide();
             $.ajax({
@@ -187,6 +194,7 @@ require('./boot');
                 form.find('#comment_submit_msg').show();
             }).always(function () {
                 submitBtn.val("回复").removeClass('disabled').prop('disabled', false);
+                grecaptcha.reset(recaptcha_id);
             });
             return false;
         });
