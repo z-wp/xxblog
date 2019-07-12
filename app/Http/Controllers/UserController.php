@@ -87,11 +87,11 @@ class UserController extends Controller
             if ($type)
                 $builder = $builder->where('type', $type);
             $count = $builder->get()->markAsRead();
-            return back()->with('success', '修改成功'.$count);
+            return back()->with('success', __('web.EDIT_SUCCESS').$count);
         } else {
             $notification = auth()->user()->unreadNotifications()->findOrFail($id);
             $notification->markAsRead();
-            return back()->with('success', '修改成功');
+            return back()->with('success', __('web.EDIT_SUCCESS'));
         }
     }
 
@@ -112,9 +112,9 @@ class UserController extends Controller
         ]);
 
         if ($this->userRepository->update($request, $user)) {
-            return back()->with('success', '修改成功');
+            return back()->with('success', __('web.EDIT_SUCCESS'));
         }
-        return back()->withErrors('修改失败');
+        return back()->withErrors(__('web.EDIT_FAIL'));
     }
 
 
@@ -143,15 +143,15 @@ class UserController extends Controller
                     $user->$field = $url;
                 }
             } else {
-                return back()->withErrors('请输入 URL 或者上传图片');
+                return back()->withErrors(__('web.PLEASE_KEY_IN_URL_OR_IMG'));
             }
         }
 
         if ($user->save()) {
             $this->userRepository->clearCache();
-            return back()->with('success', '修改成功');
+            return back()->with('success', __('web.EDIT_SUCCESS'));
         }
-        return back()->withErrors('修改失败');
+        return back()->withErrors(__('web.EDIT_FAIL'));
     }
 
     private function uploadImage(User $user, Request $request, $key, $max = 512, $fileName = 'image')

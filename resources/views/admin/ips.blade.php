@@ -21,8 +21,8 @@
     <tr>
         <th>IP</th>
         <th>Last User</th>
-        <th>评论数</th>
-        <th>操作</th>
+        <th>{{__('web.COMMENT_NUM')}}</th>
+        <th>{{__('web.OPERATING')}}</th>
     </tr>
     </thead>
     <tbody>
@@ -44,9 +44,9 @@
                 @include('admin.partials.ip_button',['ip'=>$ip])
                 <button class="btn btn-info swal-dialog-target"
                         data-toggle="tooltip"
-                        title="删除"
+                        title="{{__('web.REMOVE')}}"
                         data-url="{{ route('ip.delete',$ip->id) }}"
-                        data-dialog-msg="确定删除IP{{ $ip->id }}?">
+                        data-dialog-msg="{{__('web.CONFIRM_TO_REMOVE')}}IP{{ $ip->id }}?">
                     <i class="fa fa-trash-o fa-fw"></i>
                 </button>
             </td>

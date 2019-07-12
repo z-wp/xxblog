@@ -46,9 +46,9 @@ class CategoryController extends Controller
             'cover_img' => 'max:255',
         ]);
         if ($this->categoryRepository->create($request))
-            return back()->with('success', '分类' . $request['name'] . '创建成功');
+            return back()->with('success', __('web.CATEGORY') . $request['name'] . __('web.CREATE_SUCCESS'));
         else
-            return back()->with('error', '分类' . $request['name'] . '创建失败');
+            return back()->with('error', __('web.CATEGORY') . $request['name'] . __('web.CREATE_FAIL'));
     }
 
     /**
@@ -84,10 +84,10 @@ class CategoryController extends Controller
         ]);
 
         if ($this->categoryRepository->update($request, $category)) {
-            return redirect()->route('admin.categories')->with('success', '分类' . $request['name'] . '修改成功');
+            return redirect()->route('admin.categories')->with('success', __('web.CATEGORY') . $request['name'] . __('web.EDIT_SUCCESS'));
         }
 
-        return back()->withInput()->withErrors('分类' . $request['name'] . '修改失败');
+        return back()->withInput()->withErrors(__('web.CATEGORY') . $request['name'] . __('web.EDIT_FAIL'));
     }
 
     /**
@@ -100,11 +100,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->posts()->withoutGlobalScopes()->count() > 0) {
-            return redirect()->route('admin.categories')->withErrors($category->name . '下面有文章，不能刪除');
+            return redirect()->route('admin.categories')->withErrors($category->name . __('web.HAVE_POST_CANT_REMOVE'));
         }
         $this->categoryRepository->clearCache();
         if ($category->delete())
-            return back()->with('success', $category->name . '刪除成功');
-        return back()->withErrors($category->name . '刪除失败');
+            return back()->with('success', $category->name . __('web.REMOVE_SUCCESS'));
+        return back()->withErrors($category->name . __('web.REMOVE_FAIL'));
     }
 }

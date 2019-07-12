@@ -11,14 +11,14 @@
                     <img src="{{ $user->avatar }}" class="img-fluid" width="256" height="256">
                 @endif
                 <div class="form-group">
-                    <label class="control-label">修改头像：</label>
+                    <label class="control-label">{{__('web.CHANGE_USER_IMG')}}：</label>
                     <input type="file" class="form-control" name="image">
                 </div>
                 <div class="form-group">
-                    <label class="control-label">使用URL：</label>
+                    <label class="control-label">{{__('web.USE')}}URL：</label>
                     <input type="text" class="form-control" name="url">
                 </div>
-                <button class="btn btn-outline-success" id="upload-button" type="submit">修改头像</button>
+                <button class="btn btn-outline-success" id="upload-button" type="submit">{{__('web.CHANGE_USER_IMG')}}</button>
             </form>
 
             <form class="mt-3" method="post" action="{{ route('user.update.profile') }}"
@@ -29,14 +29,14 @@
                     <img src="{{ $user->profile_image }}" width="100%">
                 @endif
                 <div class="form-group">
-                    <label>修改简介图片：</label>
+                    <label>{{__('web.CHANGE_INFO_IMG')}}：</label>
                     <input class="form-control" type="file" name="image">
                 </div>
                 <div class="form-group">
-                    <label class="control-label">使用URL：</label>
+                    <label class="control-label">{{__('web.USE')}}URL：</label>
                     <input type="text" class="form-control" name="url">
                 </div>
-                <button class="btn btn-outline-success" id="upload-button" type="submit">修改简介图片</button>
+                <button class="btn btn-outline-success" id="upload-button" type="submit">{{__('web.CHANGE_INFO_IMG')}}</button>
             </form>
         </div>
     @endcan

@@ -5,10 +5,10 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>名称</th>
-            <th>注册日期</th>
-            <th>邮箱</th>
-            <th>来源</th>
+            <th>{{__('web.NAME')}}</th>
+            <th>{{__('web.SIGN_UP_DATE')}}</th>
+            <th>{{__('web.EMAIL')}}</th>
+            <th>{{__('web.SOURCE')}}</th>
         </tr>
         </thead>
         <tbody>

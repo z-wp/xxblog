@@ -19,10 +19,10 @@
                 <span class="name">
                     <a href="{{ $href }}"{{ !$comment->isVerified()?" style=color:red":'' }}>{{ $comment->username }}</a>
                     @if(isAdminById($comment->user_id))
-                        <label class="role-label">博主</label>
+                        <label class="role-label">{{__('web.BLOGGER')}}</label>
                     @endif
                     @if(!$comment->isVerified())
-                        <label class="role-label">未审核</label>
+                        <label class="role-label">{{__('web.NOT_VERIFIED')}}</label>
                     @endif
                 </span>
             <span class="comment-operation pull-right">
@@ -40,19 +40,19 @@
                     <a class="comment-operation-item"
                        href="javascript:void (0)"
                        onclick="deleteComment('{{ $comment->id }}')">
-                        删除
+                        {{__('web.REMOVE')}}
                     </a>
                     <a class="comment-operation-item"
-                       title="编辑"
+                       title="{{__('web.EDIT2')}}"
                        href="{{ route('comment.edit',[$comment->id,'redirect'=>(isset($redirect) ? $redirect.'#'.$commentFragment : request()->fullUrl().'#'.$commentFragment)]) }}">
-                        编辑
+                        {{__('web.EDIT2')}}
                     </a>
                 @endcan
                 <a class="comment-operation-item"
-                   title="回复"
+                   title="{{__('web.COMMENT_SUBMIT')}}"
                    href="javascript:void (0);"
                    onclick="replyComment(this, '{{ $comment->username }}', '{{ $comment->id }}')">
-                    回复
+                    {{__('web.COMMENT_SUBMIT')}}
                 </a>
                 @if(isAdminById(auth()->id()) && !$comment->isVerified())
                     <a class="comment-operation-item"

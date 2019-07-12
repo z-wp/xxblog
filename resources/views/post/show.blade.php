@@ -16,7 +16,7 @@
                         <nav class="toc">
                             <div class="card">
                                 <h5 class="card-header">
-                                    目录
+                                    {{__('web.INDEX')}}
                                 </h5>
                                 <div class="card-body">
                                     {!! $toc !!}
@@ -35,7 +35,7 @@
                     @endif
                     @can('update',$post)
                         <div class="btn-group btn-group-sm">
-                            <a class="btn btn-outline-secondary" href="{{ route('post.edit',$post->id) }}">编辑</a>
+                            <a class="btn btn-outline-secondary" href="{{ route('post.edit',$post->id) }}">{{__('web.EDIT2')}}</a>
                             <a class="btn btn-outline-secondary swal-dialog-target" data-url="{{ route('post.destroy',$post->id) }}" data-dialog-msg="Delete {{ $post->title }} ?">删除</a>
                         </div>
                     @endcan
@@ -46,33 +46,33 @@
                     @include('widget.pay')
                     <div class="post-info-panel">
                         <p class="info">
-                            <label class="info-title">版权声明:</label><i class="fa fa-fw fa-creative-commons"></i>自由转载-非商用-非衍生-保持署名（<a
-                                    href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）
+                            <label class="info-title">{{__('web.COPYRIGHT')}}:</label><i class="fa fa-fw fa-creative-commons"></i>{{__('web.COPYRIGHT_STATEMENT1')}}（<a
+                                    href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">{{__('web.COPYRIGHT_STATEMENT2')}}</a>）
                         </p>
                         <p class="info">
-                            <label class="info-title">创建日期:</label>{{ $post->created_at->format('Y年m月d日') }}
+                            <label class="info-title">{{__('web.CREATE_DATE')}}:</label>{{ $post->created_at->format('Y年m月d日') }}
                         </p>
                         @if(isset($post->published_at) && $post->published_at)
                             <p class="info">
-                                <label class="info-title">修改日期:</label>{{ $post->published_at->format('Y年m月d日') }}
+                                <label class="info-title">{{__('web.EDIT_DATE')}}:</label>{{ $post->published_at->format('Y年m月d日') }}
                             </p>
                         @endif
                         <p class="info">
-                            <label class="info-title">文章分类:</label>
+                            <label class="info-title">{{__('web.ARTICLE_CATEGORY')}}:</label>
                             <a href="{{ route('category.show',$post->category->name) }}">{{ $post->category->name }}</a>
                         </p>
                         <p class="info">
-                            <label class="info-title">文章标签:</label>
+                            <label class="info-title">{{__('web.ARTICLE_TAGS')}}:</label>
                             @foreach($post->tags as $tag)
                                 <a class="tag" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
                             @endforeach
                         </p>
                         <p class="info">
-                            <label class="info-title">评论个数:</label>
+                            <label class="info-title">{{__('web.COMMENT_NUM')}}:</label>
                             <span>{{ $post->comments_count }}</span>
                         </p>
                         <p class="info">
-                            <label class="info-title">阅读次数:</label>
+                            <label class="info-title">{{__('web.READ_NUM')}}:</label>
                             <span>{{ $post->view_count }}</span>
                         </p>
                     </div>

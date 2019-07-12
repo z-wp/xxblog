@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title','归档')
+@section('title',__('web.ARCHIVE'))
 @section('content')
     <div class="container">
         @if($posts_count)
-            <div class="posts-count">共{{ $posts_count }}篇文章</div>
+            <div class="posts-count">{{__('web.TOTAL')}}{{ $posts_count }}{{__('web.TOTAL_POSTS')}}</div>
             <div id="cd-timeline" class="cd-container" style="margin: 0 0">
                 @foreach($posts as $post)
                     <div class="cd-timeline-block">

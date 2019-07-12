@@ -28,9 +28,9 @@ class MapController extends Controller
             'value' => 'required',
         ]);
         if ($this->mapRepository->create($request))
-            return back()->with('success', '保存成功');
+            return back()->with('success', __('web.SAVE_SUCCESS'));
         else
-            return back()->withErrors('保存失败哦');
+            return back()->withErrors(__('web.SAVE_FAIl'));
     }
 
     public function get($key)

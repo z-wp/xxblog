@@ -53,8 +53,8 @@ class ImageController extends Controller
             return response()->json($result, array_key_exists('error', $result) ? 500 : 200);
         } else {
             if ($this->imageRepository->uploadImageForBlog($request, true))
-                return back()->with('success', '上传成功');
-            return back()->withErrors('上传失败');
+                return back()->with('success', __('web.UPLOAD_SUCCESS'));
+            return back()->withErrors(__('web.UPLOAD_FAIL'));
         }
     }
 }

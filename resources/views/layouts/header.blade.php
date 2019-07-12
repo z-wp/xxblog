@@ -32,9 +32,9 @@ if (!$use_post_cover_img) {
             </button>
             <div class="navbar-collapse collapse" id="blog-navbar-collapse">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('achieve') }}">归档</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('achieve') }}">{{__('web.ARCHIVE')}}</a></li>
                     @if(XblogConfig::getValue('github_username'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">项目</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">{{__('web.ITEM')}}</a></li>
                     @endif
                     @foreach($pages as $page)
                         <li class="nav-item">
@@ -44,7 +44,7 @@ if (!$use_post_cover_img) {
                 </ul>
                 <ul class="nav navbar-nav ml-auto justify-content-end">
                     <form class="form-inline" role="search" method="get" action="{{ route('search') }}">
-                        <input type="text" class="form-control" name="q" placeholder="搜索" required>
+                        <input type="text" class="form-control" name="q" placeholder="{{__('web.SEARCH')}}" required>
                     </form>
                     @if(Auth::check())
                         <li class="nav-item dropdown">
@@ -61,9 +61,9 @@ if (!$use_post_cover_img) {
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('user.show', $user->name) }}">个人中心</a>
+                                <a class="dropdown-item" href="{{ route('user.show', $user->name) }}">{{__('web.ACCOUNT_CENTER')}}</a>
                                 @if(isAdmin(Auth::user()))
-                                    <a class="dropdown-item" href="{{ route('admin.index') }}">后台管理</a>
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">{{__('web.WEB_CONSOLE')}}</a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('user.notifications') }}">
                                     <?php
@@ -73,10 +73,10 @@ if (!$use_post_cover_img) {
                                     @if($unreadNotificationsCount)
                                         <span class="badge required">{{ $unreadNotificationsCount }}</span>
                                     @endif
-                                    通知中心
+                                    {{__('web.NOTIFICATION')}}
                                 </a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    退出登录
+                                    {{__('web.LOGOUT')}}
                                 </a>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -84,8 +84,8 @@ if (!$use_post_cover_img) {
                             </div>
                         </li>
                     @else
-                        <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">登录</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('register') }}">注册</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">{{__('web.LOGIN')}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('register') }}">{{__('web.SIGN_UP')}}</a></li>
                     @endif
 
                 </ul>

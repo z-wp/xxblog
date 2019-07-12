@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">博客</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('tag.index') }}">标签</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">{{__('web.BLOG')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('tag.index') }}">{{__('web.TAG')}}</a></li>
             <li class="breadcrumb-item active">{{ $name }}</li>
         </ol>
         <div class="row">

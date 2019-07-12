@@ -44,8 +44,8 @@ class FileController extends Controller
         }
 
         if ($this->upload($request, $this->getTag($request)))
-            return back()->with('success', '上传成功');
-        return back()->withErrors('上传失败');
+            return back()->with('success', __('web.UPLOAD_SUCCESS'));
+        return back()->withErrors(__('web.UPLOAD_FAIL'));
     }
 
     public function uploadTypeFile(Request $request)
@@ -55,8 +55,8 @@ class FileController extends Controller
             'type' => 'required',
         ]);
         if ($this->upload($request, $request->get('type')))
-            return back()->with('success', '上传成功');
-        return back()->withErrors('上传失败');
+            return back()->with('success', __('web.UPLOAD_SUCCESS'));
+        return back()->withErrors(__('web.UPLOAD_FAIL'));
     }
 
     public function deleteFile(Request $request)
@@ -67,9 +67,9 @@ class FileController extends Controller
         $this->unknownFileRepository->setTag($type);
         $result = $this->unknownFileRepository->delete($key, $file->disk);
         if ($result) {
-            return back()->with('success', '删除成功');
+            return back()->with('success', __('web.REMOVE_SUCCESS'));
         }
-        return back()->withErrors('删除失败');
+        return back()->withErrors(__('web.REMOVE_FAIL'));
     }
 
     private function upload(Request $request, $type)

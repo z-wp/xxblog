@@ -109,7 +109,7 @@ class AdminController extends Controller
     {
         $inputs = $request->except('_token');
         $this->mapRepository->saveSettings($inputs);
-        return back()->with('success', '保存成功');
+        return back()->with('success', __('web.SAVE_SUCCESS'));
     }
 
     public function posts()

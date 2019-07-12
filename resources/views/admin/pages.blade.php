@@ -10,9 +10,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>名称</th>
+            <th>{{__('web.NAME')}}</th>
             <th>url</th>
-            <th>操作</th>
+            <th>{{__('web.OPERATING')}}</th>
         </tr>
         </thead>
         <tbody>

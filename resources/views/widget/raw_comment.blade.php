@@ -16,21 +16,21 @@
                 <?php $final_allow_comment = $commentable->allowComment()?>
                 @if(!auth()->check())
                     <div class="form-group">
-                        <label class="form-control-label" for="username">姓名<span class="text-danger">*</span></label>
-                        <input {{ $final_allow_comment?' ':' disabled ' }} class="form-control" id="username" type="text" name="username" placeholder="您的大名">
+                        <label class="form-control-label" for="username">{{__('web.USERNAME')}}<span class="text-danger">*</span></label>
+                        <input {{ $final_allow_comment?' ':' disabled ' }} class="form-control" id="username" type="text" name="username" placeholder="{{__('web.YOUR_NAME')}}">
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="email">邮箱<span class="text-danger">*</span></label>
-                        <input {{ $final_allow_comment?' ':' disabled ' }} class="form-control" id="email" type="email" name="email" placeholder="邮箱不会公开">
+                        <label class="form-control-label" for="email">{{__('web.EMAIL')}}<span class="text-danger">*</span></label>
+                        <input {{ $final_allow_comment?' ':' disabled ' }} class="form-control" id="email" type="email" name="email" placeholder="{{__('web.YOUR_EMAIL')}}">
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="site">个人网站</label>
-                        <input {{ $final_allow_comment?' ':' disabled ' }} class="form-control" id="site" type="text" name="site" placeholder="可选，填写后点击头像可以直接进入">
+                        <label class="form-control-label" for="site">{{__('web.WEBSITE')}}</label>
+                        <input {{ $final_allow_comment?' ':' disabled ' }} class="form-control" id="site" type="text" name="site" placeholder="{{__('web.YOUR_WEBSITE')}}">
                     </div>
                 @endif
                 <div class="form-group">
-                    <label for="comment-content">评论内容,支持 <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a><span class="text-danger">*</span></label>
-                    <textarea {{ $final_allow_comment?' ':' disabled ' }} placeholder="审核后才会显示"
+                    <label for="comment-content">{{__('web.COMMENT_ARTICLE')}},{{__('web.SUPPORT')}} <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a><span class="text-danger">*</span></label>
+                    <textarea {{ $final_allow_comment?' ':' disabled ' }} placeholder="{{__('web.REVIEW_N_SHOW')}}"
                               id="comment-content" name="content"
                               rows="5" spellcheck="false"
                               class="form-control markdown-content autosize-target"></textarea>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <input {{ $final_allow_comment?' ':' disabled ' }} type="submit" id="comment-submit" class="btn btn-primary"
-                           value="回复"/>
+                           value="{{__('web.COMMENT_SUBMIT')}}"/>
                 </div>
             </form>
         </div>

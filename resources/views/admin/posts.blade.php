@@ -7,22 +7,22 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>标题</th>
-            <th>状态</th>
-            <th>action</th>
+            <th>{{__('web.TITLE')}}</th>
+            <th>{{__('web.STATUS')}}</th>
+            <th>{{__('web.OPERATING')}}</th>
         </tr>
         </thead>
         <tbody>
         @foreach($posts as $post)
             <?php
             $class = 'badge-secondary';
-            $status = '未发表';
+            $status = __('web.UNPUBLISHED');
             if ($post->trashed()) {
                 $class = 'badge-danger';
-                $status = '已删除';
+                $status = __('web.IS_REMOVE');
             } else if ($post->isPublished()) {
                 $class = 'badge-success';
-                $status = '已发表';
+                $status = __('web.PUBLISHED');
             }
             ?>
             <tr>
@@ -31,7 +31,7 @@
                 <td>
                     <div>
                         <a {{ $post->trashed()?'disabled':'' }} href="{{ $post->trashed()?'javascript:void(0)':route('post.edit',$post->id) }}"
-                           data-toggle="tooltip" data-placement="top" title="编辑"
+                           data-toggle="tooltip" data-placement="top" title="{{__('web.EDIT')}}"
                            class="btn btn-info">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
@@ -39,14 +39,14 @@
                             <form style="display: inline" method="post" action="{{ route('post.restore',$post->id) }}">
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip"
-                                        data-placement="top" title="恢复">
+                                        data-placement="top" title="{{__('web.RECOVERY')}}">
                                     <i class="fa fa-repeat fa-fw"></i>
                                 </button>
                             </form>
 
                         @elseif($post->isPublished())
                             <a href="{{ route('post.show',$post->slug) }}"
-                               data-toggle="tooltip" data-placement="top" title="查看"
+                               data-toggle="tooltip" data-placement="top" title="{{__('web.CHECK')}}"
                                class="btn btn-success">
                                 <i class="fa fa-eye fa-fw"></i>
                             </a>
@@ -54,20 +54,20 @@
                                   action="{{ route('post.publish',$post->id) }}">
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-warning" data-toggle="tooltip"
-                                        data-placement="top" title="撤销发布">
+                                        data-placement="top" title="{{__('web.REVOKE')}}{{__('web.PUBLISH')}}">
                                     <i class="fa fa-undo fa-fw"></i>
                                 </button>
                             </form>
                         @else
                             <a href="{{ route('post.preview',$post->slug) }}" data-toggle="tooltip"
-                               data-placement="top" title="预览"
+                               data-placement="top" title="{{__('web.REVIEW')}}"
                                class="btn btn-success">
                                 <i class="fa fa-eye fa-fw"></i>
                             </a>
                             <form style="display: inline" method="post"
                                   action="{{ route('post.publish',$post->id) }}">
                                 {{ csrf_field() }}
-                                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="发布">
+                                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="{{__('web.PUBLISH')}}">
                                     <i class="fa fa-send-o fa-fw"></i>
                                 </button>
                             </form>
@@ -75,11 +75,11 @@
                         <button class="btn btn-danger swal-dialog-target"
                                 data-toggle="tooltip"
                                 data-title="{{ $post->title }}"
-                                data-dialog-msg="确定删除文章<label>{{ $post->title }}</label>？"
-                                title="删除"
+                                data-dialog-msg="{{__('web.CONFIRM_TO_REMOVE')}}{{__('web.ARTICLE')}}<label>{{ $post->title }}</label>？"
+                                title="{{__('web.REMOVE')}}"
                                 data-dialog-enable-html="1"
                                 data-url="{{ route('post.destroy',$post->id) }}"
-                                data-dialog-confirm-text="{{ $post->trashed()?'删除(这将永久刪除)':'删除' }}">
+                                data-dialog-confirm-text="{{ $post->trashed()?__('web.REMOVE_TIPS'):__('web.REMOVE') }}">
                             <i class="fa fa-trash-o  fa-fw"></i>
                         </button>
                         <a class="btn btn-dark"  data-toggle="tooltip" title="Download as markdown file" href="{{ route('post.download',$post->id) }}">
@@ -88,7 +88,7 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                评论
+                                {{__('web.COMMENTS')}}
                                 <span class="caret"></span>
                             </button>
                             <?php $commentable = $post?>
@@ -96,33 +96,33 @@
                                 @if($commentable->allowComment())
                                     <a href="#" data-url="{{ route('post.config',$post->id) }}?allow_resource_comment=false"
                                        data-method="post"
-                                       data-dialog-title="禁止评论"
+                                       data-dialog-title="{{__('web.DISALLOW_COMMENT')}}"
                                        class="dropdown-item swal-dialog-target">
-                                        禁止评论
+                                        {{__('web.DISALLOW_COMMENT')}}
                                     </a>
                                 @else
                                     <a href="#" data-url="{{ route('post.config',$post->id) }}?allow_resource_comment=true"
                                        data-method="post"
-                                       data-dialog-title="允许评论"
+                                       data-dialog-title="{{__('web.ALLOW_COMMENT')}}"
                                        data-dialog-type="success"
                                        class="dropdown-item swal-dialog-target">
-                                        允许评论
+                                        {{__('web.ALLOW_COMMENT')}}
                                     </a>
                                 @endif
                                 @if($commentable->isShownComment())
                                     <a href="#" data-url="{{ route('post.config',$post->id) }}?comment_info=force_disable"
                                        data-method="post"
-                                       data-dialog-title="不显示评论"
+                                       data-dialog-title="{{__('web.HIDE_COMMENT')}}"
                                        class="dropdown-item swal-dialog-target">
-                                        不显示评论
+                                        {{__('web.HIDE_COMMENT')}}
                                     </a>
                                 @else
                                     <a href="#" data-url="{{ route('post.config',$post->id) }}?comment_info=force_enable"
                                        data-method="post"
-                                       data-dialog-title="显示评论"
+                                       data-dialog-title="{{__('web.DISPLAT_COMMENT')}}"
                                        data-dialog-type="success"
                                        class="dropdown-item swal-dialog-target">
-                                        显示评论
+                                        {{__('web.DISPLAY_COMMENT')}}
                                     </a>
                                 @endif
                             </ul>

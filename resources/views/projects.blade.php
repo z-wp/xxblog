@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','项目')
+@section('title',__('web.ITEM'))
 @section('content')
     <div class="container">
         <div id="repo-template" style="display:none">
@@ -33,7 +33,7 @@
         <div class="projects row justify-content-center">
             <div class="center-block">
                 <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                <h3>加载中...</h3>
+                <h3>{{__('web.LOADING')}}</h3>
             </div>
         </div>
     </div>

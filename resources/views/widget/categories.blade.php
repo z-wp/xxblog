@@ -1,7 +1,7 @@
 @if(!$categories->isEmpty())
     <div class="order-md-2 mb-4">
         <h5 class="d-flex justify-content-between align-items-center mb-2">
-            <a class="text-muted" href="{{ route('category.index') }}">分类</a>
+            <a class="text-muted" href="{{ route('category.index') }}">{{__('web.CLASSIFICATION')}}</a>
             <span class="badge badge-secondary badge-pill">{{ count($categories) }}</span>
         </h5>
         <div class="hot-posts">
