@@ -6,7 +6,7 @@
   <a href="https://packagist.org/packages/lufficc/xblog"><img src="https://poser.pugx.org/lufficc/xblog/license.svg" alt="License"></a>
 
 </p>
-<p align="center">Powerful and responsive blog system powered by laravel 5.5. Click https://lufficc.com to view live demo.</p>
+<p align="center">Powerful and responsive blog system powered by laravel 5.5. Click https://lufficc.com/blog to view live demo.</p>
 <br>
 
 # Xblog
