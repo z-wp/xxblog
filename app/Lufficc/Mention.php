@@ -36,7 +36,7 @@ class Mention
     public function mentionUsers(Comment $comment, $users, $html_content)
     {
         foreach ($users as $user) {
-            if (!isAdmin($users)) {
+            if ($user->id != $comment->user_id) {
                 $user->notify(new MentionedInComment($comment, $html_content));
             }
         }

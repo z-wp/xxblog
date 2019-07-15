@@ -113,7 +113,10 @@ class CommentRepository extends Repository
         /**
          * mention user after comment saved
          */
-        getAdminUser()->notify(new ReceivedComment($comment));
+        $admin_user = getAdminUser();
+        if ($admin_user->id != $comment->user_id) {
+            $admin_user->notify(new ReceivedComment($comment));
+        }
         $this->mention->mentionUsers($comment, getMentionedUsers($content), $comment->html_content);
 
         return $result;
