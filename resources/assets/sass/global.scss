@@ -64,5 +64,6 @@ html, body {
 
 .card {
   border: none;
+  border-radius: 2px;
   @extend .shadow;
 }
