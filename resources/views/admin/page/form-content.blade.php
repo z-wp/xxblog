@@ -86,7 +86,7 @@
                    {{ (isset($page)) && $display == 'true' ? ' checked ':'' }}
                    name="display"
                    value="true">
-            {{__('web.DISPALY_AT_INDEX')}}
+            {{__('web.DISPLAY_AT_INDEX')}}
         </label>
     </div>
     <div class="form-check">
