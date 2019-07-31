@@ -141,6 +141,7 @@ return array(
     'READ_NUM'=>'閱讀次數',
     //view/user/notifications.blade.php
     'COMMENTS' => '評論',
+    'COMMENT' => '評論',
     'MENTIONED_COMMENT'=>'提到了你',
     'BASE_NOTIFICATION'=>'基本提醒',
     //view/user/pictures.blade.php

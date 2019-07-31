@@ -140,7 +140,8 @@ return array(
     'EDIT_DATE'=>'Modified date',
     'READ_NUM'=>'Number of times read',
     //view/user/notifications.blade.php
-    'COMMENTS' => 'Comment',
+    'COMMENTS' => 'Comments',
+    'COMMENT' => 'Comment',
     'MENTIONED_COMMENT'=>'Mentioned you',
     'BASE_NOTIFICATION'=>'Basic reminder',
     //view/user/pictures.blade.php
