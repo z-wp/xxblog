@@ -32,7 +32,7 @@ if (!$use_post_cover_img) {
             </button>
             <div class="navbar-collapse collapse" id="blog-navbar-collapse">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('achieve') }}">{{__('web.ARCHIVE')}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('archives') }}">{{__('web.ARCHIVE')}}</a></li>
                     @if(XblogConfig::getValue('github_username'))
                         <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">{{__('web.ITEM')}}</a></li>
                     @endif

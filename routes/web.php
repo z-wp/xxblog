@@ -15,7 +15,7 @@
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'index']);
 Route::get('/projects', ['uses' => 'HomeController@projects', 'as' => 'projects']);
 Route::get('/search', ['uses' => 'HomeController@search', 'as' => 'search']);
-Route::get('/achieve', ['uses' => 'HomeController@achieve', 'as' => 'achieve']);
+Route::get('/archives', ['uses' => 'HomeController@archives', 'as' => 'archives']);
 
 // User Auth
 Auth::routes();

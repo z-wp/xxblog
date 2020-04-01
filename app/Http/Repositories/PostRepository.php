@@ -87,7 +87,7 @@ class PostRepository extends Repository
         return $posts;
     }
 
-    public function achieve()
+    public function archives()
     {
         $posts = $this->remember('post.achieve', function () {
             return Post::select([

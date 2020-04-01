@@ -48,9 +48,9 @@ class HomeController extends Controller
         return view('projects');
     }
 
-    public function achieve()
+    public function archives()
     {
-        $posts = $this->postRepository->achieve();
+        $posts = $this->postRepository->archives();
         $posts_count = $this->postRepository->postCount();
         return view('achieve', compact('posts', 'posts_count'));
     }
