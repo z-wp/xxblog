@@ -191,7 +191,6 @@ return [
         Chumper\Zipper\ZipperServiceProvider::class,
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
         HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
-        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
@@ -242,7 +241,6 @@ return [
         'XblogConfig' => App\Facades\XblogConfig::class,
         'Zipper' => Chumper\Zipper\Zipper::class,
         'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
-        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
     ],
 
 ];

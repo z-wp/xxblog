@@ -10,6 +10,39 @@ use Gate;
 use Illuminate\Http\Request;
 use XblogConfig;
 
+function siteVerify(Request $request)
+{
+    if (!config('recaptcha.api_site_key')) {
+        return true;
+    }
+
+    $url = 'https://recaptcha.net/recaptcha/api/siteverify';
+    $data = [
+        'secret' => config('recaptcha.api_secret_key'),
+        'response' => $request->get('recaptcha_v3_token'),
+        'remoteip' => $request->getClientIp()
+    ];
+
+    $options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $result = json_decode($result);
+    if (!$result->success) {
+        return false;
+    }
+    if ($result->score >= 0.5) {
+        return true;
+    }
+    return false;
+}
+
+
 class CommentController extends Controller
 {
     protected $commentRepository;
@@ -67,10 +100,9 @@ class CommentController extends Controller
                 );
             }
         }
-        $validator = Validator::make($request->only('g-recaptcha-response'), ['g-recaptcha-response' => 'recaptcha']);
-        if ($validator->fails()) {
+        if (!siteVerify($request)) {
             return response()->json(
-                ['status' => 500, 'msg' => 'reCAPTCHA incorrect !']
+                ['status' => 500, 'msg' => 'reCAPTCHA incorrect! Maybe you are a robot.']
             );
         }
 

@@ -137,65 +137,72 @@ require('./boot');
                 return false;
             }
 
-            let recaptcha_id = form.find('.g-recaptcha').attr('widget-id');
-            if (grecaptcha && grecaptcha.getResponse(recaptcha_id).length === 0) {
-                form.find('#comment_submit_msg').attr('class', 'text-danger').text('Prove that you are not a robot!');
-                form.find('#comment_submit_msg').show();
-                return false;
-            }
-
             submitBtn.val('提交中...').addClass('disabled').prop('disabled', true);
             form.find('#comment_submit_msg').text('').hide();
-            $.ajax({
-                method: 'post',
-                url: $(this).attr('action'),
-                headers: {
-                    'X-CSRF-TOKEN': XblogConfig.csrfToken
-                },
-                data: form.serialize(),
-            }).done(function (data) {
-                if (data.status === 200) {
-                    if (has_username && window.localStorage) {
-                        let usernameValue = username.val();
-                        let emailValue = email.val();
-                        let siteValue = site.val();
-                        if (usernameValue)
-                            localStorage.setItem('comment_username', usernameValue);
-                        if (emailValue)
-                            localStorage.setItem('comment_email', emailValue);
-                        if (siteValue)
-                            localStorage.setItem('comment_site', siteValue);
-                    }
-                    username.val('');
-                    email.val('');
-                    site.val('');
-                    commentContent.val('');
-                    form.find('#comment_submit_msg').hide();
-                    if (data.comment.reply_id) {
-                        $('#comment-' + data.comment.reply_id + ' > .comment-info > .comment-content').append(data.rendered_html);
+
+            function __submit() {
+                $.ajax({
+                    method: 'post',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': XblogConfig.csrfToken
+                    },
+                    data: form.serialize(),
+                }).done(function (data) {
+                    if (data.status === 200) {
+                        if (has_username && window.localStorage) {
+                            let usernameValue = username.val();
+                            let emailValue = email.val();
+                            let siteValue = site.val();
+                            if (usernameValue)
+                                localStorage.setItem('comment_username', usernameValue);
+                            if (emailValue)
+                                localStorage.setItem('comment_email', emailValue);
+                            if (siteValue)
+                                localStorage.setItem('comment_site', siteValue);
+                        }
+                        username.val('');
+                        email.val('');
+                        site.val('');
+                        commentContent.val('');
+                        form.find('#comment_submit_msg').hide();
+                        if (data.comment.reply_id) {
+                            $('#comment-' + data.comment.reply_id + ' > .comment-info > .comment-content').append(data.rendered_html);
+                        } else {
+                            $('#comments-container').append(data.rendered_html);
+                        }
+                        initDeleteTarget();
+                        highLightCodeOfChild($('#comments-container'));
+                        if ($('#comment-' + data.comment.id).length > 0) {
+                            setTimeout(function () {
+                                let scroll = new SmoothScroll();
+                                scroll.animateScroll(document.querySelector('#comment-' + data.comment.id));
+                            }, 500)
+                        }
+                        form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show once it has been approved.');
                     } else {
-                        $('#comments-container').append(data.rendered_html);
+                        form.find('#comment_submit_msg').attr('class', 'text-danger').text(data.msg);
                     }
-                    initDeleteTarget();
-                    highLightCodeOfChild($('#comments-container'));
-                    if ($('#comment-' + data.comment.id).length > 0) {
-                        setTimeout(function () {
-                            let scroll = new SmoothScroll();
-                            scroll.animateScroll(document.querySelector('#comment-' + data.comment.id));
-                        }, 500)
-                    }
-                    form.find('#comment_submit_msg').attr('class', 'text-success').text('Thanks for your comment! It will show once it has been approved.');
-                } else {
-                    form.find('#comment_submit_msg').attr('class', 'text-danger').text(data.msg);
-                }
-                form.find('#comment_submit_msg').show();
-            }).fail(function () {
-                form.find('#comment_submit_msg').attr('class', 'text-danger').text('Internal Server Error.');
-                form.find('#comment_submit_msg').show();
-            }).always(function () {
-                submitBtn.val("回复").removeClass('disabled').prop('disabled', false);
-                grecaptcha.reset(recaptcha_id);
-            });
+                    form.find('#comment_submit_msg').show();
+                }).fail(function () {
+                    form.find('#comment_submit_msg').attr('class', 'text-danger').text('Internal Server Error.');
+                    form.find('#comment_submit_msg').show();
+                }).always(function () {
+                    submitBtn.val("回复").removeClass('disabled').prop('disabled', false);
+                });
+            }
+
+            let recaptcha_api_site_key = form.find('input[name=recaptcha_api_site_key]');
+            if (recaptcha_api_site_key && $.trim(recaptcha_api_site_key.val()) !== '') {
+                grecaptcha.execute(recaptcha_api_site_key.val(), {action: 'comment'}).then(function (token) {
+                    form.find('input[name=recaptcha_v3_token]').val(token);
+                    __submit();
+                });
+            } else {
+                console.log('recaptcha v3 is not enabled!!');
+                __submit();
+            }
+
             return false;
         });
     }

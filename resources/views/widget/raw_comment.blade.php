@@ -35,8 +35,10 @@
                               rows="5" spellcheck="false"
                               class="form-control markdown-content autosize-target"></textarea>
                 </div>
-                @if($final_allow_comment)
-                    <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.api_site_key') }}" widget-id="0"></div>
+                @if($final_allow_comment && config('recaptcha.api_site_key'))
+                    <input type="hidden" name="recaptcha_api_site_key" value="{{ config('recaptcha.api_site_key') }}">
+                    <input type="hidden" name="recaptcha_v3_token">
+                    <script src="https://www.recaptcha.net/recaptcha/api.js?render={{ config('recaptcha.api_site_key') }}"></script>
                 @endif
                 <div class="form-group">
                     <span class="help-block required"><strong id="comment_submit_msg"></strong></span>
