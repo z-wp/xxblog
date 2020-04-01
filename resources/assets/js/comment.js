@@ -11,11 +11,9 @@ window.replyComment = function (obj, username, comment_id) {
     let html = $('#comment-form-wrapper').clone();
     let form = html.find('#comment-form');
     form.attr('id', 'comment-reply-form');
-    form.find('#comment-submit').attr('id', 'comment-reply-submit');
     form.find('#comment_submit_msg').text('');
     form.append('<input type="hidden" name="reply_id" value=' + comment_id + '>');
 
-    form.find('#comment-content').parent().after('<div class="g-recaptcha" id="comment-reply-recaptcha"></div>');
     $(obj).parent().after(html.html());
 
     let comment_reply_form = $('#comment-reply-form')
