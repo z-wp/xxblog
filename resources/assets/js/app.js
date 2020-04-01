@@ -259,6 +259,22 @@ require('./boot');
     Xblog.bindCommentFrom = bindCommentFrom;
     window.Xblog = Xblog;
 })(jQuery);
+
+
+function highlightComment(comment_id) {
+    $(".comment[id^='comment-']").removeClass('comment-active');
+    $(comment_id).addClass('comment-active');
+}
+
 $(document).ready(function () {
     Xblog.init();
+
+    let hash_id = window.location.hash.substr(1);
+    const words = hash_id.split('-');
+    if (words.length === 2 && words[0] === 'comment') {
+        highlightComment('#' + hash_id);
+    }
+    $("#comments a[href*='#']").click(function () {
+        highlightComment($(this).attr('href'));
+    })
 });
