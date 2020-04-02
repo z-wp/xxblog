@@ -100,6 +100,7 @@ return array(
     'DOCUMENT'=>'Document',
     'SURE_TO_DELETE'=>'Confirm delete',
     //view/admin/index.blade.php
+    'POST'=>'Post',
     'PAGE'=>'Page',
     'CATEGORY'=>'Category',
     'IMAGE'=>'Image',

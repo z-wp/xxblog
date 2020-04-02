@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <span>{{__('web.PAGE')}}</span>
+                            <span>{{__('web.POST')}}</span>
                             <div class="info-title">{{ $info['post_count'] }}</div>
                         </div>
                     </div>

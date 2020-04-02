@@ -100,6 +100,7 @@ return array(
     'DOCUMENT'=>'文件',
     'SURE_TO_DELETE'=>'確定刪除',
     //view/admin/index.blade.php
+    'POST'=>'文章',
     'PAGE'=>'頁面',
     'CATEGORY'=>'分類',
     'IMAGE'=>'圖片',
