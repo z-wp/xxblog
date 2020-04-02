@@ -18,8 +18,7 @@ window.replyComment = function (obj, username, comment_id) {
 
     let comment_reply_form = $('#comment-reply-form')
     let contentTextarea = comment_reply_form.find('#comment-content');
-    contentTextarea.focus();
-    contentTextarea.text('@' + username + ' ');
+    contentTextarea.focus().val("").val('@' + username + ' ');
     Xblog.bindCommentFrom(comment_reply_form);
 };
 
