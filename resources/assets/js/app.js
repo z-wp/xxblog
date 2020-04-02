@@ -194,9 +194,11 @@ require('./boot');
 
             let recaptcha_api_site_key = form.find('input[name=recaptcha_api_site_key]');
             if (recaptcha_api_site_key && $.trim(recaptcha_api_site_key.val()) !== '') {
-                grecaptcha.execute(recaptcha_api_site_key.val(), {action: 'comment'}).then(function (token) {
-                    form.find('input[name=recaptcha_v3_token]').val(token);
-                    __submit();
+                grecaptcha.ready(function () {
+                    grecaptcha.execute(recaptcha_api_site_key.val(), {action: 'comment'}).then(function (token) {
+                        form.find('input[name=recaptcha_v3_token]').val(token);
+                        __submit();
+                    });
                 });
             } else {
                 console.log('recaptcha v3 is not enabled!!');
