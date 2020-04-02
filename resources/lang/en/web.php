@@ -91,6 +91,7 @@ return array(
     'IS_REMOVE'=>'Deleted',
     'IS_VERIFIED'=>'Audited',
     'NOT_VERIFIED'=>'Unreviewed',
+    'DELETE'=>'Delete',
     'DELETE_FOREVER'=>'delete permanently',
     'DELETE_THIS_COMMENT_FOREVER'=>'Delete this comment permanently',
     'RECOVERY'=>'Restore',

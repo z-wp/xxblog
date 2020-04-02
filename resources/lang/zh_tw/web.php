@@ -91,6 +91,7 @@ return array(
     'IS_REMOVE'=>'已刪除',
     'IS_VERIFIED'=>'已審核',
     'NOT_VERIFIED'=>'未審核',
+    'DELETE'=>'删除',
     'DELETE_FOREVER'=>'永久刪除',
     'DELETE_THIS_COMMENT_FOREVER'=>'永久刪除這條評論',
     'RECOVERY'=>'恢復',

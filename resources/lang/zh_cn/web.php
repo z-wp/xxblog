@@ -91,6 +91,7 @@ return array(
     'IS_REMOVE'=>'已删除',
     'IS_VERIFIED'=>'已审核',
     'NOT_VERIFIED'=>'未审核',
+    'DELETE'=>'删除',
     'DELETE_FOREVER'=>'永久删除',
     'DELETE_THIS_COMMENT_FOREVER'=>'永久删除这条评论',
     'RECOVERY'=>'恢复',
