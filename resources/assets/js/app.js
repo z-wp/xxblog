@@ -193,9 +193,15 @@ require('./boot');
             }
 
             let recaptcha_api_site_key = form.find('input[name=recaptcha_api_site_key]');
-            if (recaptcha_api_site_key && $.trim(recaptcha_api_site_key.val()) !== '') {
+            if (recaptcha_api_site_key) {
+                recaptcha_api_site_key = recaptcha_api_site_key.val();
+            } else {
+                recaptcha_api_site_key = ''
+            }
+
+            if (recaptcha_api_site_key !== '') {
                 grecaptcha.ready(function () {
-                    grecaptcha.execute(recaptcha_api_site_key.val(), {action: 'comment'}).then(function (token) {
+                    grecaptcha.execute(recaptcha_api_site_key, {action: 'comment'}).then(function (token) {
                         form.find('input[name=recaptcha_v3_token]').val(token);
                         __submit();
                     });
