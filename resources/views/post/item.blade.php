@@ -4,13 +4,15 @@
             <a title="{{ $post->title }}" href="{{ route('post.show',$post->slug) }}">
                 {{ $post->title }}
                 <?php $now = \Carbon\Carbon::now();?>
-                <small>
-                    @if($post->created_at->diffInDays($now) >= 7 && $post->published_at->diffInDays($now) <= 3)
-                        <span class="badge badge-success" data-toggle="tooltip" title="Updated {{ $post->published_at->diffForHumans() }}.">Updated</span>
-                    @elseif($post->created_at->diffInDays($now) <= 3)
-                        <span class="badge badge-danger" data-toggle="tooltip" title="Created {{ $post->created_at->diffForHumans() }}.">New</span>
-                    @endif
-                </small>
+                <sup>
+                    <small>
+                        @if($post->created_at->diffInDays($now) >= 7 && $post->published_at->diffInDays($now) <= 3)
+                            <span class="badge badge-success" data-toggle="tooltip" title="Updated {{ $post->published_at->diffForHumans() }}.">Updated</span>
+                        @elseif($post->created_at->diffInDays($now) <= 3)
+                            <span class="badge badge-danger" data-toggle="tooltip" title="Created {{ $post->created_at->diffForHumans() }}.">New</span>
+                        @endif
+                    </small>
+                </sup>
             </a>
         </h1>
         <div class="post-meta">
