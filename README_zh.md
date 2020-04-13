@@ -1,13 +1,5 @@
-<p align="center">
-  <img src="https://github.com/lufficc/images/blob/master/Xblog/logo.png" alt="Xblog: fast and powerful!" width="200">
-  <br>
-  <a href="https://packagist.org/packages/lufficc/xblog"><img src="https://poser.pugx.org/lufficc/xblog/v/stable.svg" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/lufficc/xblog"><img src="https://poser.pugx.org/lufficc/xblog/downloads.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/lufficc/xblog"><img src="https://poser.pugx.org/lufficc/xblog/license.svg" alt="License"></a>
-  
-</p>
+
 <p align="center">强大，响应式的博客系统，由Laravel5.5强力驱动。点击 https://lufficc.com/blog 查看实时Demo.</p>
-<br>
 
 # Xblog
 
